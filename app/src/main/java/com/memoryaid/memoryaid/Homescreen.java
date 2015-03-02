@@ -3,15 +3,39 @@ package com.memoryaid.memoryaid;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class Homescreen extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen);
+
+        String filesFolder = getApplicationContext().getFilesDir().getPath();
+        DatabaseHandler parser = new DatabaseHandler(filesFolder + "userinfo.xml");
+        parser.ResetDatabase();
+        parser.ShowFile();
+        parser.AddProfile(new Profile("JEFKE", "Test", "1994", new ArrayList<Contact>()));
+        parser.ShowFile();
+
+        LinkFiles(filesFolder);
+    }
+
+    public void LinkFiles(String path) {
+        Log.e("Files", "Path: " + path);
+        File f = new File(path);
+        File file[] = f.listFiles();
+        Log.e("Files", "Size: " + file.length);
+        for (int i = 0; i < file.length; i++) {
+            if (file[i].isFile()) Log.e("Files", "FileName: " + file[i].getName());
+            if (file[i].isDirectory()) LinkFiles(file[i].getAbsolutePath());
+        }
     }
 
     public void CreateNewUser(View view)
