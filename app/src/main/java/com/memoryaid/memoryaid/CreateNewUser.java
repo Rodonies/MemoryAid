@@ -19,10 +19,10 @@ public class CreateNewUser extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_user);
 
-
+        /*
         contactImgView = (ImageView) findViewById(R.id.selected_photo);
         EditText basic_info_user = (EditText) findViewById(R.id.etInputBasicInfo);
-
+        */
 
 
 
