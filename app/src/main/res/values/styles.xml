@@ -35,4 +35,17 @@
 
     </style>
 
+
+    <style name="Small">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="Medium">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Big">
+        <item name="android:textSize">20sp</item>
+    </style>
+
 </resources>

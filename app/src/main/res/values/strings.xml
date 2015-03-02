@@ -21,4 +21,20 @@
     <string name="hintBasicInfo">enter basic info here</string>
     <string name="password">Password: </string>
     <string name="hintpassword">enter password here </string>
+
+    <string name="app_name">HumanDex</string>
+    <string name="Language">Language</string>
+    <string name="TextAndImageSize">Text &amp; Image Size</string>
+    <string name="English">English</string>
+    <string name="ProfileManagement">Profile Management</string>
+    <string name="Big">Big</string>
+    <string name="Medium">Medium</string>
+    <string name="Small">Small</string>
+    <string name="Frans">Françias</string>
+    <string name="Deutsch">Deutsch</string>
+    <string name="Espanol">Espanol</string>
+    <string name="AddProf">Add profile</string>
+    <string name="EditProf">Edit profile</string>
+    <string name="DeleteProf">Delete profile</string>
+    <string name="ChooseFavColor">Choose your favorite color</string>
 </resources>
