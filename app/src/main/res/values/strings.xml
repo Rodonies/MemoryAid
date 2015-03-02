@@ -2,15 +2,17 @@
 <resources>
     <string name="action_settings"> Memory Aid </string>
     <string name="app_name"> Memory Aid </string>
-    <string name="Headmenutxt1"> Create new user </string>
-    <string name="Headmenutxt2"> Choose existing user </string>
+    <string name="Headmenutxt1"> View profiles </string>
+    <string name="Headmenutxt2"> profile manager </string>
     <string name="Headmenutxt3"> Settings </string>
-    <string name="Headmenutxt4"> Close </string>
     <string name="title_activity_new_user_creation">NewUserCreation</string>
-    <string name="title_activity_create_new_user">CreateNewUser</string>
+    <string name="title_activity_create_new_user">Create new user</string>
 
-    <string name="Name">Name: </string>
-    <string name="hintName">enter name here</string>
+    <string name="TitleCreateNewProfile">Create new profile</string>
+    <string name="btnPicture">Add picture</string>
+    <string name="Firstname">First name: </string>
+    <string name="Lastname">Last name</string>
+    <string name="hintName">enter first name here</string>
     <string name="Relation">Relation: </string>
     <string name="hintRelation">enter status relation</string>
     <string name="Date_of_birth">Date of birth</string>

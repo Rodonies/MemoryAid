@@ -10,121 +10,39 @@
     tools:context="com.memoryaid.memoryaid.CreateNewUser">
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="0.8">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Name"
-                android:layout_weight="1"
-                style="@style/NewUserUI"/>
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/hintName"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Relation"
-                android:layout_weight="1"
-                style="@style/NewUserUI"/>
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/hintRelation"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Date_of_birth"
-                android:layout_weight="1"
-                style="@style/NewUserUI"/>
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/hintDate_of_birth"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                style="@style/NewUserUI"
-                android:text="@string/password"/>
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/hintpassword"
-                android:password="true"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/selected_photo"
-                android:background="@drawable/defaultimage"
-                android:onClick="SearchPhoto"
-                />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
-        style="@style/NewUserUI"
-        android:gravity="center_horizontal">
+        android:layout_weight="0.05"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Basic_info"
-            android:textSize="20sp"
-            style="@style/NewUserUI"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/etInputBasicInfo"
-            android:layout_weight="1"/>
-
+            android:textStyle="bold"
+            android:textSize="28dp"
+            android:gravity="center"
+            android:text="@string/TitleCreateNewProfile"
+            />
         <Button
-            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:text="@string/btnPicture"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    <ScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">7
+
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:onClick="AddContact"
-            android:id="@+id/btnAddContact"
-            android:enabled="false"
-            android:text="Add Contact"/>
-    </LinearLayout>
+
+            android:text="@string/Firstname"
+            />
+
+    </ScrollView>
+
 </LinearLayout>

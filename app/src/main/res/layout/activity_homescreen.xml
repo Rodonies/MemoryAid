@@ -39,10 +39,7 @@
         android:layout_marginBottom="40dp"
         android:text="@string/Headmenutxt3"
         style="@style/AudioFileInfoOverlayText"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Headmenutxt4"/>
+
 </LinearLayout>
 
 
