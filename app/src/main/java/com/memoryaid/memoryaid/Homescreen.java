@@ -16,7 +16,7 @@ public class Homescreen extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen);
-
+/*
         String filesFolder = getApplicationContext().getFilesDir().getPath();
         DatabaseHandler parser = new DatabaseHandler(filesFolder + "userinfo.xml");
         parser.ResetDatabase();
@@ -24,9 +24,9 @@ public class Homescreen extends ActionBarActivity {
         parser.AddProfile(new Profile("JEFKE", "Test", "1994", new ArrayList<Contact>()));
         parser.ShowFile();
 
-        LinkFiles(filesFolder);
+        LinkFiles(filesFolder);*/
     }
-
+/*
     public void LinkFiles(String path) {
         Log.e("Files", "Path: " + path);
         File f = new File(path);
@@ -36,7 +36,7 @@ public class Homescreen extends ActionBarActivity {
             if (file[i].isFile()) Log.e("Files", "FileName: " + file[i].getName());
             if (file[i].isDirectory()) LinkFiles(file[i].getAbsolutePath());
         }
-    }
+    }*/
 
     public void CreateNewUser(View view)
     {

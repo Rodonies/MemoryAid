@@ -34,6 +34,8 @@
             android:layout_width="wrap_content"
             android:enabled="true"
             android:maxHeight="0dp"
+            android:onclick="AddPicture"
+            android:id="@+id/btnAddPhoto"
             android:layout_height="wrap_content" />
 
         <ImageView
@@ -41,6 +43,7 @@
             android:layout_height="50dp"
             android:maxWidth="150dp"
             android:maxHeight="150dp"
+            android:id="@+id/ChosenPhoto"
             android:layout_gravity="center"/>
 
         </LinearLayout>
@@ -64,6 +67,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:hint="@string/hintFirstName"/>
 
             <TextView
@@ -75,6 +79,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:hint="@string/hintLastName"/>
             <TextView
                 android:layout_width="match_parent"
@@ -84,7 +89,10 @@
                 />
             <EditText
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="@string/hintPhoneNumber"/>
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -95,12 +103,41 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:hint="@string/hintDate_of_birth"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Basic_info"
+                android:theme="@style/NewUserUI"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="@string/hintBasicInfo"/>
+
 
 
             </LinearLayout>
 
 
     </ScrollView>
+
+    <LinearLayout
+        android:weightSum="1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:enabled="false"
+            android:text="Save"/>
+
+        </LinearLayout>
 
 </LinearLayout>

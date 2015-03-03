@@ -17,17 +17,17 @@ public class CreateNewUser extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+        contactImgView = (ImageView) findViewById(R.id.ChosenPhoto);
+
+
+
+
+
+
         setContentView(R.layout.activity_create_new_user);
-
-        /*
-        contactImgView = (ImageView) findViewById(R.id.selected_photo);
-        EditText basic_info_user = (EditText) findViewById(R.id.etInputBasicInfo);
-        */
-
-
-
-
-
     }
 
 
