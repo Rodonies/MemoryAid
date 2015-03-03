@@ -17,9 +17,13 @@ public class Homescreen extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen);
 /*
+=======
+
+
+>>>>>>> Stashed changes
         String filesFolder = getApplicationContext().getFilesDir().getPath();
-        DatabaseHandler parser = new DatabaseHandler(filesFolder + "userinfo.xml");
-        parser.ResetDatabase();
+        DatabaseHandler parser = new DatabaseHandler(filesFolder + "/userinfo.xml");
+        /*parser.ResetDatabase();
         parser.ShowFile();
         parser.AddProfile(new Profile("JEFKE", "Test", "1994", new ArrayList<Contact>()));
         parser.ShowFile();

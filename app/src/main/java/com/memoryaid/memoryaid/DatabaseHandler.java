@@ -36,7 +36,7 @@ public class DatabaseHandler extends Activity {
     static String Path;
     static java.io.File File;
 
-    private String filesFolder = "/data/data/com.memoryaid.memoryaid/files/";
+    private String filesFolder = getApplicationContext().getFilesDir().getPath();
     private String KEY_ROOT = "root";
     private String KEY_ID = "selected";
     private String KEY_PROFILE = "profile";
@@ -48,8 +48,10 @@ public class DatabaseHandler extends Activity {
     private String KEY_DATE = "birthday";
 
     public DatabaseHandler(String path) {
+        Log.e("Files", "Path: " + path);
         Path = path;
         File = new File(path);
+        Log.e("Files", "absPath: " + File.getAbsolutePath());
         if (!File.exists()) ResetDatabase();
 
         try {
@@ -206,7 +208,7 @@ public class DatabaseHandler extends Activity {
     }
 
     public void ResetDatabase() {
-        DeleteFiles("/data/data/com.example.vamirax.myfirstapp/files");
+        DeleteFiles(filesFolder);
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
