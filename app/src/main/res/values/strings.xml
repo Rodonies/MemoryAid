@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name"> Memory Aid </string>
     <string name="action_settings"> Memory Aid </string>
 
     <string name="Headmenutxt1"> View profiles </string>
