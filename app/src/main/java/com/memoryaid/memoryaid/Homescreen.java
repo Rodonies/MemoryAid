@@ -18,7 +18,7 @@ public class Homescreen extends ActionBarActivity {
         setContentView(R.layout.activity_homescreen);
 
         String filesFolder = getApplicationContext().getFilesDir().getPath();
-        DatabaseHandler parser = new DatabaseHandler(filesFolder + "/userinfo.xml");
+        //DatabaseHandler parser = new DatabaseHandler(filesFolder + "/userinfo.xml");
         /*parser.ResetDatabase();
         parser.ShowFile();
         parser.AddProfile(new Profile("JEFKE", "Test", "1994", new ArrayList<Contact>()));
