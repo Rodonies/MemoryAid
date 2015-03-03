@@ -1,5 +1,6 @@
 package com.memoryaid.memoryaid;
 
+import android.app.Application;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -9,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class Homescreen extends ActionBarActivity {
     @Override
@@ -17,8 +17,8 @@ public class Homescreen extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen);
 
-        String filesFolder = getApplicationContext().getFilesDir().getPath();
-        //DatabaseHandler parser = new DatabaseHandler(filesFolder + "/userinfo.xml");
+        String filesFolder = this.getApplicationContext().getFilesDir().getPath();
+        XMLDatabaseHandler parser = new XMLDatabaseHandler();
         /*parser.ResetDatabase();
         parser.ShowFile();
         parser.AddProfile(new Profile("JEFKE", "Test", "1994", new ArrayList<Contact>()));

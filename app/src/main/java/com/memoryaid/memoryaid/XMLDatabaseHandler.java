@@ -30,25 +30,31 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-public class DatabaseHandler extends Activity {
+public class XMLDatabaseHandler extends Activity {
 
     static Document Doc;
     static String Path;
     static java.io.File File;
 
-    private String filesFolder = getApplicationContext().getFilesDir().getPath();
-    private String KEY_ROOT = "root";
-    private String KEY_ID = "selected";
-    private String KEY_PROFILE = "profile";
-    private String KEY_INFO = "info";
-    private String KEY_CONTACT = "contact";
-    private String KEY_NAME = "name";
-    private String KEY_PASSWORD = "password";
-    private String KEY_RELATION = "relation";
-    private String KEY_DATE = "birthday";
+    String filesFolder = getApplicationContext().getFilesDir().getPath();
+    String KEY_ROOT = "root";
+    String KEY_ID = "selected";
+    String KEY_PROFILE = "profile";
+    String KEY_INFO = "info";
+    String KEY_CONTACT = "contact";
+    String KEY_NAME = "name";
+    String KEY_PASSWORD = "password";
+    String KEY_RELATION = "relation";
+    String KEY_DATE = "birthday";
 
-    public DatabaseHandler(String path) {
-        Log.e("Files", "Path: " + path);
+    public XMLDatabaseHandler() {
+        Log.e("test", "test");
+    }
+
+    public XMLDatabaseHandler(String path) {
+        Log.e("TESTPATH", "TESTPATH");
+
+
         Path = path;
         File = new File(path);
         Log.e("Files", "absPath: " + File.getAbsolutePath());
@@ -151,7 +157,7 @@ public class DatabaseHandler extends Activity {
         String name = null;
         String password = null;
         String birthday = null;
-        List<Contact> list = new ArrayList<Contact>();
+        List<Contact> list = new ArrayList<>();
 
         try {
             Element profile = Doc.getElementById(Doc.getElementsByTagName(KEY_ID).item(0).getAttributes().item(0).getTextContent());
@@ -266,9 +272,6 @@ public class DatabaseHandler extends Activity {
                 b.appendChild(doc.createTextNode(today.year + ""));
                 contact.appendChild(b);
             }
-
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
 
             Doc = doc;
             Save();
