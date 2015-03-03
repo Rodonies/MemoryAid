@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_settings"> Memory Aid </string>
-    <string name="app_name"> Memory Aid </string>
+
     <string name="Headmenutxt1"> View profiles </string>
     <string name="Headmenutxt2"> profile manager </string>
     <string name="Headmenutxt3"> Settings </string>
@@ -11,10 +11,13 @@
     <string name="TitleCreateNewProfile">Create new profile</string>
     <string name="btnPicture">Add picture</string>
     <string name="Firstname">First name: </string>
-    <string name="Lastname">Last name</string>
-    <string name="hintName">enter first name here</string>
+    <string name="Lastname">Last name:</string>
+    <string name="hintFirstName">enter first name here</string>
+    <string name="hintLastName">enter last name here</string>
     <string name="Relation">Relation: </string>
     <string name="hintRelation">enter status relation</string>
+    <string name="PhoneNumber">Phone number:</string>
+    <string name="hintPhoneNumber">enter phone number here</string>
     <string name="Date_of_birth">Date of birth</string>
     <string name="hintDate_of_birth">enter date of birth</string>
     <string name="Basic_info">Basic information: </string>
@@ -22,7 +25,7 @@
     <string name="password">Password: </string>
     <string name="hintpassword">enter password here </string>
 
-    <string name="app_name">HumanDex</string>
+
     <string name="Language">Language</string>
     <string name="TextAndImageSize">Text &amp; Image Size</string>
     <string name="English">English</string>
