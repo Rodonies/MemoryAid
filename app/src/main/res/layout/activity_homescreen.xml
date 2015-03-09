@@ -38,6 +38,7 @@
         android:linksClickable="false"
         android:layout_marginBottom="40dp"
         android:text="@string/Headmenutxt3"
+        android:onClick="Settings"
         style="@style/AudioFileInfoOverlayText"/>
 
 </LinearLayout>
