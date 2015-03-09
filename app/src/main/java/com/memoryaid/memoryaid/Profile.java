@@ -8,22 +8,47 @@ import java.util.List;
  * Created by Matthew on 2/03/2015.
  */
 public class Profile {
-    public String Name;
-    public String Password;
-    public String Birthday;
-    public List<Contact> Contacts;
+    private Integer _id;
+    private String _firstname;
+    private String _lastname;
+    private String _imagepath;
+    private List<Contact> _contacts;
 
-    public Profile(String name, String password, String birthday, List<Contact> list) {
-        Name = name;
-        Password = password;
-        Birthday = birthday;
-        Contacts = list;
+    public Profile(Integer id, String firstname, String lastname, List<Contact> list) {
+        _id = _id;
+        _firstname = firstname;
+        _lastname = lastname;
+        _contacts = list;
     }
 
     public void ShowContacts() {
-        for (Contact contact : Contacts) {
-            Log.e("ShowContacts", "Contact: " + contact.Name);
+        for (Contact contact : _contacts) {
+            Log.e("ShowContacts", "Contact: " + contact.getFullName());
         }
     }
 
+    public Integer getID()
+    {
+        return _id;
+    }
+
+    public String getFullName()
+    {
+        return _firstname + " " + _lastname;
+    }
+
+    public String getFirstName()
+    {
+        return _firstname;
+    }
+
+    public String getLastName()
+    {
+        return _lastname;
+    }
+
+    public List<Contact> getContacts()
+    {
+        return _contacts;
+    }
 }
