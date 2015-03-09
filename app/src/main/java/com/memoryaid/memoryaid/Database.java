@@ -30,13 +30,13 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-public class XMLDatabaseHandler extends Activity {
+public class Database extends Activity {
 
     static Document Doc;
     static String Path;
     static java.io.File File;
 
-    String filesFolder = getApplicationContext().getFilesDir().getPath();
+    String filesFolder;
     String KEY_ROOT = "root";
     String KEY_ID = "selected";
     String KEY_PROFILE = "profile";
@@ -47,16 +47,12 @@ public class XMLDatabaseHandler extends Activity {
     String KEY_RELATION = "relation";
     String KEY_DATE = "birthday";
 
-    public XMLDatabaseHandler() {
-        Log.e("test", "test");
-    }
+    public Database(String path, String folder) {
+        Log.e("TESTPATH", folder);
+        filesFolder = folder;
+        Path = folder + path;
 
-    public XMLDatabaseHandler(String path) {
-        Log.e("TESTPATH", "TESTPATH");
-
-
-        Path = path;
-        File = new File(path);
+        File = new File(Path);
         Log.e("Files", "absPath: " + File.getAbsolutePath());
         if (!File.exists()) ResetDatabase();
 
