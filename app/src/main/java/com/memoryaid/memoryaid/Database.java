@@ -200,8 +200,8 @@ public class Database extends Activity {
             Transformer transformer = transformerFactory.newTransformer();
 
             //Useless formatting voor debugging
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+            //transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            //transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 
             transformer.transform(new DOMSource(Doc), new StreamResult(File));
         } catch (Exception e) {
