@@ -17,8 +17,7 @@ public class Homescreen extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen);
 
-        Database parser = new Database(getApplicationContext().getFilesDir().getAbsolutePath() + "/test.xml", getApplicationContext().getFilesDir().getAbsolutePath());
-        parser.DeleteFiles(getApplicationContext().getFilesDir().getAbsolutePath());
+
         DatabaseHandler db = new DatabaseHandler(this);
 
 

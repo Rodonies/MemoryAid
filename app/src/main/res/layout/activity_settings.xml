@@ -86,7 +86,7 @@
                 android:layout_margin="10px"
                 android:id="@+id/button3"
                 android:layout_weight="1"
-                android:background="@drawable/buttongreen"/>
+                android:background="@drawable/buttongreen"
                 />
 
             <Button
@@ -97,7 +97,6 @@
                 android:id="@+id/button4"
                 android:layout_weight="1"
                 android:background="@drawable/buttonred"/>
-                />
 
             <Button
                 android:layout_gravity="center_horizontal"
@@ -107,7 +106,6 @@
                 android:id="@+id/button5"
                 android:layout_weight="1"
                 android:background="@drawable/buttonyellow"/>
-                />
         </LinearLayout>
     </LinearLayout>
 

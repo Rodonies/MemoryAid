@@ -1,31 +1,32 @@
 package com.memoryaid.memoryaid;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 public class CreateNewUser extends ActionBarActivity {
 
 
+
     private ImageView contactImgView;
+    private Button btnAddPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         contactImgView = (ImageView) findViewById(R.id.ChosenPhoto);
-
-
-
-
-
 
         setContentView(R.layout.activity_create_new_user);
     }
@@ -55,22 +56,24 @@ public class CreateNewUser extends ActionBarActivity {
 
     public void onActivityResult(int reqCode,int resCode, Intent data) {
 
+        //Toast.makeText(this, String.valueOf(data.getData()), Toast.LENGTH_LONG).show();
+        Picasso.with(getApplicationContext()).load(data.getData()).resize(250,250).into(contactImgView);
+        btnAddPhoto.setVisibility(View.GONE);
 
-        contactImgView.setImageURI(data.getData());
 
 
-
-
+        //contactImgView.setImageURI(data.getData());
     }
 
 
 
     public void SearchPhoto(View view) {
 
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"Select contact image"),1);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath() + "/Camera/");
+        //intent.setType("image/*");
+        intent.setDataAndType(uri, "image/*");
+        startActivityForResult(Intent.createChooser(intent, "Select contact image"), 1);
 
 
     }
