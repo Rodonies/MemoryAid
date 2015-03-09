@@ -14,17 +14,14 @@ public class themeUtils {
     public final static int Medium = 2;
 
 
-    public static void changeToTheme( Activity activity, int theme)
-    {
+    public static void changeToTheme(Activity activity, int theme) {
         cTheme = theme;
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));
     }
 
-    public static void onActivityCreateSetTheme(Activity activity)
-    {
-        switch (cTheme)
-        {
+    public static void onActivityCreateSetTheme(Activity activity) {
+        switch (cTheme) {
             case Big:
                 activity.setTheme(R.style.Big);
                 break;

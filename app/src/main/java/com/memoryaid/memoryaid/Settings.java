@@ -22,7 +22,7 @@ public class Settings extends ActionBarActivity {
         final RadioButton B = (RadioButton) findViewById(R.id.RadioMedium);
         final RadioButton C = (RadioButton) findViewById(R.id.RadioBig);
 
-        switch(themeUtils.cTheme) {
+        switch (themeUtils.cTheme) {
             case 1:
                 A.setChecked(true);
                 B.setChecked(false);
@@ -40,47 +40,47 @@ public class Settings extends ActionBarActivity {
                 break;
         }
 
-           final RadioButton m_one = (RadioButton) findViewById(R.id.RadioEnglish);
-           final RadioButton m_two = (RadioButton) findViewById(R.id.RadioFrans);
-           final RadioButton m_three = (RadioButton) findViewById(R.id.RadioDeutsch);
-           final RadioButton m_four = (RadioButton) findViewById(R.id.RadioEspanol);
+        final RadioButton m_one = (RadioButton) findViewById(R.id.RadioEnglish);
+        final RadioButton m_two = (RadioButton) findViewById(R.id.RadioFrans);
+        final RadioButton m_three = (RadioButton) findViewById(R.id.RadioDeutsch);
+        final RadioButton m_four = (RadioButton) findViewById(R.id.RadioEspanol);
 
 
-            m_one.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    m_one.setChecked(true);
-                    m_two.setChecked(false);
-                    m_three.setChecked(false);
-                    m_four.setChecked(false);
-                }
-            });
+        m_one.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                m_one.setChecked(true);
+                m_two.setChecked(false);
+                m_three.setChecked(false);
+                m_four.setChecked(false);
+            }
+        });
 
-            m_two.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    m_one.setChecked(false);
-                    m_two.setChecked(true);
-                    m_three.setChecked(false);
-                    m_four.setChecked(false);
-                }
-            });
+        m_two.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                m_one.setChecked(false);
+                m_two.setChecked(true);
+                m_three.setChecked(false);
+                m_four.setChecked(false);
+            }
+        });
 
-            m_three.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    m_one.setChecked(false);
-                    m_two.setChecked(false);
-                    m_three.setChecked(true);
-                    m_four.setChecked(false);
-                }
-            });
+        m_three.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                m_one.setChecked(false);
+                m_two.setChecked(false);
+                m_three.setChecked(true);
+                m_four.setChecked(false);
+            }
+        });
 
-            m_four.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
+        m_four.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 m_one.setChecked(false);
                 m_two.setChecked(false);
                 m_three.setChecked(false);
                 m_four.setChecked(true);
             }
-            });
+        });
     }
 
 
@@ -107,40 +107,34 @@ public class Settings extends ActionBarActivity {
     }
 
 
-
-
-
-
-    public void onRadioButtonLanguageClicked(View view)
-    {
-        boolean checked = ((RadioButton)view).isChecked();
+    public void onRadioButtonLanguageClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
 
     }
 
     public void AddProfClicked(View view) {
-                Log.e("test","iets");
+        Log.e("test", "iets");
     }
 
 
-    public void onRadioButtonClicked(View view)
-    {
-        boolean checked = ((RadioButton)view).isChecked();
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
 
 
-           switch(view.getId()) {
+        switch (view.getId()) {
 
             case R.id.RadioMedium:
-                themeUtils.changeToTheme(this,themeUtils.Medium);
+                themeUtils.changeToTheme(this, themeUtils.Medium);
                 break;
             case R.id.RadioBig:
                 if (checked)
-                themeUtils.changeToTheme(this,themeUtils.Big);
-                    break;
+                    themeUtils.changeToTheme(this, themeUtils.Big);
+                break;
             case R.id.RadioSmall:
                 if (checked)
-                themeUtils.changeToTheme(this,themeUtils.Small);
-                    break;
+                    themeUtils.changeToTheme(this, themeUtils.Small);
+                break;
         }
 
-        }
+    }
 }

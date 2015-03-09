@@ -15,7 +15,7 @@ public class Profile {
     private List<Contact> _contacts;
 
     public Profile(Integer id, String firstname, String lastname, List<Contact> list) {
-        _id = _id;
+        _id = id;
         _firstname = firstname;
         _lastname = lastname;
         _contacts = list;
@@ -27,28 +27,23 @@ public class Profile {
         }
     }
 
-    public Integer getID()
-    {
+    public Integer getID() {
         return _id;
     }
 
-    public String getFullName()
-    {
+    public String getFullName() {
         return _firstname + " " + _lastname;
     }
 
-    public String getFirstName()
-    {
+    public String getFirstName() {
         return _firstname;
     }
 
-    public String getLastName()
-    {
+    public String getLastName() {
         return _lastname;
     }
 
-    public List<Contact> getContacts()
-    {
+    public List<Contact> getContacts() {
         return _contacts;
     }
 }

@@ -24,43 +24,35 @@ public class Contact {
         _imagepath = imagepath;
     }
 
-    public Integer getID()
-    {
+    public Integer getID() {
         return _id;
     }
 
-    public String getFullName()
-    {
+    public String getFullName() {
         return _firstname + " " + _lastname;
     }
 
-    public String getFirstName()
-    {
+    public String getFirstName() {
         return _firstname;
     }
 
-    public String getLastName()
-    {
+    public String getLastName() {
         return _lastname;
     }
 
-    public String getRelation()
-    {
+    public String getRelation() {
         return _relation;
     }
 
-    public String getNumber()
-    {
+    public String getNumber() {
         return _number;
     }
 
-    public String getInformation()
-    {
+    public String getInformation() {
         return _information;
     }
 
-    public String getImagePath()
-    {
+    public String getImagePath() {
         return _imagepath;
     }
 }

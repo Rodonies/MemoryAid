@@ -82,18 +82,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Adding new contact
-    void addProfile(Profile profile, Contact contact) {
+    void addContact(Profile profile, Contact contact) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_ID, profile.getID()); // Contact Name
-        values.put(KEY_NUMBER, contact.getNumber()); // Contact P
-        // Inserting Row
+        values.put(KEY_FIRSTNAME, contact.getFirstName());
+        values.put(KEY_LASTNAME, contact.getLastName());
+        values.put(KEY_NUMBER, contact.getNumber());
+        values.put(KEY_FIRSTNAME, contact.getNumber());
+
         db.insert(TABLE_CONTACTS, null, values);
-        db.close(); // Closing database connection
+        db.close();
     }
 
-    // Getting single contact
     /*Contact getContact(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -104,12 +105,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             cursor.moveToFirst();
 
         //Contact contact = new Contact(Integer.parseInt(cursor.getString(0)),cursor.getString(1), cursor.getString(2));
-        // return contact
+
         return contact;
     }
 
     // Getting All Contacts
-    public List<Contact> getAllContacts() {
+    /*public List<Contact> getAllContacts() {
         List<Contact> contactList = new ArrayList<Contact>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_CONTACTS;
