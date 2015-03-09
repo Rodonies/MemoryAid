@@ -77,7 +77,7 @@
                 android:color="#1E90FF"
                 android:id="@+id/button2"
                 android:layout_weight="1"
-                android:background="@drawable/ButtonBLUE"/>
+                android:background="@drawable/buttonblue"/>
 
             <Button
                 android:layout_gravity="center_horizontal"
@@ -86,7 +86,7 @@
                 android:layout_margin="10px"
                 android:id="@+id/button3"
                 android:layout_weight="1"
-                android:background="@drawable/ButtonGREEN"/>
+                android:background="@drawable/buttongreen"/>
                 />
 
             <Button
@@ -96,7 +96,7 @@
                 android:layout_margin="10px"
                 android:id="@+id/button4"
                 android:layout_weight="1"
-                android:background="@drawable/ButtonRED"/>
+                android:background="@drawable/buttonred"/>
                 />
 
             <Button
@@ -106,7 +106,7 @@
                 android:layout_margin="10px"
                 android:id="@+id/button5"
                 android:layout_weight="1"
-                android:background="@drawable/ButtonYELLOW"/>
+                android:background="@drawable/buttonyellow"/>
                 />
         </LinearLayout>
     </LinearLayout>
