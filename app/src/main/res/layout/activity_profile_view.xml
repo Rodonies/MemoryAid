@@ -1,0 +1,196 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:scrollbarSize="@dimen/abc_action_bar_default_height_material">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context=".MainActivity"
+    android:id="@+id/BlueBackground"
+    android:background="#FFFFFF">
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:id="@+id/">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ImageL"
+            android:textColor="#000000"
+            android:id="@+id/ImageLabel"
+            android:layout_gravity="center"
+            android:textSize="23sp"/>
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="400dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:background="#FFFFFF">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:id="@+id/FirstNameField">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/FirstNameL"
+                android:textSize="29sp"
+                android:textColor="#000000"
+                android:id="@+id/FirstNameLabel"
+                android:layout_gravity="left|top" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:id="@+id/FirstNameText"
+                android:layout_gravity="left"
+                android:textSize="23sp"
+                android:textColor="#000000"
+                android:text="@string/FirstNameT" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:id="@+id/LastNameField">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/LastNameL"
+                android:textSize="29sp"
+                android:textColor="#000000"
+                android:id="@+id/LastNameLabel"
+                android:layout_gravity="left|top" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:id="@+id/LastNameText"
+                android:layout_gravity="left"
+                android:textSize="23sp"
+                android:textColor="#000000"
+                android:text="@string/LastNameT" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:id="@+id/RelationField">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/RelationL"
+                android:textSize="29sp"
+                android:textColor="#000000"
+                android:id="@+id/RelationLabel"
+                android:layout_gravity="left|top" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:id="@+id/RelationText"
+                android:layout_gravity="left"
+                android:textSize="23sp"
+                android:textColor="#000000"
+                android:text="@string/RelationT" /></LinearLayout>
+
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:id="@+id/NumberField">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/PhonenmrL"
+                android:layout_gravity="left|center"
+                android:textSize="29sp"
+                android:id="@+id/PhonenmrLabel"
+                android:textColor="#000000"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/PhonenmrT"
+                android:id="@+id/PhonenmrText"
+                android:textSize="23sp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/belsymbool"
+                android:layout_gravity="right" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:id="@+id/InfoField">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/BasicInfoL"
+                android:layout_gravity="left|bottom"
+                android:textSize="29sp"
+                android:textColor="#000000"
+                android:id="@+id/BasicInfoLabel"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:id="@+id/BasicInfoText"
+                android:layout_gravity="left"
+                android:text="@string/BasicInfoT"
+                android:textSize="23sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>
