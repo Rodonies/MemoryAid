@@ -30,6 +30,13 @@ public class Homescreen extends ActionBarActivity {
         startActivity(i);
     }
 
+    public void Settings(View view)
+    {
+        //Intent i = new Intent(this,CreateNewUser.class);
+        //startActivity(i);
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
