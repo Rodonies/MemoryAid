@@ -33,17 +33,18 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:enabled="true"
-            android:maxHeight="0dp"
-            android:onClick="AddPicture"
+            android:maxHeight="250dp"
+            android:onClick="SearchPhoto"
             android:id="@+id/btnAddPhoto"
             android:layout_height="wrap_content" />
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:maxWidth="150dp"
-            android:maxHeight="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="250dp"
+            android:maxHeight="250dp"
             android:id="@+id/ChosenPhoto"
+            android:onClick="SearchPhoto"
             android:layout_gravity="center"/>
 
         </LinearLayout>
