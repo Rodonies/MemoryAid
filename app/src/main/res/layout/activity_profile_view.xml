@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ImageL"
+            android:text="@string/ImageLabel"
             android:textColor="#000000"
             android:id="@+id/ImageLabel"
             android:layout_gravity="center"
@@ -56,7 +56,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/FirstNameL"
+                android:text="@string/FirstNameLabel"
                 android:textSize="29sp"
                 android:textColor="#000000"
                 android:id="@+id/FirstNameLabel"
@@ -70,7 +70,7 @@
                 android:layout_gravity="left"
                 android:textSize="23sp"
                 android:textColor="#000000"
-                android:text="@string/FirstNameT" />
+                android:text="@string/FirstNameText" />
 
         </LinearLayout>
 
@@ -84,7 +84,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/LastNameL"
+                android:text="@string/LastNameLabel"
                 android:textSize="29sp"
                 android:textColor="#000000"
                 android:id="@+id/LastNameLabel"
@@ -98,7 +98,7 @@
                 android:layout_gravity="left"
                 android:textSize="23sp"
                 android:textColor="#000000"
-                android:text="@string/LastNameT" />
+                android:text="@string/LastNameText" />
 
 
         </LinearLayout>
@@ -112,7 +112,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/RelationL"
+                android:text="@string/RelationLabel"
                 android:textSize="29sp"
                 android:textColor="#000000"
                 android:id="@+id/RelationLabel"
@@ -126,7 +126,7 @@
                 android:layout_gravity="left"
                 android:textSize="23sp"
                 android:textColor="#000000"
-                android:text="@string/RelationT" /></LinearLayout>
+                android:text="@string/RelationText" /></LinearLayout>
 
         <LinearLayout
         android:layout_width="fill_parent"
@@ -139,7 +139,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/PhonenmrL"
+                android:text="@string/PhonenmrLable"
                 android:layout_gravity="left|center"
                 android:textSize="29sp"
                 android:id="@+id/PhonenmrLabel"
@@ -148,7 +148,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/PhonenmrT"
+                android:text="@string/PhonenmrText"
                 android:id="@+id/PhonenmrText"
                 android:textSize="23sp"/>
             <ImageView
@@ -171,7 +171,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/BasicInfoL"
+                android:text="@string/BasicInfoLabel"
                 android:layout_gravity="left|bottom"
                 android:textSize="29sp"
                 android:textColor="#000000"
@@ -183,7 +183,7 @@
                 android:inputType="date"
                 android:id="@+id/BasicInfoText"
                 android:layout_gravity="left"
-                android:text="@string/BasicInfoT"
+                android:text="@string/BasicInfoText1"
                 android:textSize="23sp"/>
 
         </LinearLayout>
