@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -25,10 +24,10 @@ public class CreateNewUser extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       setContentView(R.layout.activity_create_new_user);
 
+        btnAddPhoto = (Button) findViewById(R.id.btnAddPhoto);
         contactImgView = (ImageView) findViewById(R.id.ChosenPhoto);
-
-        setContentView(R.layout.activity_create_new_user);
     }
 
 
@@ -56,13 +55,15 @@ public class CreateNewUser extends ActionBarActivity {
 
     public void onActivityResult(int reqCode,int resCode, Intent data) {
 
-        //Toast.makeText(this, String.valueOf(data.getData()), Toast.LENGTH_LONG).show();
-        Picasso.with(getApplicationContext()).load(data.getData()).resize(250,250).into(contactImgView);
-        btnAddPhoto.setVisibility(View.GONE);
+
+            Toast.makeText(this, String.valueOf(data.getData()), Toast.LENGTH_LONG).show();
+            Picasso.with(getApplicationContext()).load(data.getData()).resize(150,150).into(contactImgView);
+            btnAddPhoto.setVisibility(View.GONE);
 
 
 
-        //contactImgView.setImageURI(data.getData());
+
+
     }
 
 
@@ -71,9 +72,10 @@ public class CreateNewUser extends ActionBarActivity {
 
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath() + "/Camera/");
-        //intent.setType("image/*");
+
         intent.setDataAndType(uri, "image/*");
-        startActivityForResult(Intent.createChooser(intent, "Select contact image"), 1);
+        startActivityForResult(Intent.createChooser(intent, "Select contact image"),1);
+
 
 
     }
