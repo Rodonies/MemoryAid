@@ -88,13 +88,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_CONTACTS_TABLE =
                 "CREATE TABLE `" + TABLE_CONTACTS + "` (\n" +
                         "\t`" + KEY_ID + "`\tINTEGER NOT NULL,\n" +
-                        "\t`" + KEY_PROFILE + "`\tTEXT NOT NULL\n" +
+                        "\t`" + KEY_PROFILE + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_FIRSTNAME + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_LASTNAME + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_RELATION + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_NUMBER + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_INFORMATION + "`\tTEXT NOT NULL,\n" +
-                        "\t`" + KEY_IMAGEPATH + "`\tTEXT NOT NULL\n" +
+                        "\t`" + KEY_IMAGEPATH + "`\tTEXT NOT NULL,\n" +
                         "\tPRIMARY KEY(" + KEY_ID + ")\n" +
                         ");";
 
@@ -103,7 +103,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         "\t`" + KEY_ID + "`\tINTEGER NOT NULL,\n" +
                         "\t`" + KEY_LANGUAGE + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_SIZE + "`\tTEXT NOT NULL,\n" +
-                        "\t`" + KEY_COLOR + "`\tTEXT NOT NULL,\n" +
+                        "\t`" + KEY_COLOR + "`\tTEXT NOT NULL\n" +
                         ");";
 
         db.execSQL(CREATE_PROFILES_TABLE);
