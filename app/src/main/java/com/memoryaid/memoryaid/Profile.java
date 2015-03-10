@@ -11,14 +11,23 @@ public class Profile {
     private Integer _id;
     private String _firstname;
     private String _lastname;
+    private String _number;
     private String _imagepath;
     private List<Contact> _contacts;
 
-    public Profile(Integer id, String firstname, String lastname, List<Contact> list) {
+    public Profile(String firstname, String lastname, String number) {
+        _firstname = firstname;
+        _lastname = lastname;
+        _number = number;
+    }
+
+    public Profile(Integer id, String firstname, String lastname, String number, List<Contact> list, String imagepath) {
         _id = id;
         _firstname = firstname;
         _lastname = lastname;
+        _number = number;
         _contacts = list;
+        _imagepath = imagepath;
     }
 
     public void ShowContacts() {
@@ -43,7 +52,15 @@ public class Profile {
         return _lastname;
     }
 
+    public String getNumber() {
+        return _number;
+    }
+
     public List<Contact> getContacts() {
         return _contacts;
+    }
+
+    public String getImagePath() {
+        return _imagepath;
     }
 }

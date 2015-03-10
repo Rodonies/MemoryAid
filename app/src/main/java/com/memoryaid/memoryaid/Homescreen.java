@@ -19,7 +19,9 @@ public class Homescreen extends ActionBarActivity {
 
 
         DatabaseHandler db = new DatabaseHandler(this);
-
+        db.addProfile(new Profile("text","test","nummer"));
+        db.addContact(new Contact("hi","hi","fam","012","test"));
+        db.getProfile().getNumber();
 
     }
 

@@ -1,16 +1,49 @@
 package com.memoryaid.memoryaid;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.memoryaid.memoryaid.Contact;
-import com.memoryaid.memoryaid.Profile;
+/*
+Werking:
+
+DatabaseHandler db = new DatabaseHandler(this); //Nieuwe datababasehandler aanmaken
+if (db.findProfile("naam","achternaam")) //Profiel zoeken met deze naam/achternaam,
+                                         //je kan ook db.findProfile(id) om een profiel te zoeken op id numers
+                                         //Geeft true terug als het profiel bestaat, false als het niet bestaat
+{
+    //profiel bestaat, je kan deze vinden in db.getProfile(), je kan de data NIET AANPASSEN via deze methode
+    //data aanpassen gebeurt via db.editProfile(nieuwe data)
+}
+else
+{
+    //Profiel niet gevonden
+}
+
+
+//volgende code is een voorbeeld voor de achternaam van het tweede profiel te veranderen naar "Jansens"
+
+DatabaseHandler db = new DatabaseHandler(this); //Nieuwe datababasehandler aanmaken
+if (db.findProfile(2))
+{
+    db.editProfile(db.getProfile().getFirstName(),"Jansens");
+}
+
+//volgende code is een voorbeeld om de voornaam van het profiel met de naam "Jos Joskens"
+//die geen contacten heeft te veranderen naar "Jef" en daarnaa een contact met de naam "Jos Joskens" toe te voegen
+
+if (db.findProfile("Jos","Joskens"))
+{
+    db.getProfile(); //Geeft profiel met naam "Jos Joskens" zonder contacten
+    db.editProfile("Jef");
+    db.addContact(new Contact("Jos","Joskens","relatie","nummer","informatie");
+    db.getProfile(); //Geeft profiel met naam "Jef Joskens" met 1 contact, namelijk "Jos Joskens"
+}
+
+
+ */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
@@ -21,6 +54,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TABLE_SETTINGS = "settings";
 
     private static final String KEY_ID = "id";
+    private static final String KEY_PROFILE = "profileid";
     private static final String KEY_FIRSTNAME = "firstname";
     private static final String KEY_LASTNAME = "lastname";
     private static final String KEY_IMAGEPATH = "imagepath";
@@ -33,6 +67,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_SIZE = "size";
     private static final String KEY_COLOR = "color";
 
+    private static Profile _profile;
+
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -44,6 +80,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         "\t`" + KEY_ID + "`\tINTEGER NOT NULL,\n" +
                         "\t`" + KEY_FIRSTNAME + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_LASTNAME + "`\tTEXT NOT NULL,\n" +
+                        "\t`" + KEY_NUMBER + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_IMAGEPATH + "`\tTEXT NOT NULL,\n" +
                         "\tPRIMARY KEY(" + KEY_ID + ")\n" +
                         ");";
@@ -51,12 +88,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_CONTACTS_TABLE =
                 "CREATE TABLE `" + TABLE_CONTACTS + "` (\n" +
                         "\t`" + KEY_ID + "`\tINTEGER NOT NULL,\n" +
+                        "\t`" + KEY_PROFILE + "`\tTEXT NOT NULL\n" +
                         "\t`" + KEY_FIRSTNAME + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_LASTNAME + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_RELATION + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_NUMBER + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_INFORMATION + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_IMAGEPATH + "`\tTEXT NOT NULL\n" +
+                        "\tPRIMARY KEY(" + KEY_ID + ")\n" +
                         ");";
 
         String CREATE_SETTINGS_TABLE =
@@ -81,19 +120,79 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // Adding new contact
-    void addContact(Profile profile, Contact contact) {
+    void addProfile(Profile profile) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(KEY_FIRSTNAME, profile.getFirstName());
+        values.put(KEY_LASTNAME, profile.getLastName());
+        values.put(KEY_NUMBER, profile.getNumber());
+        values.put(KEY_IMAGEPATH, profile.getImagePath());
+
+        db.insert(TABLE_PROFILES, null, values);
+        db.close();
+    }
+
+    void addContact(Contact contact) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_PROFILE, _profile.getID());
         values.put(KEY_FIRSTNAME, contact.getFirstName());
         values.put(KEY_LASTNAME, contact.getLastName());
+        values.put(KEY_RELATION, contact.getRelation());
         values.put(KEY_NUMBER, contact.getNumber());
-        values.put(KEY_FIRSTNAME, contact.getNumber());
+        values.put(KEY_INFORMATION, contact.getInformation());
+        values.put(KEY_IMAGEPATH, contact.getImagePath());
 
         db.insert(TABLE_CONTACTS, null, values);
         db.close();
     }
+
+    boolean findProfile()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME }, KEY_ID + "=?",
+                new String[] { String.valueOf(1) }, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            _profile = new Profile("hi","hi","hi");
+            return true;
+        }
+        return false;
+    }
+
+    Profile getProfile()
+    {
+        return _profile;
+    }
+
+    /*public int editProfile(String firstname) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, contact.getName());
+        values.put(KEY_PH_NO, contact.getPhoneNumber());
+
+        // updating row
+        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?",
+                new String[] { String.valueOf(contact.getID()) });
+    }
+
+    public int editProfile(String firstname, String lastname) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, contact.getName());
+        values.put(KEY_PH_NO, contact.getPhoneNumber());
+
+        // updating row
+        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?",
+                new String[] { String.valueOf(contact.getID()) });
+    }*/
+
+
 
     /*Contact getContact(int id) {
         SQLiteDatabase db = this.getReadableDatabase();

@@ -14,8 +14,16 @@ public class Contact {
     private String _information;
     private String _imagepath;
 
-    public Contact(String firstname, String lastname, String relation, String number, String information, String imagepath) {
-        _id = _id;
+    public Contact(String firstname, String lastname, String relation, String number, String information) {
+        _firstname = firstname;
+        _lastname = lastname;
+        _relation = relation;
+        _number = number;
+        _information = information;
+    }
+
+    public Contact(Integer id, String firstname, String lastname, String relation, String number, String information, String imagepath) {
+        _id = id;
         _firstname = firstname;
         _lastname = lastname;
         _relation = relation;
