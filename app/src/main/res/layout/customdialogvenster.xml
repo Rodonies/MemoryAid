@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical">
+
+
+
+
+    <ImageView
+    android:id="@+id/PhotoGallery"
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:layout_gravity="center"
+    />
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/txtGallery"
+        android:text="@string/txtGallery"
+        android:gravity="center"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/PhotoCamera"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        />
+        <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/txtCamera"
+        android:text="@string/txtCamera"
+        android:gravity="center"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/dialogButtonOK"
+        android:layout_width="100dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:text=" cancel "
+        android:onClick="CloseDialog"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+
+        />
+
+    </LinearLayout>

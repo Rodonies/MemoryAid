@@ -3,6 +3,7 @@
     <string name="app_name"> Memory Aid </string>
     <string name="action_settings"> Memory Aid </string>
 
+
     <string name="Headmenutxt1"> View profiles </string>
     <string name="Headmenutxt2"> profile manager </string>
     <string name="Headmenutxt3"> Settings </string>
@@ -25,6 +26,9 @@
     <string name="hintBasicInfo">enter basic info here</string>
     <string name="password">Password: </string>
     <string name="hintpassword">enter password here </string>
+
+    <string name="txtGallery">photogallery</string>
+    <string name="txtCamera">Camera</string>
 
     <string name="Language">Language</string>
     <string name="TextAndImageSize">Text &amp; Image Size</string>
