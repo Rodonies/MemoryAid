@@ -16,9 +16,10 @@ public class Homescreen extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen);
-
-
         DatabaseHandler db = new DatabaseHandler(this);
+
+
+
     }
 
     public void CreateNewUser(View view) {
