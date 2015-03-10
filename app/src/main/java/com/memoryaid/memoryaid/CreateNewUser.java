@@ -26,16 +26,16 @@ public class CreateNewUser extends ActionBarActivity {
         super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_create_new_user);
 
-<<<<<<< Updated upstream
+
         btnAddPhoto = (Button) findViewById(R.id.btnAddPhoto);
         contactImgView = (ImageView) findViewById(R.id.ChosenPhoto);
-=======
+
 
         contactImgView = (ImageView) findViewById(R.id.ChosenPhoto);
 
 
         setContentView(R.layout.activity_create_new_user);
->>>>>>> Stashed changes
+
     }
 
 
@@ -75,19 +75,15 @@ public class CreateNewUser extends ActionBarActivity {
 
     public void SearchPhoto(View view) {
 
-<<<<<<< Updated upstream
+
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath() + "/Camera/");
 
         intent.setDataAndType(uri, "image/*");
         startActivityForResult(Intent.createChooser(intent, "Select contact image"),1);
 
-=======
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select contact image"), 1);
->>>>>>> Stashed changes
+
+
 
 
     }
