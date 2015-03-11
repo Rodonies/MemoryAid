@@ -55,9 +55,6 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         btnAddPhoto = (Button) findViewById(R.id.btnAddPhoto);
         contactImgView = (ImageView) findViewById(R.id.ChosenPhoto);
 
-
-
-
     }
 
 
@@ -88,11 +85,20 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
      protected void onActivityResult(int reqCode, int resCode, Intent data) {
           switch(reqCode) {
             case 1:
-                Uri selectedImage = imageUri;
-                Picasso.with(getApplicationContext()).load(selectedImage).centerCrop().resize(300, 250).into(contactImgView);
-                Toast.makeText(this,"photo was added to database",Toast.LENGTH_LONG).show();
-                CURRENT_PHOTONUMBER++;
-                btnAddPhoto.setVisibility(View.GONE);
+
+                if(resCode == Activity.RESULT_OK)
+                {
+                    Uri selectedImage = imageUri;
+                    Picasso.with(getApplicationContext()).load(selectedImage).centerCrop().resize(300, 250).into(contactImgView);
+                    Toast.makeText(this,"photo was added to database",Toast.LENGTH_LONG).show();
+                    CURRENT_PHOTONUMBER++;
+                    btnAddPhoto.setVisibility(View.GONE);
+                }
+                else if(resCode == Activity.RESULT_CANCELED)
+                {
+                    Toast.makeText(this,"no photo was chosen",Toast.LENGTH_LONG).show();
+                }
+
                 break;
             case 2:
                 try {
