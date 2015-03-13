@@ -4,7 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 /*
 Werking:
@@ -46,7 +50,7 @@ if (db.findProfile("Jos","Joskens"))
  */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 11;
     private static final String DATABASE_NAME = "database";
 
     private static final String TABLE_PROFILES = "profiles";
@@ -54,7 +58,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TABLE_SETTINGS = "settings";
 
     private static final String KEY_ID = "id";
-    private static final String KEY_PROFILE = "profileid";
+    private static final String KEY_PROFILEID = "profileid";
     private static final String KEY_FIRSTNAME = "firstname";
     private static final String KEY_LASTNAME = "lastname";
     private static final String KEY_IMAGEPATH = "imagepath";
@@ -77,25 +81,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_PROFILES_TABLE =
                 "CREATE TABLE `" + TABLE_PROFILES + "` (\n" +
-                        "\t`" + KEY_ID + "`\tINTEGER NOT NULL,\n" +
+                        "\t`" + KEY_ID + "`\tINTEGER NOT NULL PRIMARY KEY,\n" +
                         "\t`" + KEY_FIRSTNAME + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_LASTNAME + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_NUMBER + "`\tTEXT NOT NULL,\n" +
-                        "\t`" + KEY_IMAGEPATH + "`\tTEXT NOT NULL,\n" +
-                        "\tPRIMARY KEY(" + KEY_ID + ")\n" +
+                        "\t`" + KEY_IMAGEPATH + "`\tTEXT\n" +
                         ");";
 
         String CREATE_CONTACTS_TABLE =
                 "CREATE TABLE `" + TABLE_CONTACTS + "` (\n" +
-                        "\t`" + KEY_ID + "`\tINTEGER NOT NULL,\n" +
-                        "\t`" + KEY_PROFILE + "`\tTEXT NOT NULL,\n" +
+                        "\t`" + KEY_ID + "`\tINTEGER NOT NULL PRIMARY KEY,\n" +
+                        "\t`" + KEY_PROFILEID + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_FIRSTNAME + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_LASTNAME + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_RELATION + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_NUMBER + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_INFORMATION + "`\tTEXT NOT NULL,\n" +
-                        "\t`" + KEY_IMAGEPATH + "`\tTEXT NOT NULL,\n" +
-                        "\tPRIMARY KEY(" + KEY_ID + ")\n" +
+                        "\t`" + KEY_IMAGEPATH + "`\tTEXT\n" +
                         ");";
 
         String CREATE_SETTINGS_TABLE =
@@ -113,12 +115,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        Log.e("drop", "DROPPED");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROFILES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SETTINGS);
 
         onCreate(db);
     }
+
 
     void addProfile(Profile profile) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -131,41 +135,73 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         db.insert(TABLE_PROFILES, null, values);
         db.close();
+
+        findProfile(profile.getFirstName(), profile.getLastName());
     }
 
     void addContact(Contact contact) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_PROFILE, _profile.getID());
+        values.put(KEY_PROFILEID, _profile.getID());
         values.put(KEY_FIRSTNAME, contact.getFirstName());
         values.put(KEY_LASTNAME, contact.getLastName());
         values.put(KEY_RELATION, contact.getRelation());
         values.put(KEY_NUMBER, contact.getNumber());
         values.put(KEY_INFORMATION, contact.getInformation());
-        values.put(KEY_IMAGEPATH, contact.getImagePath());
+        String path;
+        if (contact.getImagePath() != null) path = contact.getImagePath();
+        else
+            path = _profile.getImagePath() + "/" + contact.getID() + "_" + contact.getFirstName() + "_" + contact.getLastName();
+        values.put(KEY_IMAGEPATH, path);
 
         db.insert(TABLE_CONTACTS, null, values);
         db.close();
     }
 
-    boolean findProfile()
-    {
+
+    boolean findProfile(Integer id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME }, KEY_ID + "=?",
-                new String[] { String.valueOf(1) }, null, null, null, null);
-        if (cursor != null) {
-            cursor.moveToFirst();
-            _profile = new Profile("hi","hi","hi");
+        Cursor cursor = db.query(TABLE_PROFILES, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_NUMBER}, KEY_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            _profile = new Profile(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+            db.close();
+            updateContacts();
             return true;
         }
+        db.close();
         return false;
     }
 
-    Profile getProfile()
-    {
+    boolean findProfile(String firstname, String lastname) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_PROFILES, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_NUMBER}, KEY_FIRSTNAME + " = ? AND " + KEY_LASTNAME + " = ?", new String[]{firstname, lastname}, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            _profile = new Profile(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+            db.close();
+            updateContacts();
+            return true;
+        }
+        db.close();
+        return false;
+    }
+
+    Profile getProfile() {
         return _profile;
+    }
+
+    void updateContacts() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_CONTACTS, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_RELATION, KEY_NUMBER, KEY_INFORMATION}, KEY_PROFILEID + " = ?", new String[]{Integer.toString(_profile.getID())}, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                _profile.addContact(new Contact(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), _profile.getImagePath()));
+            } while (cursor.moveToNext());
+        }
+        db.close();
     }
 
     /*public int editProfile(String firstname) {
@@ -176,8 +212,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_PH_NO, contact.getPhoneNumber());
 
         // updating row
-        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?",
-                new String[] { String.valueOf(contact.getID()) });
+        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?", new String[] { String.valueOf(contact.getID()) });
     }
 
     public int editProfile(String firstname, String lastname) {
@@ -188,30 +223,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_PH_NO, contact.getPhoneNumber());
 
         // updating row
-        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?",
-                new String[] { String.valueOf(contact.getID()) });
+        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?", new String[] { String.valueOf(contact.getID()) });
     }*/
 
-
-
-    /*Contact getContact(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID,
-                        KEY_NAME, KEY_PH_NO }, KEY_ID + "=?",
-                new String[] { String.valueOf(id) }, null, null, null, null);
-        if (cursor != null)
-            cursor.moveToFirst();
-
-        //Contact contact = new Contact(Integer.parseInt(cursor.getString(0)),cursor.getString(1), cursor.getString(2));
-
-        return contact;
-    }
-
-    // Getting All Contacts
     /*public List<Contact> getAllContacts() {
         List<Contact> contactList = new ArrayList<Contact>();
-        // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_CONTACTS;
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -231,10 +247,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // return contact list
         return contactList;
-    }
+    }*/
 
     // Updating single contact
-    public int updateContact(Contact contact) {
+    /*public int updateContact(Contact contact) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();

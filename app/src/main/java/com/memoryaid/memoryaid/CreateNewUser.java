@@ -29,22 +29,19 @@ import java.io.File;
 public class CreateNewUser extends ActionBarActivity implements View.OnClickListener {
 
 
+    private static int TAKE_PICTURE = 1;
+    private static int SELECT_IMAGE = 2;
     private Dialog dialog;
-
     private ImageView contactImgView;
     private ImageView imgGallery;
     private ImageView imgCamera;
-
     private Button btnAddPhoto;
-
-    private static int TAKE_PICTURE = 1;
-    private static int SELECT_IMAGE = 2;
     private int CURRENT_PHOTONUMBER;
 
     private Uri imageUri;
 
 
-    private String CURRENT_PHOTO ;
+    private String CURRENT_PHOTO;
 
     private String FirstName;
 
@@ -82,31 +79,28 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
     }
 
     @Override
-     protected void onActivityResult(int reqCode, int resCode, Intent data) {
-          switch(reqCode) {
+    protected void onActivityResult(int reqCode, int resCode, Intent data) {
+        switch (reqCode) {
             case 1:
 
-                if(resCode == Activity.RESULT_OK)
-                {
+                if (resCode == Activity.RESULT_OK) {
                     Uri selectedImage = imageUri;
                     Picasso.with(getApplicationContext()).load(selectedImage).centerCrop().resize(300, 250).into(contactImgView);
-                    Toast.makeText(this,"photo was added to database",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "photo was added to database", Toast.LENGTH_LONG).show();
                     CURRENT_PHOTONUMBER++;
                     btnAddPhoto.setVisibility(View.GONE);
-                }
-                else if(resCode == Activity.RESULT_CANCELED)
-                {
-                    Toast.makeText(this,"no photo was chosen",Toast.LENGTH_LONG).show();
+                } else if (resCode == Activity.RESULT_CANCELED) {
+                    Toast.makeText(this, "no photo was chosen", Toast.LENGTH_LONG).show();
                 }
 
                 break;
             case 2:
                 try {
                     Picasso.with(getApplicationContext()).load(data.getData()).centerCrop().resize(300, 250).into(contactImgView);
-                    Toast.makeText(this,"photo was selected",Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "photo was selected", Toast.LENGTH_LONG).show();
                     btnAddPhoto.setVisibility(View.GONE);
-                }catch (Exception e){
-                    Toast.makeText(this,"no photo was selected",Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(this, "no photo was selected", Toast.LENGTH_LONG).show();
                 }
 
                 break;
@@ -129,7 +123,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         imgCamera = (ImageView) dialog.findViewById(R.id.PhotoCamera);
 
         Picasso.with(CreateNewUser.this).load(R.drawable.galleryblue).resize(150, 150).into(imgGallery);
-        Picasso.with(CreateNewUser.this).load(R.drawable.camerablue).resize(150,150).into(imgCamera);
+        Picasso.with(CreateNewUser.this).load(R.drawable.camerablue).resize(150, 150).into(imgCamera);
 
         Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
 
@@ -143,8 +137,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
     }
 
 
-    public void CloseDialog()
-    {
+    public void CloseDialog() {
         dialog.dismiss();
     }
 
@@ -153,10 +146,10 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
         CloseDialog();
 
-        switch(v.getId()){
+        switch (v.getId()) {
 
             case R.id.PhotoCamera: /** AlerDialog when click on Exit */
-                 TakePhoto();
+                TakePhoto();
                 break;
 
             case R.id.PhotoGallery: /** AlerDialog when click on Exit */
@@ -164,27 +157,25 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath() + "/Camera/");
                 intent.setDataAndType(uri, "image/*");
-                startActivityForResult(Intent.createChooser(intent, "Select contact image"),SELECT_IMAGE);
+                startActivityForResult(Intent.createChooser(intent, "Select contact image"), SELECT_IMAGE);
 
                 break;
 
         }
 
     }
-    public void TakePhoto(){
+
+    public void TakePhoto() {
 
         String FirstName = ((EditText) findViewById(R.id.First_Name_Field)).getText().toString();
 
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         //test.png -> naam gebruiker + datum + tijd ofzo voor uniek te maken
-        File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),FirstName + CURRENT_PHOTONUMBER + ".png");
+        File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), FirstName + CURRENT_PHOTONUMBER + ".png");
         imageUri = Uri.fromFile(photo);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        startActivityForResult(intent,TAKE_PICTURE);
+        startActivityForResult(intent, TAKE_PICTURE);
     }
-
-
-
 
 
 }

@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class Homescreen extends ActionBarActivity {
@@ -16,10 +15,15 @@ public class Homescreen extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen);
+
         DatabaseHandler db = new DatabaseHandler(this);
 
+        db.addProfile(new Profile("Jan", "Jansens", "127.0.0.1"));
+        db.addContact(new Contact("Jos", "Jansens", "Family", "13.33.33.37", "Jos Jansens is my nephew"));
 
-
+        if (db.findProfile(1)) {
+            db.getProfile().showContacts();
+        }
     }
 
     public void CreateNewUser(View view) {

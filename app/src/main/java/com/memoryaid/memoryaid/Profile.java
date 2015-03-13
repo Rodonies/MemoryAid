@@ -2,6 +2,7 @@ package com.memoryaid.memoryaid;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,27 +14,33 @@ public class Profile {
     private String _lastname;
     private String _number;
     private String _imagepath;
-    private List<Contact> _contacts;
+    private ArrayList<Contact> _contacts;
 
     public Profile(String firstname, String lastname, String number) {
         _firstname = firstname;
         _lastname = lastname;
         _number = number;
+        _imagepath = _id + "_" + _firstname + "_" + _lastname;
+        _contacts = new ArrayList<Contact>();
     }
 
-    public Profile(Integer id, String firstname, String lastname, String number, List<Contact> list, String imagepath) {
+    public Profile(Integer id, String firstname, String lastname, String number) {
         _id = id;
         _firstname = firstname;
         _lastname = lastname;
         _number = number;
-        _contacts = list;
-        _imagepath = imagepath;
+        _imagepath = _id + "_" + _firstname + "_" + _lastname;
+        _contacts = new ArrayList<Contact>();
     }
 
-    public void ShowContacts() {
+    public void showContacts() {
         for (Contact contact : _contacts) {
             Log.e("ShowContacts", "Contact: " + contact.getFullName());
         }
+    }
+
+    public void addContact(Contact contact) {
+        _contacts.add(contact);
     }
 
     public Integer getID() {

@@ -7,150 +7,153 @@
     android:scrollbarSize="@dimen/abc_action_bar_default_height_material">
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    android:paddingBottom="16dp"
-    android:orientation="vertical"
-    android:layout_gravity="center"
-    tools:context=".MainActivity"
-    android:id="@+id/BlueBackground"
-    android:background="#FFFFFF">
-
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="300dp"
+        android:id="@+id/BlueBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:gravity="center"
+        android:background="#FFFFFF"
         android:orientation="vertical"
-        android:background="#FFFFFF"/>
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        tools:context=".MainActivity">
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:background="#FFFFFF"
+            android:gravity="center"
+            android:orientation="vertical" />
 
         <TextView
+            android:id="@+id/ImageLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="@string/ImageLabel"
             android:textColor="#000000"
-            android:id="@+id/ImageLabel"
-            android:layout_gravity="center"
-            android:textSize="23sp"/>
+            android:textSize="23sp" />
 
-        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="400dp"
         android:layout_gravity="center"
-        android:orientation="vertical"
-        android:background="#FFFFFF">
+        android:background="#FFFFFF"
+        android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/FirstNameField"
             android:layout_width="fill_parent"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:orientation="vertical"
-            android:id="@+id/FirstNameField">
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/FirstNameLabel"
-                android:textSize="29sp"
-                android:textColor="#000000"
                 android:id="@+id/FirstNameLabel"
-                android:layout_gravity="left|top" />
-
-            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="date"
+                android:layout_gravity="left|top"
+                android:text="@string/FirstNameLabel"
+                android:textColor="#000000"
+                android:textSize="29sp" />
+
+            <EditText
                 android:id="@+id/FirstNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:textSize="23sp"
+                android:inputType="date"
+                android:text="@string/FirstNameText"
                 android:textColor="#000000"
-                android:text="@string/FirstNameText" />
+                android:textSize="23sp" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/LastNameField"
             android:layout_width="fill_parent"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:orientation="vertical"
-            android:id="@+id/LastNameField">
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/LastNameLabel"
-                android:textSize="29sp"
-                android:textColor="#000000"
                 android:id="@+id/LastNameLabel"
-                android:layout_gravity="left|top" />
-
-            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="date"
-                android:id="@+id/LastNameText"
-                android:layout_gravity="left"
-                android:textSize="23sp"
+                android:layout_gravity="left|top"
+                android:text="@string/LastNameLabel"
                 android:textColor="#000000"
-                android:text="@string/LastNameText" />
+                android:textSize="29sp" />
+
+            <EditText
+                android:id="@+id/LastNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:inputType="date"
+                android:text="@string/LastNameText"
+                android:textColor="#000000"
+                android:textSize="23sp" />
 
 
         </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/RelationField"
             android:layout_width="fill_parent"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:orientation="vertical"
-            android:id="@+id/RelationField">
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/RelationLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="left|top"
                 android:text="@string/RelationLabel"
-                android:textSize="29sp"
                 android:textColor="#000000"
-                android:id="@+id/RelationLabel"
-                android:layout_gravity="left|top" />
+                android:textSize="29sp" />
 
             <EditText
+                android:id="@+id/RelationText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="date"
-                android:id="@+id/RelationText"
                 android:layout_gravity="left"
-                android:textSize="23sp"
+                android:inputType="date"
+                android:text="@string/RelationText"
                 android:textColor="#000000"
-                android:text="@string/RelationText" /></LinearLayout>
+                android:textSize="23sp" />
+        </LinearLayout>
 
         <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:id="@+id/NumberField">
+            android:id="@+id/NumberField"
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:orientation="vertical">
 
 
             <TextView
+                android:id="@+id/PhonenmrLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/PhonenmrLable"
                 android:layout_gravity="left|center"
-                android:textSize="29sp"
-                android:id="@+id/PhonenmrLabel"
-                android:textColor="#000000"/>
+                android:text="@string/PhonenmrLable"
+                android:textColor="#000000"
+                android:textSize="29sp" />
 
             <EditText
+                android:id="@+id/PhonenmrText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/PhonenmrText"
-                android:id="@+id/PhonenmrText"
-                android:textSize="23sp"/>
+                android:textSize="23sp" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -158,39 +161,38 @@
                 android:layout_gravity="right" />
 
 
-
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/InfoField"
             android:layout_width="fill_parent"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:orientation="vertical"
-            android:id="@+id/InfoField">
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/BasicInfoLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/BasicInfoLabel"
                 android:layout_gravity="left|bottom"
-                android:textSize="29sp"
+                android:text="@string/BasicInfoLabel"
                 android:textColor="#000000"
-                android:id="@+id/BasicInfoLabel"/>
+                android:textSize="29sp" />
 
             <EditText
+                android:id="@+id/BasicInfoText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="date"
-                android:id="@+id/BasicInfoText"
                 android:layout_gravity="left"
+                android:inputType="date"
                 android:text="@string/BasicInfoText1"
-                android:textSize="23sp"/>
+                android:textSize="23sp" />
 
         </LinearLayout>
 
     </LinearLayout>
 
 
-    </LinearLayout>
+</LinearLayout>
 
 

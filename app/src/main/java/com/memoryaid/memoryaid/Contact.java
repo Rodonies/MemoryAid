@@ -22,14 +22,14 @@ public class Contact {
         _information = information;
     }
 
-    public Contact(Integer id, String firstname, String lastname, String relation, String number, String information, String imagepath) {
+    public Contact(Integer id, String firstname, String lastname, String relation, String number, String information, String profilepath) {
         _id = id;
         _firstname = firstname;
         _lastname = lastname;
         _relation = relation;
         _number = number;
         _information = information;
-        _imagepath = imagepath;
+        _imagepath = profilepath + "/" + _id + "_" + _firstname + "_" + _lastname;
     }
 
     public Integer getID() {

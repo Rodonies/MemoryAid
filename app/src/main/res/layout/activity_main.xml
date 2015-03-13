@@ -1,126 +1,154 @@
-
-
-<LinearLayout android:background="#ff0200ff" xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ff0200ff"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="#FFFFFF"
-        android:orientation="vertical"
-        android:gravity="center"
         android:layout_margin="10dp"
         android:layout_weight="1"
-        android:weightSum="1"
-        >
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="1">
 
-        <TextView android:text="@string/Language" android:layout_width="126dp"
-     android:layout_height="32dp"
-        android:layout_gravity="center_horizontal"
-            android:id="@+id/Language" />
-    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
-        <RadioButton android:id="@+id/RadioEnglish"
+        <TextView
+            android:id="@+id/Language"
+            android:layout_width="126dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/Language" />
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/English"
-            android:onClick="onRadioButtonLanguageClicked"
-            android:checked="true" />
-        <RadioButton android:id="@+id/RadioFrans"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Frans"
-            android:onClick="onRadioButtonLanguageClicked"/>
-        </LinearLayout>
-        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
-            <RadioButton android:id="@+id/RadioDeutsch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Deutsch"
-                android:onClick="onRadioButtonLanguageClicked"/>
-            <RadioButton android:id="@+id/RadioEspanol"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Espanol"
-                android:onClick="onRadioButtonLanguageClicked"/>
-        </LinearLayout>
-    </RadioGroup>
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/RadioEnglish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:onClick="onRadioButtonLanguageClicked"
+                    android:text="@string/English" />
+
+                <RadioButton
+                    android:id="@+id/RadioFrans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonLanguageClicked"
+                    android:text="@string/Frans" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/RadioDeutsch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonLanguageClicked"
+                    android:text="@string/Deutsch" />
+
+                <RadioButton
+                    android:id="@+id/RadioEspanol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonLanguageClicked"
+                    android:text="@string/Espanol" />
+            </LinearLayout>
+        </RadioGroup>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_margin="10dp"
         android:layout_weight="1"
         android:background="#FFFFFF"
-        android:orientation="vertical"
         android:gravity="center"
-        android:layout_margin="10dp"
+        android:orientation="vertical"
         android:weightSum="1">
-    <TextView android:text="@string/TextAndImageSize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
 
-    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <RadioButton android:id="@+id/RadioBig"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Big"
-            android:onClick="onRadioButtonClicked"/>
-        <RadioButton android:id="@+id/RadioMedium"
+            android:text="@string/TextAndImageSize" />
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Medium"
-            android:onClick="onRadioButtonClicked"
-            android:checked="false" />
-        <RadioButton android:id="@+id/RadioSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Small"
-            android:onClick="onRadioButtonClicked"/>
-    </RadioGroup>
-</LinearLayout>
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/RadioBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/Big" />
+
+            <RadioButton
+                android:id="@+id/RadioMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/Medium" />
+
+            <RadioButton
+                android:id="@+id/RadioSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/Small" />
+        </RadioGroup>
+    </LinearLayout>
 
     <LinearLayout
-    android:background="#FFFFFF"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:gravity="center"
-        android:layout_margin="10dp">
-        <TextView android:text="@string/ProfileManagement"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"/>
-        <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/AddProf"
+        android:layout_margin="10dp"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:text="@string/ProfileManagement" />
+
+        <Button
             android:id="@+id/AddProf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:onClick="AddProfClicked"
-             />
+            android:text="@string/AddProf" />
+
         <Button
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="@string/EditProf" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/EditProf" />
+
         <Button
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="@string/DeleteProf" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/DeleteProf" />
     </LinearLayout>
-    </LinearLayout>
+</LinearLayout>

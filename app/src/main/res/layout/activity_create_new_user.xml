@@ -2,58 +2,60 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
     tools:context="com.memoryaid.memoryaid.CreateNewUser">
 
 
     <ScrollView
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_weight="0.5"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="28sp"
-                    android:textColor="#000000"
                     android:gravity="center"
                     android:text="@string/TitleCreateNewProfile"
-                    />
-                <Button
-                    android:gravity="center"
-                    android:text="@string/btnPicture"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:enabled="true"
-                    android:visibility="visible"
-                    android:maxHeight="250dp"
-                    android:onClick="SearchPhoto"
-                    android:id="@+id/btnAddPhoto"
-                    android:layout_height="wrap_content" />
+                    android:textColor="#000000"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
 
-                <ImageView
+                <Button
+                    android:id="@+id/btnAddPhoto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxWidth="250dp"
+                    android:layout_gravity="center"
+                    android:enabled="true"
+                    android:gravity="center"
                     android:maxHeight="250dp"
-                    android:id="@+id/ChosenPhoto"
                     android:onClick="SearchPhoto"
-                    android:layout_gravity="center"/>
+                    android:text="@string/btnPicture"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/ChosenPhoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:maxHeight="250dp"
+                    android:maxWidth="250dp"
+                    android:onClick="SearchPhoto" />
 
             </LinearLayout>
 
@@ -61,83 +63,83 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Firstname"
-                android:theme="@style/NewUserUI"
-                />
+                android:theme="@style/NewUserUI" />
+
             <EditText
-                android:layout_width="fill_parent"
                 android:id="@+id/First_Name_Field"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/hintFirstName"/>
+                android:hint="@string/hintFirstName"
+                android:inputType="text" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Lastname"
-                android:theme="@style/NewUserUI"
-                />
+                android:theme="@style/NewUserUI" />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/hintLastName"/>
+                android:hint="@string/hintLastName"
+                android:inputType="text" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/PhoneNumber"
-                android:theme="@style/NewUserUI"
-                />
+                android:theme="@style/NewUserUI" />
+
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/hintPhoneNumber"/>
+                android:hint="@string/hintPhoneNumber"
+                android:inputType="text" />
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Date_of_birth"
-                android:theme="@style/NewUserUI"
-                />
+                android:theme="@style/NewUserUI" />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/hintDate_of_birth"/>
+                android:hint="@string/hintDate_of_birth"
+                android:inputType="text" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Basic_info"
-                android:theme="@style/NewUserUI"
-                />
+                android:theme="@style/NewUserUI" />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="@string/hintBasicInfo"/>
+                android:hint="@string/hintBasicInfo"
+                android:inputType="text" />
 
 
-
-            </LinearLayout>
+        </LinearLayout>
 
 
     </ScrollView>
 
     <LinearLayout
-        android:weightSum="1"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:enabled="false"
-            android:text="Save"/>
+            android:text="Save" />
 
-        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>
