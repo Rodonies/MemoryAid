@@ -9,7 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -84,7 +85,7 @@
                 android:layout_margin="10px"
                 android:layout_weight="1"
                 android:background="@drawable/buttonblue"
-                android:color="#1E90FF" />
+                android:color="#1E90F@F" />
 
             <Button
                 android:id="@+id/button3"
@@ -93,7 +94,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10px"
                 android:layout_weight="1"
-                android:background="@drawable/buttongreen" />
+                android:background= "@drawable/buttongreen" />
 
             <Button
                 android:id="@+id/button4"
@@ -113,6 +114,50 @@
                 android:layout_weight="1"
                 android:background="@drawable/buttonyellow" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10px"
+                android:layout_weight="1"
+                android:background="@drawable/buttonpink"
+                android:color="#1E90F@F" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10px"
+                android:layout_weight="1"
+                android:background= "@drawable/buttonpurple" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10px"
+                android:layout_weight="1"
+                android:background="@drawable/buttonwhite" />
+
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10px"
+                android:layout_weight="1"
+                android:background="@drawable/buttonblack" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
