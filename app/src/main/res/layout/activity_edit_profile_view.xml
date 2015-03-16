@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left|top"
-                    android:text="@string/FirstNameLabel"
+                    android:text="@string/Firstname"
                     android:textColor="#000000"
                     android:textSize="29sp" />
 
@@ -83,7 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left|top"
-                    android:text="@string/LastNameLabel"
+                    android:text="@string/Lastname"
                     android:textColor="#000000"
                     android:textSize="29sp" />
 
@@ -112,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left|top"
-                    android:text="@string/RelationLabel"
+                    android:text="@string/Relation"
                     android:textColor="#000000"
                     android:textSize="29sp" />
 
@@ -140,7 +140,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left|center"
-                    android:text="@string/PhonenmrLable"
+                    android:text="@string/PhoneNumber"
                     android:textColor="#000000"
                     android:textSize="29sp" />
 
@@ -166,7 +166,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left|bottom"
-                    android:text="@string/BasicInfoLabel"
+                    android:text="@string/Basic_info"
                     android:textColor="#000000"
                     android:textSize="29sp" />
 
