@@ -79,9 +79,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_COLOR = "color";
 
     private static Profile _profile;
+    private static String dir;
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        dir = context.getFilesDir().getPath();
     }
 
     @Override
@@ -136,11 +138,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_FIRSTNAME, profile.getFirstName());
         values.put(KEY_LASTNAME, profile.getLastName());
         values.put(KEY_NUMBER, profile.getNumber());
-        values.put(KEY_IMAGEPATH, profile.getImagePath());
+        String path = dir + "/" + _profile.getID() + "_" + profile.getFirstName() + "_" + profile.getLastName();
+        values.put(KEY_IMAGEPATH, path);
 
         db.insert(TABLE_PROFILES, null, values);
         db.close();
 
+        new File(path).mkdirs();
         findProfile(profile.getFirstName(), profile.getLastName());
     }
 
@@ -156,6 +160,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_INFORMATION, contact.getInformation());
         String path = _profile.getImagePath() + "/" + contact.getID() + "_" + contact.getFirstName() + "_" + contact.getLastName();
         values.put(KEY_IMAGEPATH, path);
+
+        new File(path).mkdirs();
 
         db.insert(TABLE_CONTACTS, null, values);
         db.close();
