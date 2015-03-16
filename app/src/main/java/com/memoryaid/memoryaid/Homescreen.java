@@ -32,8 +32,8 @@ public class Homescreen extends ActionBarActivity {
     }
 
     public void Settings(View view) {
-        //Intent i = new Intent(this,CreateNewUser.class);
-        //startActivity(i);
+        Intent i = new Intent(this,Settings.class);
+        startActivity(i);
     }
 
 
