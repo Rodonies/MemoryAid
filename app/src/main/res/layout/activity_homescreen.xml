@@ -19,7 +19,7 @@
 
 
     <Button
-        android:id="@+id/CreateUser"
+        android:id="@+id/btnProfileView"
         style="@style/AudioFileInfoOverlayText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:linksClickable="false"
+        android:id="@+id/btnProfileManager"
         android:text="@string/Headmenutxt2" />
 
     <Button
@@ -42,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:linksClickable="false"
-        android:onClick="Settings"
+        android:id="@+id/btnSettings"
         android:text="@string/Headmenutxt3" />
 
 </LinearLayout>
