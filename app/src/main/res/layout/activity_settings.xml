@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
-    android:id="@+id/">
+    >
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -85,7 +85,7 @@
                 android:layout_margin="10px"
                 android:layout_weight="1"
                 android:background="@drawable/buttonblue"
-                android:color="#1E90F@F" />
+                />
 
             <Button
                 android:id="@+id/button3"
@@ -128,7 +128,7 @@
                 android:layout_margin="10px"
                 android:layout_weight="1"
                 android:background="@drawable/buttonpink"
-                android:color="#1E90F@F" />
+                />
 
             <Button
                 android:id="@+id/button7"
