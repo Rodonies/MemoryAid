@@ -46,15 +46,10 @@
     <string name="ChooseFavColor">Choose your favorite color</string>
 
     <string name="ImageLabel">Image of the person</string>
-    <string name="FirstNameLabel">First name</string>
     <string name="FirstNameText">  </string>
-    <string name="LastNameLabel">Last name</string>
     <string name="LastNameText">  </string>
-    <string name="RelationLabel">Relation</string>
     <string name="RelationText">  </string>
-    <string name="PhonenmrLable">Phone number</string>
     <string name="PhonenmrText">  </string>
-    <string name="BasicInfoLabel">Basic information</string>
     <string name="BasicInfoText1">  </string>
 
     <string name="EditLabel">Edit profile</string>
