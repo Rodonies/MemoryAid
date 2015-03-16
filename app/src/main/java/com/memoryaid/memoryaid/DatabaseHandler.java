@@ -8,15 +8,16 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /*
-Werking:
+Werking van databasehandler:
 
 DatabaseHandler db = new DatabaseHandler(this); //Nieuwe datababasehandler aanmaken
-if (db.findProfile("naam","achternaam")) //Profiel zoeken met deze naam/achternaam,
-                                         //je kan ook db.findProfile(id) om een profiel te zoeken op id numers
-                                         //Geeft true terug als het profiel bestaat, false als het niet bestaat
+if (db.findProfile("naam", "achternaam")) //Profiel zoeken met deze naam/achternaam,
+                                          //je kan ook db.findProfile(id) om een profiel te zoeken op id numers
+                                          //Geeft true terug als het profiel bestaat, false als het niet bestaat
 {
     //profiel bestaat, je kan deze vinden in db.getProfile(), je kan de data NIET AANPASSEN via deze methode
     //data aanpassen gebeurt via db.editProfile(nieuwe data)
@@ -29,28 +30,34 @@ else
 
 //volgende code is een voorbeeld voor de achternaam van het tweede profiel te veranderen naar "Jansens"
 
-DatabaseHandler db = new DatabaseHandler(this); //Nieuwe datababasehandler aanmaken
+DatabaseHandler db = new DatabaseHandler(this);
 if (db.findProfile(2))
 {
-    db.editProfile(db.getProfile().getFirstName(),"Jansens");
+    db.editProfile(null, "Jansens", null);
 }
 
 //volgende code is een voorbeeld om de voornaam van het profiel met de naam "Jos Joskens"
 //die geen contacten heeft te veranderen naar "Jef" en daarnaa een contact met de naam "Jos Joskens" toe te voegen
 
-if (db.findProfile("Jos","Joskens"))
+DatabaseHandler db = new DatabaseHandler(this);
+if (db.findProfile("Jos", "Joskens"))
 {
     db.getProfile(); //Geeft profiel met naam "Jos Joskens" zonder contacten
-    db.editProfile("Jef");
-    db.addContact(new Contact("Jos","Joskens","relatie","nummer","informatie");
+    db.editProfile("Jef", null , null);
+    db.addContact(new Contact("Jos", "Joskens", "relatie", "nummer", "informatie");
     db.getProfile(); //Geeft profiel met naam "Jef Joskens" met 1 contact, namelijk "Jos Joskens"
 }
 
 
- */
+//volgende code verwijdert het eerste profiel, inclusief contacten en fotos
+
+DatabaseHandler db = new DatabaseHandler(this);
+if (findprofile(1)) db.deleteProfile();
+
+*/
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 12;
     private static final String DATABASE_NAME = "database";
 
     private static final String TABLE_PROFILES = "profiles";
@@ -85,7 +92,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         "\t`" + KEY_FIRSTNAME + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_LASTNAME + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_NUMBER + "`\tTEXT NOT NULL,\n" +
-                        "\t`" + KEY_IMAGEPATH + "`\tTEXT\n" +
                         ");";
 
         String CREATE_CONTACTS_TABLE =
@@ -97,7 +103,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         "\t`" + KEY_RELATION + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_NUMBER + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_INFORMATION + "`\tTEXT NOT NULL,\n" +
-                        "\t`" + KEY_IMAGEPATH + "`\tTEXT\n" +
                         ");";
 
         String CREATE_SETTINGS_TABLE =
@@ -149,10 +154,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_RELATION, contact.getRelation());
         values.put(KEY_NUMBER, contact.getNumber());
         values.put(KEY_INFORMATION, contact.getInformation());
-        String path;
-        if (contact.getImagePath() != null) path = contact.getImagePath();
-        else
-            path = _profile.getImagePath() + "/" + contact.getID() + "_" + contact.getFirstName() + "_" + contact.getLastName();
+        String path = _profile.getImagePath() + "/" + contact.getID() + "_" + contact.getFirstName() + "_" + contact.getLastName();
         values.put(KEY_IMAGEPATH, path);
 
         db.insert(TABLE_CONTACTS, null, values);
@@ -204,82 +206,43 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    /*public int editProfile(String firstname) {
+    public boolean editProfile(String newfirstname, String newlastname, String newnumber) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(KEY_NAME, contact.getName());
-        values.put(KEY_PH_NO, contact.getPhoneNumber());
+        if (newfirstname == null) newfirstname = _profile.getFirstName();
+        if (newlastname == null) newfirstname = _profile.getFirstName();
+        if (newnumber == null) newfirstname = _profile.getFirstName();
+        String oldpath = _profile.getImagePath();
+        _profile.updateImagePath(_profile.getID() + "_" + _profile.getFirstName() + "_" + _profile.getLastName());
 
-        // updating row
-        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?", new String[] { String.valueOf(contact.getID()) });
+        new File(oldpath).renameTo(new File(_profile.getImagePath()));
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_FIRSTNAME, newfirstname);
+        values.put(KEY_LASTNAME, newlastname);
+        values.put(KEY_NUMBER, newnumber);
+        values.put(KEY_IMAGEPATH, _profile.getImagePath());
+
+        if (db.update(TABLE_PROFILES, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())}) == 1) return true;
+        else return false;
     }
 
-    public int editProfile(String firstname, String lastname) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_NAME, contact.getName());
-        values.put(KEY_PH_NO, contact.getPhoneNumber());
-
-        // updating row
-        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?", new String[] { String.valueOf(contact.getID()) });
-    }*/
-
-    /*public List<Contact> getAllContacts() {
-        List<Contact> contactList = new ArrayList<Contact>();
-        String selectQuery = "SELECT  * FROM " + TABLE_CONTACTS;
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                Contact contact = new Contact();
-                contact.setID(Integer.parseInt(cursor.getString(0)));
-                contact.setName(cursor.getString(1));
-                contact.setPhoneNumber(cursor.getString(2));
-                // Adding contact to list
-                contactList.add(contact);
-            } while (cursor.moveToNext());
-        }
-
-        // return contact list
-        return contactList;
-    }*/
-
-    // Updating single contact
-    /*public int updateContact(Contact contact) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_NAME, contact.getName());
-        values.put(KEY_PH_NO, contact.getPhoneNumber());
-
-        // updating row
-        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?",
-                new String[] { String.valueOf(contact.getID()) });
-    }
-
-    // Deleting single contact
     public void deleteContact(Contact contact) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_CONTACTS, KEY_ID + " = ?",
-                new String[] { String.valueOf(contact.getID()) });
+
+        db.delete(TABLE_CONTACTS, KEY_ID + " = ?", new String[] { String.valueOf(contact.getID()) });
+        new File(contact.getImagePath()).delete();
         db.close();
     }
 
+    // Deleting single contact
+    public void deleteProfile() {
+        SQLiteDatabase db = this.getWritableDatabase();
 
-    // Getting contacts Count
-    public int getContactsCount() {
-        String countQuery = "SELECT  * FROM " + TABLE_CONTACTS;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countQuery, null);
-        cursor.close();
-
-        // return count
-        return cursor.getCount();
-    }*/
-
+        db.delete(TABLE_PROFILES, KEY_ID + " = ?", new String[] { String.valueOf(_profile.getID()) });
+        db.delete(TABLE_CONTACTS, KEY_PROFILEID + " = ?", new String[] { String.valueOf(_profile.getID()) });
+        new File(_profile.getImagePath()).delete();
+        _profile = null;
+        db.close();
+    }
 }

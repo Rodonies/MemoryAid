@@ -70,4 +70,8 @@ public class Profile {
     public String getImagePath() {
         return _imagepath;
     }
+
+    public void updateImagePath(String newpath) {
+        _imagepath = newpath;
+    }
 }
