@@ -22,18 +22,17 @@
         android:id="@+id/btnProfileView"
         style="@style/AudioFileInfoOverlayText"
         android:layout_width="wrap_content"
+        android:textColor="#ff000000"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
-        android:linksClickable="false"
-        android:onClick="CreateNewUser"
         android:text="@string/Headmenutxt1" />
 
     <Button
         style="@style/AudioFileInfoOverlayText"
         android:layout_width="wrap_content"
+        android:textColor="#ff000000"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
-        android:linksClickable="false"
         android:id="@+id/btnProfileManager"
         android:text="@string/Headmenutxt2" />
 
@@ -42,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
+        android:textColor="#ff000000"
         android:linksClickable="false"
         android:id="@+id/btnSettings"
         android:text="@string/Headmenutxt3" />

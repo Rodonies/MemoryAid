@@ -1,5 +1,6 @@
 package com.memoryaid.memoryaid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -12,11 +13,17 @@ import android.widget.RadioButton;
 public class Settings extends ActionBarActivity {
 
     @Override
+    public void onBackPressed() {
+        Intent i = new Intent(this, Homescreen.class);
+        startActivity(i);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         themeUtils.onActivityCreateSetTheme(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_settings);
 
         final RadioButton A = (RadioButton) findViewById(R.id.RadioSmall);
         final RadioButton B = (RadioButton) findViewById(R.id.RadioMedium);

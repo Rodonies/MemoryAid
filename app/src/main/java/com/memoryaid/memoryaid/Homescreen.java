@@ -17,6 +17,16 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
     private Button btnViewProfiles;
     private Button btnProfileManager;
     private Button btnSettings;
+    private Boolean FirstLaunch;
+    private View V;
+
+    @Override
+    public void onBackPressed() {
+        Intent setIntent = new Intent(Intent.ACTION_MAIN);
+        setIntent.addCategory(Intent.CATEGORY_HOME);
+        setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(setIntent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +52,18 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
 */
 
 
+
+
     }
 
-    public void CreateNewUser(View view) {
-        Intent i = new Intent(this, CreateNewUser.class);
-        startActivity(i);
-    }
+
 
     public void Settings(View view) {
         Intent i = new Intent(this,Settings.class);
+        startActivity(i);
+    }
+    public void ProfileManager(View view) {
+        Intent i = new Intent(this, ProfileManager.class);
         startActivity(i);
     }
     public void onClick(View v) {
@@ -59,7 +72,7 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
             case R.id.btnProfileView: /** AlerDialog when click on Exit */
                 break;
             case R.id.btnProfileManager: /** AlerDialog when click on Exit */
-                CreateNewUser(v);
+                ProfileManager(v);
                 break;
             case R.id.btnSettings:
                 Settings(v);

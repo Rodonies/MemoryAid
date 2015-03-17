@@ -7,6 +7,10 @@
     <string name="Headmenutxt1"> View profiles </string>
     <string name="Headmenutxt2"> profile manager </string>
     <string name="Headmenutxt3"> Settings </string>
+    <string name="ProfileManagertxt1"> Add Profile </string>
+    <string name="ProfileManagertxt2"> Edit Profile </string>
+    <string name="ProfileManagertxt3"> Delete Profile </string>
+
     <string name="title_activity_new_user_creation">NewUserCreation</string>
     <string name="title_activity_create_new_user">Create new user</string>
     <string name="title_Settings">settings</string>
@@ -57,4 +61,7 @@
     <string name="BasicInfoText2">   </string>
     <string name="BasicInfoText3">   </string>
     <string name="SaveButton">Save</string>
+    <string name="title_activity_profile_manager">ProfileManager</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
