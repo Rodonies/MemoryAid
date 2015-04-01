@@ -85,6 +85,7 @@
                 android:layout_margin="10px"
                 android:layout_weight="1"
                 android:background="@drawable/buttonblue"
+                android:onClick="onColorButtonClicked"
                 />
 
             <Button
@@ -94,7 +95,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10px"
                 android:layout_weight="1"
-                android:background= "@drawable/buttongreen" />
+                android:background= "@drawable/buttongreen"
+                android:onClick="onColorButtonClicked" />
 
             <Button
                 android:id="@+id/button4"
@@ -103,7 +105,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10px"
                 android:layout_weight="1"
-                android:background="@drawable/buttonred" />
+                android:background="@drawable/buttonred"
+                android:onClick="onColorButtonClicked"/>
 
             <Button
                 android:id="@+id/button5"
@@ -112,7 +115,9 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10px"
                 android:layout_weight="1"
-                android:background="@drawable/buttonyellow" />
+                android:background="@drawable/buttonyellow"
+                android:onClick="onColorButtonClicked"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -128,7 +133,7 @@
                 android:layout_margin="10px"
                 android:layout_weight="1"
                 android:background="@drawable/buttonpink"
-                />
+                android:onClick="onColorButtonClicked"/>
 
             <Button
                 android:id="@+id/button7"
@@ -137,7 +142,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10px"
                 android:layout_weight="1"
-                android:background= "@drawable/buttonpurple" />
+                android:background= "@drawable/buttonpurple"
+                android:onClick="onColorButtonClicked"/>
 
             <Button
                 android:id="@+id/button8"
@@ -146,7 +152,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10px"
                 android:layout_weight="1"
-                android:background="@drawable/buttonwhite" />
+                android:background="@drawable/buttonwhite"
+                android:onClick="onColorButtonClicked"/>
 
             <Button
                 android:id="@+id/button9"
@@ -155,7 +162,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10px"
                 android:layout_weight="1"
-                android:background="@drawable/buttonblack" />
+                android:background="@drawable/buttonblack"
+                android:onClick="onColorButtonClicked"/>
         </LinearLayout>
 
     </LinearLayout>
