@@ -1,6 +1,7 @@
 package com.memoryaid.memoryaid;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -12,10 +13,17 @@ import android.widget.RadioButton;
 
 public class Settings extends ActionBarActivity {
 
+    public static final String PREFS_FIRST_LAUNCH = "MyPreferenceFiles";
+
     @Override
     public void onBackPressed() {
         Intent i = new Intent(this, Homescreen.class);
         startActivity(i);
+        SharedPreferences CheckOnFirstLaunched = getSharedPreferences(PREFS_FIRST_LAUNCH,0);
+        SharedPreferences.Editor editor = CheckOnFirstLaunched.edit();
+        editor.putString("First_Launch","false");
+        editor.commit();
+
     }
 
     @Override
