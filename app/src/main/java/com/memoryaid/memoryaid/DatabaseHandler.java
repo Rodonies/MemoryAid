@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -54,6 +55,14 @@ if (db.findProfile("Jos", "Joskens"))
 DatabaseHandler db = new DatabaseHandler(this);
 if (findprofile(1)) db.deleteProfile();
 
+
+//Volgende code voegt settings toe aan het eerste profiel
+db.saveSettings("Big", "Rood", "Engels");
+
+
+//volgende code dient voor te zien of de settings bestaan of niet, als ze niet bestaan moet de settings intent worden opgestart
+if (!db.getProfile().settingsInitialized()) StartNieuweSettingsIntentHier();
+
 */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -68,7 +77,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_PROFILEID = "profileid";
     private static final String KEY_FIRSTNAME = "firstname";
     private static final String KEY_LASTNAME = "lastname";
-    private static final String KEY_IMAGEPATH = "imagepath";
 
     private static final String KEY_RELATION = "relation";
     private static final String KEY_NUMBER = "number";
@@ -131,124 +139,201 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
 
-    void addProfile(Profile profile) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public boolean addProfile(Profile profile) {
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(KEY_FIRSTNAME, profile.getFirstName());
-        values.put(KEY_LASTNAME, profile.getLastName());
-        values.put(KEY_NUMBER, profile.getNumber());
-        String path = dir + "/" + _profile.getID() + "_" + profile.getFirstName() + "_" + profile.getLastName();
-        values.put(KEY_IMAGEPATH, path);
+            ContentValues values = new ContentValues();
+            values.put(KEY_FIRSTNAME, profile.getFirstName());
+            values.put(KEY_LASTNAME, profile.getLastName());
+            values.put(KEY_NUMBER, profile.getNumber());
+            String path = dir + "/" + _profile.getID() + "_" + profile.getFirstName() + "_" + profile.getLastName();
 
-        db.insert(TABLE_PROFILES, null, values);
-        db.close();
-
-        new File(path).mkdirs();
-        findProfile(profile.getFirstName(), profile.getLastName());
-    }
-
-    void addContact(Contact contact) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_PROFILEID, _profile.getID());
-        values.put(KEY_FIRSTNAME, contact.getFirstName());
-        values.put(KEY_LASTNAME, contact.getLastName());
-        values.put(KEY_RELATION, contact.getRelation());
-        values.put(KEY_NUMBER, contact.getNumber());
-        values.put(KEY_INFORMATION, contact.getInformation());
-        String path = _profile.getImagePath() + "/" + contact.getID() + "_" + contact.getFirstName() + "_" + contact.getLastName();
-        values.put(KEY_IMAGEPATH, path);
-
-        new File(path).mkdirs();
-
-        db.insert(TABLE_CONTACTS, null, values);
-        db.close();
-    }
-
-
-    boolean findProfile(Integer id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(TABLE_PROFILES, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_NUMBER}, KEY_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            _profile = new Profile(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+            db.insert(TABLE_PROFILES, null, values);
             db.close();
-            updateContacts();
-            return true;
+
+            new File(path).mkdirs();
+            return findProfile(profile.getFirstName(), profile.getLastName());
+        } catch (Exception e) {
+            return false;
         }
-        db.close();
-        return false;
     }
 
-    boolean findProfile(String firstname, String lastname) {
-        SQLiteDatabase db = this.getReadableDatabase();
+    public boolean addContact(Contact contact) {
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor cursor = db.query(TABLE_PROFILES, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_NUMBER}, KEY_FIRSTNAME + " = ? AND " + KEY_LASTNAME + " = ?", new String[]{firstname, lastname}, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            _profile = new Profile(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+            ContentValues values = new ContentValues();
+            values.put(KEY_PROFILEID, _profile.getID());
+            values.put(KEY_FIRSTNAME, contact.getFirstName());
+            values.put(KEY_LASTNAME, contact.getLastName());
+            values.put(KEY_RELATION, contact.getRelation());
+            values.put(KEY_NUMBER, contact.getNumber());
+            values.put(KEY_INFORMATION, contact.getInformation());
+            String path = _profile.getImagePath() + "/" + contact.getID() + "_" + contact.getFirstName() + "_" + contact.getLastName();
+
+            new File(path).mkdirs();
+
+            db.insert(TABLE_CONTACTS, null, values);
             db.close();
-            updateContacts();
             return true;
+        } catch (Exception e) {
+            return false;
         }
-        db.close();
-        return false;
+    }
+
+
+    public boolean findProfile(Integer id) {
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            Cursor cursor = db.query(TABLE_PROFILES, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_NUMBER}, KEY_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                _profile = new Profile(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+                db.close();
+                updateContacts();
+                loadSettings();
+                return true;
+            }
+            db.close();
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean findProfile(String firstname, String lastname) {
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            Cursor cursor = db.query(TABLE_PROFILES, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_NUMBER}, KEY_FIRSTNAME + " = ? AND " + KEY_LASTNAME + " = ?", new String[]{firstname, lastname}, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                _profile = new Profile(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+                db.close();
+                updateContacts();
+                loadSettings();
+                return true;
+            }
+            db.close();
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     Profile getProfile() {
         return _profile;
     }
 
-    void updateContacts() {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(TABLE_CONTACTS, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_RELATION, KEY_NUMBER, KEY_INFORMATION}, KEY_PROFILEID + " = ?", new String[]{Integer.toString(_profile.getID())}, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            do {
-                _profile.addContact(new Contact(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), _profile.getImagePath()));
-            } while (cursor.moveToNext());
-        }
-        db.close();
-    }
-
     public boolean editProfile(String newfirstname, String newlastname, String newnumber) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
 
-        if (newfirstname == null) newfirstname = _profile.getFirstName();
-        if (newlastname == null) newfirstname = _profile.getFirstName();
-        if (newnumber == null) newfirstname = _profile.getFirstName();
-        String oldpath = _profile.getImagePath();
-        _profile.updateImagePath(_profile.getID() + "_" + _profile.getFirstName() + "_" + _profile.getLastName());
+            if (newfirstname == null) newfirstname = _profile.getFirstName();
+            if (newlastname == null) newfirstname = _profile.getFirstName();
+            if (newnumber == null) newfirstname = _profile.getFirstName();
+            String oldpath = _profile.getImagePath();
+            _profile.updateImagePath(_profile.getID() + "_" + _profile.getFirstName() + "_" + _profile.getLastName());
 
-        new File(oldpath).renameTo(new File(_profile.getImagePath()));
+            new File(oldpath).renameTo(new File(_profile.getImagePath()));
 
-        ContentValues values = new ContentValues();
-        values.put(KEY_FIRSTNAME, newfirstname);
-        values.put(KEY_LASTNAME, newlastname);
-        values.put(KEY_NUMBER, newnumber);
-        values.put(KEY_IMAGEPATH, _profile.getImagePath());
+            ContentValues values = new ContentValues();
+            values.put(KEY_FIRSTNAME, newfirstname);
+            values.put(KEY_LASTNAME, newlastname);
+            values.put(KEY_NUMBER, newnumber);
 
-        if (db.update(TABLE_PROFILES, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())}) == 1) return true;
-        else return false;
+            if (db.update(TABLE_PROFILES, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())}) == 1)
+                return true;
+            else return false;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public void deleteContact(Contact contact) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public boolean saveSettings(String size, String color, String language) {
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
 
-        db.delete(TABLE_CONTACTS, KEY_ID + " = ?", new String[] { String.valueOf(contact.getID()) });
-        new File(contact.getImagePath()).delete();
-        db.close();
+            ContentValues values = new ContentValues();
+            values.put(KEY_ID, _profile.getID());
+            values.put(KEY_SIZE, size);
+            values.put(KEY_COLOR, color);
+            values.put(KEY_LANGUAGE, language);
+
+            if (db.update(TABLE_SETTINGS, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())}) == 1)
+                return true;
+            else return false;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    // Deleting single contact
-    public void deleteProfile() {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public boolean deleteContact(Contact contact) {
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
 
-        db.delete(TABLE_PROFILES, KEY_ID + " = ?", new String[] { String.valueOf(_profile.getID()) });
-        db.delete(TABLE_CONTACTS, KEY_PROFILEID + " = ?", new String[] { String.valueOf(_profile.getID()) });
-        new File(_profile.getImagePath()).delete();
-        _profile = null;
-        db.close();
+            if (db.delete(TABLE_CONTACTS, KEY_ID + " = ?", new String[]{String.valueOf(contact.getID())}) != 1)
+                return false;
+            new File(contact.getImagePath()).delete();
+            db.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean deleteProfile() {
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            if (db.delete(TABLE_PROFILES, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())}) == 0)
+                return false;
+            if (db.delete(TABLE_CONTACTS, KEY_PROFILEID + " = ?", new String[]{String.valueOf(_profile.getID())}) == 0)
+                return false;
+            if (db.delete(TABLE_SETTINGS, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())}) == 0)
+                return false;
+            new File(_profile.getImagePath()).delete();
+            _profile = null;
+            db.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean updateContacts() {
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            Cursor cursor = db.query(TABLE_CONTACTS, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_RELATION, KEY_NUMBER, KEY_INFORMATION}, KEY_PROFILEID + " = ?", new String[]{Integer.toString(_profile.getID())}, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                do {
+                    _profile.addContact(new Contact(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), _profile.getImagePath()));
+                } while (cursor.moveToNext());
+                db.close();
+                return true;
+            }
+            db.close();
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean loadSettings() {
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+
+            Cursor cursor = db.query(TABLE_SETTINGS, new String[]{KEY_SIZE, KEY_COLOR, KEY_LANGUAGE}, KEY_ID + " = ?", new String[]{Integer.toString(_profile.getID())}, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                _profile.updateSettings(cursor.getString(0), cursor.getString(1), cursor.getString(2));
+                db.close();
+                return true;
+            }
+            db.close();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
