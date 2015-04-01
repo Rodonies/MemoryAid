@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 
-public class ProfileManager extends ActionBarActivity implements View.OnClickListener{
+public class ProfileManager extends ActionBarActivity implements View.OnClickListener {
 
     private Button btnAddProfile;
     private Button btnEditProfile;
@@ -26,12 +26,12 @@ public class ProfileManager extends ActionBarActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_manager);
 
-       btnAddProfile = (Button) findViewById(R.id.btnAddProfile);
-       btnEditProfile = (Button) findViewById(R.id.btnEditProfile);
-       btnDeleteProfile = (Button) findViewById(R.id.btnEditProfile);
-       btnAddProfile.setOnClickListener(this);
-       btnEditProfile.setOnClickListener(this);
-       btnDeleteProfile.setOnClickListener(this);
+        btnAddProfile = (Button) findViewById(R.id.btnAddProfile);
+        btnEditProfile = (Button) findViewById(R.id.btnEditProfile);
+        btnDeleteProfile = (Button) findViewById(R.id.btnEditProfile);
+        btnAddProfile.setOnClickListener(this);
+        btnEditProfile.setOnClickListener(this);
+        btnDeleteProfile.setOnClickListener(this);
 
     }
 
@@ -51,6 +51,7 @@ public class ProfileManager extends ActionBarActivity implements View.OnClickLis
         }
 
     }
+
     public void CreateNewUser(View view) {
         Intent i = new Intent(this, CreateNewUser.class);
         startActivity(i);

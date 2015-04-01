@@ -41,20 +41,15 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         btnViewProfiles.setOnClickListener(this);
         btnProfileManager.setOnClickListener(this);
 
-        /*DatabaseHandler db = new DatabaseHandler(this);
+        DatabaseHandler db = new DatabaseHandler(this);
 
         db.addProfile(new Profile("Jan", "Jansens", "127.0.0.1"));
         db.addContact(new Contact("Jos", "Jansens", "Family", "13.33.33.37", "Jos Jansens is my nephew"));
 
         if (db.findProfile("Jan", "Jansens")) {
             if (!db.getProfile().settingsInitialized()) db.saveSettings("Big", "Rood", "Engels");
-            for (Contact contact : db.getProfile().getContacts()) {
-                Log.e("ShowContacts", "Contact: " + contact.getFullName());
-            }
-            Log.e("Language", db.getProfile().getLanguage());
-            Log.e("Size", db.getProfile().getSize());
-            Log.e("Color", db.getProfile().getColor());
-        }*/
+            db.getProfile().Show();
+        }
 
 
     }

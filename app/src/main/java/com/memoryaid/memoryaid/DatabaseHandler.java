@@ -101,7 +101,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         "\t`" + KEY_ID + "`\tINTEGER NOT NULL PRIMARY KEY,\n" +
                         "\t`" + KEY_FIRSTNAME + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_LASTNAME + "`\tTEXT NOT NULL,\n" +
-                        "\t`" + KEY_NUMBER + "`\tTEXT NOT NULL,\n" +
+                        "\t`" + KEY_NUMBER + "`\tTEXT NOT NULL\n" +
                         ");";
 
         String CREATE_CONTACTS_TABLE =
@@ -112,7 +112,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         "\t`" + KEY_LASTNAME + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_RELATION + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_NUMBER + "`\tTEXT NOT NULL,\n" +
-                        "\t`" + KEY_INFORMATION + "`\tTEXT NOT NULL,\n" +
+                        "\t`" + KEY_INFORMATION + "`\tTEXT NOT NULL\n" +
                         ");";
 
         String CREATE_SETTINGS_TABLE =
@@ -141,20 +141,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public boolean addProfile(Profile profile) {
         try {
+            profile.Show();
             SQLiteDatabase db = this.getWritableDatabase();
 
             ContentValues values = new ContentValues();
             values.put(KEY_FIRSTNAME, profile.getFirstName());
             values.put(KEY_LASTNAME, profile.getLastName());
             values.put(KEY_NUMBER, profile.getNumber());
-            String path = dir + "/" + _profile.getID() + "_" + profile.getFirstName() + "_" + profile.getLastName();
 
+            String path = dir + "/" + _profile.getID() + "_" + profile.getFirstName() + "_" + profile.getLastName();
             db.insert(TABLE_PROFILES, null, values);
             db.close();
 
             new File(path).mkdirs();
             return findProfile(profile.getFirstName(), profile.getLastName());
         } catch (Exception e) {
+            Log.e("addProfile", e.getMessage());
             return false;
         }
     }

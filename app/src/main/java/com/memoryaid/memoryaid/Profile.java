@@ -24,7 +24,6 @@ public class Profile {
         _firstname = firstname;
         _lastname = lastname;
         _number = number;
-        _imagepath = _id + "_" + _firstname + "_" + _lastname;
         _contacts = new ArrayList<Contact>();
     }
 
@@ -35,6 +34,19 @@ public class Profile {
         _number = number;
         _imagepath = _id + "_" + _firstname + "_" + _lastname;
         _contacts = new ArrayList<Contact>();
+    }
+
+    public void Show() {
+        Log.e("Profile", getID() + ": " + getFullName());
+        Log.e("Profile", getNumber());
+
+        if (_size != null) Log.e("Profile", getSize());
+        if (_color != null) Log.e("Profile", getColor());
+        if (_language != null) Log.e("Profile", getLanguage());
+
+        for (Contact contact : getContacts()) {
+            Log.e("ShowContacts", "Contact " + contact.getID() + ": " + contact.getFullName() + " " + contact.getNumber());
+        }
     }
 
     public void addContact(Contact contact) {
@@ -85,7 +97,7 @@ public class Profile {
         _imagepath = newpath;
     }
 
-    public void updateSettings(String size, String color, String language){
+    public void updateSettings(String size, String color, String language) {
         _size = size;
         _color = color;
         _language = language;
