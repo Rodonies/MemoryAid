@@ -122,8 +122,8 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         imgGallery = (ImageView) dialog.findViewById(R.id.PhotoGallery);
         imgCamera = (ImageView) dialog.findViewById(R.id.PhotoCamera);
 
-        Picasso.with(CreateNewUser.this).load(R.drawable.galleryblue).resize(150, 150).into(imgGallery);
-        Picasso.with(CreateNewUser.this).load(R.drawable.camerablue).resize(150, 150).into(imgCamera);
+        Picasso.with(CreateNewUser.this).load(R.drawable.galleryblauw).resize(150, 150).into(imgGallery);
+        Picasso.with(CreateNewUser.this).load(R.drawable.camerablauw).resize(150, 150).into(imgCamera);
 
         Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
 
