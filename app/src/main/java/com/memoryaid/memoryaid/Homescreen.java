@@ -52,9 +52,7 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
             if (!db.getProfile().settingsInitialized()) db.saveSettings("Big", "Rood", "Engels");
             db.getProfile().Show();
         }
-<<<<<<< Updated upstream
-=======
-*/
+
 
         SharedPreferences settings = getSharedPreferences(PREFS_FIRST_LAUNCH,0);
         First_Launch = settings.getString("First_Launch","true");
@@ -71,18 +69,15 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
             editor.putString("name","false");
         }*/
 
->>>>>>> Stashed changes
+
 
 
     }
 
 
     public void Settings(View view) {
-<<<<<<< Updated upstream
-        Intent i = new Intent(this, Settings.class);
-=======
+
         Intent i = new Intent(getApplicationContext(),Settings.class);
->>>>>>> Stashed changes
         startActivity(i);
     }
 
