@@ -147,36 +147,37 @@ public class Settings extends ActionBarActivity {
 
     public void onColorButtonClicked(View view) {
 
-        case R.id.button2:
-        themeUtils.changeToTheme(this, themeUtils.Medium);
+     switch (view.getId()) {
+        /*case R.id.button2:
+        themeUtils.ChangeToColor(this, themeUtils.blue);
         break;
         case R.id.button3:
         if (checked)
-            themeUtils.changeToTheme(this, themeUtils.Big);
+            themeUtils.ChangeToColor(this, themeUtils.green);
         break;
         case R.id.button4:
         if (checked)
-            themeUtils.changeToTheme(this, themeUtils.Small);
+            themeUtils.ChangeToColor(this, themeUtils.red);
         break;
         case R.id.button5:
-        themeUtils.changeToTheme(this, themeUtils.Medium);
+        themeUtils.ChangeToColor(this, themeUtils.yellow);
         break;
         case R.id.button6:
         if (checked)
-            themeUtils.changeToTheme(this, themeUtils.Big);
+            themeUtils.ChangeToColor(this, themeUtils.pink);
         break;
         case R.id.button7:
         if (checked)
-            themeUtils.changeToTheme(this, themeUtils.Small);
+            themeUtils.ChangeToColor(this, themeUtils.purple);
         break;
         case R.id.button8:
-        themeUtils.changeToTheme(this, themeUtils.Medium);
+        themeUtils.ChangeToColor(this, themeUtils.white);
         break;
         case R.id.button9:
         if (checked)
-            themeUtils.changeToTheme(this, themeUtils.Big);
-        break;
-    }
+            themeUtils.ChangeToColor(this, themeUtils.black);
+        break;*/
+    }}
 
     }
-}
+
