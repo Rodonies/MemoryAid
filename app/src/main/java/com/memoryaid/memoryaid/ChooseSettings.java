@@ -16,6 +16,7 @@ public class ChooseSettings extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
         themeUtils.onActivityCreateSetTheme(this);
+        themeUtils.onActivityCreateSetColor(this);
         setContentView(R.layout.activity_settings);
     }
 }
