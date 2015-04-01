@@ -17,12 +17,13 @@ public class Settings extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(this, Homescreen.class);
-        startActivity(i);
+
         SharedPreferences CheckOnFirstLaunched = getSharedPreferences(PREFS_FIRST_LAUNCH,0);
         SharedPreferences.Editor editor = CheckOnFirstLaunched.edit();
         editor.putString("First_Launch","false");
         editor.commit();
+
+
 
     }
 
