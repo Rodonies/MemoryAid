@@ -13,6 +13,16 @@ public class themeUtils {
     public final static int Medium = 2;
     public static int cTheme = 2;
 
+    public final static char blue = 'b';
+    public final static char red = 'r';
+    public final static char yellow = 'y';
+    public final static char green = 'g';
+    public final static char black = 'l';
+    public final static char white = 'w';
+    public final static char pink = 'p';
+    public final static char purple = 'z';
+    public static int cColor = 'b';
+
     public static void changeToTheme(Activity activity, int theme) {
         cTheme = theme;
         activity.finish();
@@ -20,7 +30,7 @@ public class themeUtils {
     }
 
     public static void onActivityCreateSetTheme(Activity activity) {
-        switch (cTheme) {
+        switch (cColor) {
             case Big:
                 activity.setTheme(R.style.Big);
                 break;
@@ -32,4 +42,41 @@ public class themeUtils {
                 break;
         }
     }
+
+    public static void ChangeToColor(Activity activity, char color ) {
+        cColor = color;
+        activity.finish();
+        activity.startActivity(new Intent(activity, activity.getClass()));
+    }
+
+    public static void onActivityCreateSetColor(Activity activity) {
+        switch (cTheme) {
+            case 'b':
+                activity.setTheme(R.style.Blue);
+                break;
+            case 'r':
+                activity.setTheme(R.style.Red);
+                break;
+            case 'y':
+                activity.setTheme(R.style.Yellow);
+                break;
+            case 'g':
+                activity.setTheme(R.style.Green);
+                break;
+            case 'w':
+                activity.setTheme(R.style.White);
+                break;
+            case 'l':
+                activity.setTheme(R.style.Black);
+                break;
+            case 'z':
+                activity.setTheme(R.style.Purple);
+                break;
+            case 'p':
+                activity.setTheme(R.style.Pink);
+                break;
+        }
+    }
+
+
 }

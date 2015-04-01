@@ -31,6 +31,7 @@ public class Settings extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
         themeUtils.onActivityCreateSetTheme(this);
+        themeUtils.onActivityCreateSetColor(this);
         setContentView(R.layout.activity_settings);
 
         final RadioButton A = (RadioButton) findViewById(R.id.RadioSmall);
@@ -156,35 +157,30 @@ public class Settings extends ActionBarActivity {
     public void onColorButtonClicked(View view) {
 
      switch (view.getId()) {
-        /*case R.id.button2:
+        case R.id.button2:
         themeUtils.ChangeToColor(this, themeUtils.blue);
         break;
         case R.id.button3:
-        if (checked)
-            themeUtils.ChangeToColor(this, themeUtils.green);
+        themeUtils.ChangeToColor(this, themeUtils.green);
         break;
         case R.id.button4:
-        if (checked)
-            themeUtils.ChangeToColor(this, themeUtils.red);
+        themeUtils.ChangeToColor(this, themeUtils.red);
         break;
         case R.id.button5:
         themeUtils.ChangeToColor(this, themeUtils.yellow);
         break;
         case R.id.button6:
-        if (checked)
-            themeUtils.ChangeToColor(this, themeUtils.pink);
+        themeUtils.ChangeToColor(this, themeUtils.pink);
         break;
         case R.id.button7:
-        if (checked)
-            themeUtils.ChangeToColor(this, themeUtils.purple);
+        themeUtils.ChangeToColor(this, themeUtils.purple);
         break;
         case R.id.button8:
         themeUtils.ChangeToColor(this, themeUtils.white);
         break;
         case R.id.button9:
-        if (checked)
             themeUtils.ChangeToColor(this, themeUtils.black);
-        break;*/
+        break;
     }}
 
     }

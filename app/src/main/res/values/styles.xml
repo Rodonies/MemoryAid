@@ -48,4 +48,38 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+
+
+
+
+    <style name="Blue">
+        <item name="android:colorBackground">#1E90FF</item>
+    </style>
+    <style name="Black">
+        <item name="android:colorBackground">#000000</item>
+    </style>
+    <style name="White">
+        <item name="android:colorBackground">#ffffff</item>
+    </style>
+    <style name="Green">
+        <item name="android:colorBackground">#008000</item>
+    </style>
+    <style name="Red">
+        <item name="android:colorBackground">#ffff0000</item>
+    </style>
+    <style name="Pink">
+        <item name="android:colorBackground">#ffff4a7f</item>
+    </style>
+    <style name="Purple">
+        <item name="android:colorBackground">#ff803b7c</item>
+    </style>
+    <style name="Yellow">
+        <item name="android:colorBackground">#fffffa00</item>
+    </style>
+
+
+
+
+
+
 </resources>
