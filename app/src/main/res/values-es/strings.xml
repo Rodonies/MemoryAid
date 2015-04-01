@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name"> Ayuda memoria </string>
+    <string name="action_settings"> Ayuda memoria </string>
+
+    <string name="Headmenutxt1"> Ver perfiles </string>
+    <string name="Headmenutxt2"> Gestor de perfiles </string>
+    <string name="Headmenutxt3"> Ajustes </string>
+    <string name="ProfileManagertxt1"> Añadir perfil </string>
+    <string name="ProfileManagertxt2"> Editar Perfil </string>
+    <string name="ProfileManagertxt3"> Borrar perfil </string>
+
+    <string name="title_activity_new_user_creation">NuevaCreaciónUsuario</string>
+    <string name="title_activity_create_new_user">Crear nuevo usuario</string>
+
+    <string name="TitleCreateNewProfile">Crear nuevo perfil</string>
+    <string name="btnPicture">Añadir foto</string>
+    <string name="Firstname">Nombre de pila: </string>
+    <string name="Lastname">Apellido:</string>
+    <string name="hintFirstName">Entrar primero nombre aquí</string>
+    <string name="hintLastName">Introduzca los apellidos aquí</string>
+    <string name="Relation">Relación: </string>
+    <string name="hintRelation">Introducir el estado de relación aquí</string>
+    <string name="PhoneNumber">Número de teléfono:</string>
+    <string name="hintPhoneNumber">Introducir el número de teléfono aquí</string>
+    <string name="Date_of_birth">Fecha de nacimiento</string>
+    <string name="hintDate_of_birth">Introducir la fecha de nacimiento aquí</string>
+    <string name="Basic_info">Información básica: </string>
+    <string name="hintBasicInfo">Introducir información básica aquí</string>
+    <string name="password">contraseña: </string>
+    <string name="hintpassword">Introducir la contraseña aquí</string>
+
+    <string name="txtGallery">Fotogalería</string>
+    <string name="txtCamera">Cámera</string>
+
+    <string name="Language">idioma</string>
+    <string name="TextAndImageSize">Texto &amp; Tamaño de la imagen</string>
+    <string name="English">Inglés</string>
+    <string name="Big">Grande</string>
+    <string name="Medium">Medio</string>
+    <string name="Small">Pequeño</string>
+    <string name="Frans">Français</string>
+    <string name="Deutsch">Deutsch</string>
+    <string name="Espanol">Español</string>
+    <string name="ChooseFavColor">Elige tu color favorito</string>
+
+    <string name="ImageLabel">Imagen de la persona</string>
+    <string name="FirstNameText">  </string>
+    <string name="LastNameText">  </string>
+    <string name="RelationText">  </string>
+    <string name="PhonenmrText">  </string>
+    <string name="BasicInfoText1">  </string>
+    <string name="BasicInfoText2">   </string>
+    <string name="BasicInfoText3">   </string>
+    <string name="SaveButton">Guardar</string>
+
+    <string name="hello_world">hola mundo!</string>
+</resources>

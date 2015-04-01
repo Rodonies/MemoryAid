@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name"> Ezelsbruggetje </string>
+    <string name="action_settings"> Ezelsbruggetje </string>
+
+
+    <string name="Headmenutxt1"> Toon profielen </string>
+    <string name="Headmenutxt2"> Profielbeheer </string>
+    <string name="Headmenutxt3"> Instellingen </string>
+    <string name="ProfileManagertxt1"> Profiel toevoegen </string>
+    <string name="ProfileManagertxt2"> Profiel wijzigen </string>
+    <string name="ProfileManagertxt3"> Profiel verwijderen </string>
+
+    <string name="title_activity_new_user_creation">NieuweGebruikerCreatie</string>
+    <string name="title_activity_create_new_user">Creëer nieuwe gebruiker</string>
+
+    <string name="TitleCreateNewProfile">Creëer nieuw profiel</string>
+    <string name="btnPicture">Foto toevoegen</string>
+    <string name="Firstname">Voornaam: </string>
+    <string name="Lastname">Achternaam:</string>
+    <string name="hintFirstName">voer je voornaam hier in</string>
+    <string name="hintLastName">voer je achternaam hier in</string>
+    <string name="Relation">Relatie: </string>
+    <string name="hintRelation">voer de relatiestatus hier in</string>
+    <string name="PhoneNumber">Telefoonnummer:</string>
+    <string name="hintPhoneNumber">voer het telefoonnummer hier in</string>
+    <string name="Date_of_birth">Geboortedatum</string>
+    <string name="hintDate_of_birth">voer geboortedatum hier in</string>
+    <string name="Basic_info">Basis informatie: </string>
+    <string name="hintBasicInfo">voeg basis informatie hier in</string>
+    <string name="password">Passwoord: </string>
+    <string name="hintpassword">voeg je passwoord hier in</string>
+
+    <string name="txtGallery">Fotogallerij</string>
+    <string name="txtCamera">Camera</string>
+
+    <string name="Language">Taal</string>
+    <string name="TextAndImageSize">Tekst &amp; Afbeeldings grootte</string>
+    <string name="English">Engels</string>
+    <string name="Big">Groot</string>
+    <string name="Medium">Medium</string>
+    <string name="Small">Klein</string>
+    <string name="Frans">Frans</string>
+    <string name="Deutsch">Duits</string>
+    <string name="Espanol">Spaans</string>
+    <string name="ChooseFavColor">Kies je lievelingskleur</string>
+
+    <string name="ImageLabel">Afbeelding van de persoon</string>
+    <string name="FirstNameText">  </string>
+    <string name="LastNameText">  </string>
+    <string name="RelationText">  </string>
+    <string name="PhonenmrText">  </string>
+    <string name="BasicInfoText1">  </string>
+    <string name="BasicInfoText2">   </string>
+    <string name="BasicInfoText3">   </string>
+    <string name="SaveButton">Opslaan</string>
+
+
+    <string name="hello_world">Hallo wereld!</string>
+</resources>

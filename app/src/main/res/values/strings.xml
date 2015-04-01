@@ -3,7 +3,6 @@
     <string name="app_name"> Memory Aid </string>
     <string name="action_settings"> Memory Aid </string>
 
-
     <string name="Headmenutxt1"> View profiles </string>
     <string name="Headmenutxt2"> profile manager </string>
     <string name="Headmenutxt3"> Settings </string>
@@ -13,7 +12,6 @@
 
     <string name="title_activity_new_user_creation">NewUserCreation</string>
     <string name="title_activity_create_new_user">Create new user</string>
-    <string name="title_Settings">settings</string>
 
     <string name="TitleCreateNewProfile">Create new profile</string>
     <string name="btnPicture">Add picture</string>
@@ -22,7 +20,7 @@
     <string name="hintFirstName">enter first name here</string>
     <string name="hintLastName">enter last name here</string>
     <string name="Relation">Relation: </string>
-    <string name="hintRelation">enter status relation</string>
+    <string name="hintRelation">enter marital status</string>
     <string name="PhoneNumber">Phone number:</string>
     <string name="hintPhoneNumber">enter phone number here</string>
     <string name="Date_of_birth">Date of birth</string>
@@ -38,16 +36,12 @@
     <string name="Language">Language</string>
     <string name="TextAndImageSize">Text &amp; Image Size</string>
     <string name="English">English</string>
-    <string name="ProfileManagement">Profile Management</string>
     <string name="Big">Big</string>
     <string name="Medium">Medium</string>
     <string name="Small">Small</string>
     <string name="Frans">Françias</string>
     <string name="Deutsch">Deutsch</string>
     <string name="Espanol">Espanol</string>
-    <string name="AddProf">Add profile</string>
-    <string name="EditProf">Edit profile</string>
-    <string name="DeleteProf">Delete profile</string>
     <string name="ChooseFavColor">Choose your favorite color</string>
 
     <string name="ImageLabel">Image of the person</string>
@@ -56,12 +50,9 @@
     <string name="RelationText">  </string>
     <string name="PhonenmrText">  </string>
     <string name="BasicInfoText1">  </string>
-
-   
     <string name="BasicInfoText2">   </string>
     <string name="BasicInfoText3">   </string>
     <string name="SaveButton">Save</string>
-    <string name="title_activity_profile_manager">ProfileManager</string>
 
     <string name="hello_world">Hello world!</string>
 </resources>
