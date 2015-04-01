@@ -144,4 +144,39 @@ public class Settings extends ActionBarActivity {
         }
 
     }
+
+    public void onColorButtonClicked(View view) {
+
+        case R.id.button2:
+        themeUtils.changeToTheme(this, themeUtils.Medium);
+        break;
+        case R.id.button3:
+        if (checked)
+            themeUtils.changeToTheme(this, themeUtils.Big);
+        break;
+        case R.id.button4:
+        if (checked)
+            themeUtils.changeToTheme(this, themeUtils.Small);
+        break;
+        case R.id.button5:
+        themeUtils.changeToTheme(this, themeUtils.Medium);
+        break;
+        case R.id.button6:
+        if (checked)
+            themeUtils.changeToTheme(this, themeUtils.Big);
+        break;
+        case R.id.button7:
+        if (checked)
+            themeUtils.changeToTheme(this, themeUtils.Small);
+        break;
+        case R.id.button8:
+        themeUtils.changeToTheme(this, themeUtils.Medium);
+        break;
+        case R.id.button9:
+        if (checked)
+            themeUtils.changeToTheme(this, themeUtils.Big);
+        break;
+    }
+
+    }
 }
