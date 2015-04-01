@@ -44,7 +44,7 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         btnProfileManager.setOnClickListener(this);
 
         DatabaseHandler db = new DatabaseHandler(this);
-/*
+
         db.addProfile(new Profile("Jan", "Jansens", "127.0.0.1"));
         db.addContact(new Contact("Jos", "Jansens", "Family", "13.33.33.37", "Jos Jansens is my nephew"));
 
@@ -52,7 +52,7 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
             if (!db.getProfile().settingsInitialized()) db.saveSettings("Big", "Rood", "Engels");
             db.getProfile().Show();
         }
-*/
+
 
         SharedPreferences settings = getSharedPreferences(PREFS_FIRST_LAUNCH,0);
         First_Launch = settings.getString("First_Launch","true");
