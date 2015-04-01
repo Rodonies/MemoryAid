@@ -48,10 +48,6 @@
         <item name="android:textSize">20sp</item>
     </style>
 
-
-
-
-
     <style name="Blue">
         <item name="android:colorBackground">#1E90FF</item>
     </style>

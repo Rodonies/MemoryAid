@@ -30,7 +30,7 @@ public class themeUtils {
     }
 
     public static void onActivityCreateSetTheme(Activity activity) {
-        switch (cColor) {
+        switch (cTheme) {
             case Big:
                 activity.setTheme(R.style.Big);
                 break;
@@ -50,7 +50,7 @@ public class themeUtils {
     }
 
     public static void onActivityCreateSetColor(Activity activity) {
-        switch (cTheme) {
+        switch (cColor) {
             case 'b':
                 activity.setTheme(R.style.Blue);
                 break;
