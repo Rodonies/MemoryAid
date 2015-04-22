@@ -12,6 +12,7 @@ public class Profile {
     private Integer _id;
     private String _firstname;
     private String _lastname;
+    private String _birthdate;
     private String _number;
     private String _imagepath;
     private ArrayList<Contact> _contacts;
@@ -20,17 +21,19 @@ public class Profile {
     private String _color;
     private String _size;
 
-    public Profile(String firstname, String lastname, String number) {
+    public Profile(String firstname, String lastname, String birthdate, String number) {
         _firstname = firstname;
         _lastname = lastname;
+        _birthdate = birthdate;
         _number = number;
         _contacts = new ArrayList<Contact>();
     }
 
-    public Profile(Integer id, String firstname, String lastname, String number) {
+    public Profile(Integer id, String firstname, String lastname, String birthdate, String number) {
         _id = id;
         _firstname = firstname;
         _lastname = lastname;
+        _birthdate = birthdate;
         _number = number;
         _imagepath = _id + "_" + _firstname + "_" + _lastname;
         _contacts = new ArrayList<Contact>();
@@ -40,9 +43,9 @@ public class Profile {
         Log.e("Profile", getID() + ": " + getFullName());
         Log.e("Profile", getNumber());
 
-        if (_size != null) Log.e("Profile", getSize());
-        if (_color != null) Log.e("Profile", getColor());
-        if (_language != null) Log.e("Profile", getLanguage());
+        Log.e("Profile", "size: " + getSize());
+        Log.e("Profile", "color: " + getColor());
+        Log.e("Profile", "language: " + getLanguage());
 
         for (Contact contact : getContacts()) {
             Log.e("ShowContacts", "Contact " + contact.getID() + ": " + contact.getFullName() + " " + contact.getNumber());
@@ -67,6 +70,10 @@ public class Profile {
 
     public String getLastName() {
         return _lastname;
+    }
+
+    public String getBirthDate() {
+        return _birthdate;
     }
 
     public String getNumber() {
