@@ -12,7 +12,7 @@
     <string name="ProfileManagertxt2"> Modifier le profil </string>
     <string name="ProfileManagertxt3"> supprimer le profil </string>
 
-    <string name="title_activity_new_user_creation">NouvelleCréationDeL'utilisateur</string>
+    <string name="title_activity_new_user_creation">NouvelleCréationDeLutilisateur</string>
     <string name="title_activity_create_new_user">Créer un nouvel utilisateur</string>
 
     <string name="TitleCreateNewProfile">Créer un nouveau profil</string>
@@ -36,7 +36,7 @@
     <string name="txtCamera">Caméra</string>
 
     <string name="Language">Langue</string>
-    <string name="TextAndImageSize">Texte &amp; Taille de l'image</string>
+    <string name="TextAndImageSize">Texte et Taille de le image</string>
     <string name="English">Anglais</string>
     <string name="Big">Grand</string>
     <string name="Medium">Moyen</string>
