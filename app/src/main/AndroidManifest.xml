@@ -47,6 +47,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.memoryaid.memoryaid.Homescreen" />
         </activity>
+        <activity
+            android:name=".ProfileView"
+            android:label="@string/title_activity_profile_view"
+            android:parentActivityName=".Homescreen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.memoryaid.memoryaid.Homescreen" />
+        </activity>
     </application>
 
 </manifest>

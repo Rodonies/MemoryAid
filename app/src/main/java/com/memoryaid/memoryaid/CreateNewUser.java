@@ -43,6 +43,9 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
     private Uri imageUri;
 
+    private EditText Name;
+    private EditText LastName;
+
 
     private String CURRENT_PHOTO;
 
@@ -176,11 +179,18 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
         if(First_Launch == "true")
         {
+
+            DatabaseHandler db = new DatabaseHandler(this);
+            db.addProfile(new Profile("Jan", "Jansens", "127.0.0.1"));
+
             SharedPreferences.Editor editor = settings.edit();
             editor.putString("First_Launch","false");
             editor.commit();
             Intent i = new Intent(this, Homescreen.class);
             startActivity(i);
+
+
+
         }
     }
 
