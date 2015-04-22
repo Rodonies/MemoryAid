@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -28,6 +29,8 @@ import java.io.File;
 
 public class CreateNewUser extends ActionBarActivity implements View.OnClickListener {
 
+    public static final String PREFS_FIRST_LAUNCH = "MyPreferenceFiles";
+    private String First_Launch;
 
     private static int TAKE_PICTURE = 1;
     private static int SELECT_IMAGE = 2;
@@ -163,6 +166,22 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
         }
 
+    }
+
+    public void SaveProfile(View view)
+    {
+
+        SharedPreferences settings = getSharedPreferences(PREFS_FIRST_LAUNCH,0);
+        First_Launch = settings.getString("First_Launch","true");
+
+        if(First_Launch == "true")
+        {
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString("First_Launch","false");
+            editor.commit();
+            Intent i = new Intent(this, Homescreen.class);
+            startActivity(i);
+        }
     }
 
     public void TakePhoto() {

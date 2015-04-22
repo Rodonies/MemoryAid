@@ -63,11 +63,7 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
             Settings(V);
 
         }
-        /*if(First_Launch == "false")
-        {
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putString("name","false");
-        }*/
+
 
 
 

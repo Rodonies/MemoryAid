@@ -21,7 +21,7 @@ public class themeUtils {
     public final static char white = 'w';
     public final static char pink = 'p';
     public final static char purple = 'z';
-    public static int cColor = 'b';
+    public static int cColor = 'w';
 
     public static void changeToTheme(Activity activity, int theme) {
         cTheme = theme;

@@ -14,17 +14,33 @@ import android.widget.RadioButton;
 public class Settings extends ActionBarActivity {
 
     public static final String PREFS_FIRST_LAUNCH = "MyPreferenceFiles";
+    private View V;
+    private String First_Launch;
 
     @Override
     public void onBackPressed() {
 
-        SharedPreferences CheckOnFirstLaunched = getSharedPreferences(PREFS_FIRST_LAUNCH,0);
-        SharedPreferences.Editor editor = CheckOnFirstLaunched.edit();
-        editor.putString("First_Launch","false");
-        editor.commit();
+        SharedPreferences settings = getSharedPreferences(PREFS_FIRST_LAUNCH,0);
+        First_Launch = settings.getString("First_Launch","true");
+
+        if( First_Launch == "true")
+        {
+            CreateNewUser(V);
+        }
+        else{
+            Intent i = new Intent(this, Homescreen.class);
+            startActivity(i);
+        }
 
 
 
+
+
+    }
+
+    public void CreateNewUser(View view) {
+        Intent i = new Intent(this, CreateNewUser.class);
+        startActivity(i);
     }
 
     @Override
