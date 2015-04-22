@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Settings"
-    >
+    android:id="@+id/">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -19,13 +19,13 @@
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="1"
-        android:background="#FFFFFF">
+        android:id="@+id/">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/TextAndImageSize"
-            android:background="#FFFFFF"/>
+            android:id="@+id/" />
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
