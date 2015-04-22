@@ -51,10 +51,10 @@ public class themeUtils {
 
     public static void onActivityCreateSetColor(Activity activity) {
         switch (cColor) {
-            case 'b':
+            case blue:
                 activity.setTheme(R.style.Blue);
                 break;
-            case 'r':
+            case red:
                 activity.setTheme(R.style.Red);
                 break;
             case 'y':
