@@ -2,7 +2,8 @@
 <resources>
     <string name="app_name"> Memory Aid </string>
     <string name="action_settings"> Memory Aid </string>
-     <string name="title_Settings">Settings</string>
+
+    <string name="title_Settings">Settings</string>
     <string name="title_activity_profile_manager">profile manager</string>
     <string name="Headmenutxt1"> View profiles </string>
     <string name="Headmenutxt2"> profile manager </string>
