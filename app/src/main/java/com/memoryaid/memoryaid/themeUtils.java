@@ -21,7 +21,7 @@ public class themeUtils {
     public final static char white = 'w';
     public final static char pink = 'p';
     public final static char purple = 'z';
-    public static int cColor = 'w';
+    public static int cColor = 'b';
 
     public static void changeToTheme(Activity activity, int theme) {
         cTheme = theme;
@@ -57,22 +57,22 @@ public class themeUtils {
             case red:
                 activity.setTheme(R.style.Red);
                 break;
-            case 'y':
+            case yellow:
                 activity.setTheme(R.style.Yellow);
                 break;
-            case 'g':
+            case green:
                 activity.setTheme(R.style.Green);
                 break;
-            case 'w':
+            case white:
                 activity.setTheme(R.style.White);
                 break;
-            case 'l':
+            case black:
                 activity.setTheme(R.style.Black);
                 break;
-            case 'z':
+            case purple:
                 activity.setTheme(R.style.Purple);
                 break;
-            case 'p':
+            case pink:
                 activity.setTheme(R.style.Pink);
                 break;
         }

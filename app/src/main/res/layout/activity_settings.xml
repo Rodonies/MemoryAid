@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:gravity="center"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -17,27 +16,30 @@
         android:layout_height="fill_parent"
         android:layout_margin="10dp"
         android:layout_weight="1"
-        android:background="#FFFFFF"
         android:gravity="center"
         android:orientation="vertical"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:background="#FFFFFF">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/TextAndImageSize" />
+            android:text="@string/TextAndImageSize"
+            android:background="#FFFFFF"/>
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#FFFFFF">
 
             <RadioButton
                 android:id="@+id/RadioBig"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
-                android:text="@string/Big" />
+                android:text="@string/Big"
+                android:background="#FFFFFF"/>
 
             <RadioButton
                 android:id="@+id/RadioMedium"
@@ -45,14 +47,16 @@
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:onClick="onRadioButtonClicked"
-                android:text="@string/Medium" />
+                android:text="@string/Medium"
+                android:background="#FFFFFF"/>
 
             <RadioButton
                 android:id="@+id/RadioSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
-                android:text="@string/Small" />
+                android:text="@string/Small"
+                android:background="#FFFFFF" />
         </RadioGroup>
     </LinearLayout>
 
@@ -69,13 +73,15 @@
         <TextView
             android:layout_width="199dp"
             android:layout_height="32dp"
-            android:text="@string/ChooseFavColor" />
+            android:text="@string/ChooseFavColor"
+            android:background="#FFFFFF"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#FFFFFF">
 
             <Button
                 android:id="@+id/button2"
@@ -118,12 +124,15 @@
                 android:background="@drawable/buttonyellow"
                 android:onClick="onColorButtonClicked"
                 />
+
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#FFFFFF">
 
             <Button
                 android:id="@+id/button6"
@@ -180,6 +189,8 @@
 
         <TextView
             android:id="@+id/Language"
+            android:background="#FFFFFF"
+            android:gravity="center"
             android:layout_width="126dp"
             android:layout_height="32dp"
             android:layout_gravity="center_horizontal"
@@ -188,12 +199,14 @@
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#FFFFFF">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="#FFFFFF">
 
                 <RadioButton
                     android:id="@+id/RadioEnglish"
@@ -201,34 +214,39 @@
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:onClick="onRadioButtonLanguageClicked"
-                    android:text="@string/English" />
+                    android:text="@string/English"
+                    android:background="#FFFFFF"/>
 
                 <RadioButton
                     android:id="@+id/RadioFrans"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onRadioButtonLanguageClicked"
-                    android:text="@string/Frans" />
+                    android:text="@string/Frans"
+                    android:background="#FFFFFF"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="#FFFFFF">
 
                 <RadioButton
                     android:id="@+id/RadioDeutsch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onRadioButtonLanguageClicked"
-                    android:text="@string/Deutsch" />
+                    android:text="@string/Deutsch"
+                    android:background="#FFFFFF"/>
 
                 <RadioButton
                     android:id="@+id/RadioEspanol"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onRadioButtonLanguageClicked"
-                    android:text="@string/Espanol" />
+                    android:text="@string/Espanol"
+                    android:background="#FFFFFF"/>
             </LinearLayout>
         </RadioGroup>
 

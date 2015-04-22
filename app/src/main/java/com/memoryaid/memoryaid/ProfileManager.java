@@ -24,6 +24,9 @@ public class ProfileManager extends ActionBarActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        themeUtils.onActivityCreateSetTheme(this);
+        themeUtils.onActivityCreateSetColor(this);
+
         setContentView(R.layout.activity_profile_manager);
 
         btnAddProfile = (Button) findViewById(R.id.btnAddProfile);

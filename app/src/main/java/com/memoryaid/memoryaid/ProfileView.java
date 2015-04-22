@@ -11,6 +11,8 @@ public class ProfileView extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        themeUtils.onActivityCreateSetTheme(this);
+        themeUtils.onActivityCreateSetColor(this);
         setContentView(R.layout.activity_profile_view2);
     }
 

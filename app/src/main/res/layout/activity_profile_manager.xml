@@ -7,6 +7,17 @@
     android:gravity="center"
    tools:context="com.memoryaid.memoryaid.ProfileManager">
 
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:background="#FFFFFF">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +25,8 @@
         android:textSize="30dp"
         android:gravity="center"
         android:layout_marginBottom="40dp"
-        android:text="Profile Management"/>
+        android:text="Profile Management"
+        android:background="#FFFFFF"/>
 
 
     <Button
@@ -25,7 +37,8 @@
         android:layout_marginBottom="40dp"
         android:linksClickable="false"
         android:textColor="#ff000000"
-        android:text="@string/ProfileManagertxt1" />
+        android:text="@string/ProfileManagertxt1"
+        />
 
     <Button
         style="@style/AudioFileInfoOverlayText"
@@ -34,7 +47,8 @@
         android:layout_marginBottom="40dp"
         android:id="@+id/btnEditProfile"
         android:textColor="#ff000000"
-        android:text="@string/ProfileManagertxt2" />
+        android:text="@string/ProfileManagertxt2"
+        />
 
     <Button
         style="@style/AudioFileInfoOverlayText"
@@ -43,7 +57,9 @@
         android:layout_marginBottom="40dp"
         android:textColor="#ff000000"
         android:id="@+id/btnDeleteProfile"
-        android:text="@string/ProfileManagertxt3" />
+        android:text="@string/ProfileManagertxt3"
+        />
 
 
 </LinearLayout>
+    </LinearLayout>
