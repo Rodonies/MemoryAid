@@ -81,6 +81,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/Last_Name_Field"
                 android:hint="@string/hintLastName"
                 android:inputType="text" />
 
@@ -94,6 +95,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hintPhoneNumber"
+                android:id="@+id/PhoneNumber"
                 android:inputType="text" />
 
 
@@ -107,6 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hintDate_of_birth"
+                android:id="@+id/Date_Of_Birth"
                 android:inputType="text" />
 
             <TextView

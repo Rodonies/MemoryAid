@@ -31,11 +31,6 @@ public class Settings extends ActionBarActivity {
             Intent i = new Intent(this, Homescreen.class);
             startActivity(i);
         }
-
-
-
-
-
     }
 
     public void CreateNewUser(View view) {

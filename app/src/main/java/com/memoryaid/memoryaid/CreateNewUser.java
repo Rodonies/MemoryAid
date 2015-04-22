@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.util.jar.Attributes;
 
 public class CreateNewUser extends ActionBarActivity implements View.OnClickListener {
 
@@ -43,13 +44,18 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
     private Uri imageUri;
 
-    private EditText Name;
-    private EditText LastName;
+    private EditText NameBuffer;
+    private EditText LastNameBuffer;
+    private EditText PhoneBuffer;
+    private EditText BirthDateBuffer;
 
 
     private String CURRENT_PHOTO;
+    private String Name;
+    private String LastName;
+    private String Phone;
+    private String BirthDate;
 
-    private String FirstName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +64,14 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         btnAddPhoto = (Button) findViewById(R.id.btnAddPhoto);
         contactImgView = (ImageView) findViewById(R.id.ChosenPhoto);
 
+        NameBuffer = (EditText) findViewById(R.id.First_Name_Field);
+        LastNameBuffer = (EditText)findViewById(R.id.Last_Name_Field);
+        PhoneBuffer = (EditText)findViewById(R.id.PhoneNumber);
+
+        Name = NameBuffer.toString();
+        LastName = LastNameBuffer.toString();
+        Phone = PhoneBuffer.toString();
+        BirthDate = BirthDateBuffer.toString();
     }
 
 
@@ -181,7 +195,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         {
 
             DatabaseHandler db = new DatabaseHandler(this);
-            db.addProfile(new Profile("Jan", "Jansens", "127.0.0.1"));
+            db.addProfile(new Profile(Name,LastName,Phone,BirthDate));
 
             SharedPreferences.Editor editor = settings.edit();
             editor.putString("First_Launch","false");
@@ -200,7 +214,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         //test.png -> naam gebruiker + datum + tijd ofzo voor uniek te maken
-        File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), FirstName + CURRENT_PHOTONUMBER + ".png");
+        File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), Name + CURRENT_PHOTONUMBER + ".png");
         imageUri = Uri.fromFile(photo);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         startActivityForResult(intent, TAKE_PICTURE);
