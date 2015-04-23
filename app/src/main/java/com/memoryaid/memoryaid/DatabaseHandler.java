@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /*
@@ -26,7 +27,7 @@ if (db.findProfile("naam", "achternaam")) //Profiel zoeken met deze naam/achtern
 else
 {
     //Profiel niet gevonden dus aanmaken
-    db.addProfile(new Profile("naam", "achternaam", "nummer"));
+    db.addProfile(new Profile("naam", "achternaam", "geboortedatum", "nummer"));
 }
 
 
@@ -35,7 +36,7 @@ else
 DatabaseHandler db = new DatabaseHandler(this);
 if (db.findProfile(2))
 {
-    db.editProfile(null, "Jansens", null);
+    db.editProfile(null, "Jansens", null, null);
 }
 
 //volgende code is een voorbeeld om de voornaam van het profiel met de naam "Jos Joskens"
@@ -44,7 +45,7 @@ if (db.findProfile(2))
 DatabaseHandler db = new DatabaseHandler(this);
 if (db.findProfile("Jos", "Joskens"))
 {
-    db.getProfile(); //Geeft profiel met naam "Jos Joskens" zonder contacten
+    db.getProfile(); //Geeft profiel met naam "Jos Joskens" zonder contacten terug
     db.editProfile("Jef", null , null);
     db.addContact(new Contact("Jos", "Joskens", "relatie", "nummer", "informatie");
     db.getProfile(); //Geeft profiel met naam "Jef Joskens" met 1 contact, namelijk "Jos Joskens"
@@ -67,7 +68,7 @@ if (!db.getProfile().settingsInitialized()) StartNieuweSettingsIntentHier();
 */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 18;
+    private static final int DATABASE_VERSION = 25;
     private static final String DATABASE_NAME = "database";
 
     private static final String TABLE_PROFILES = "profiles";
@@ -75,6 +76,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TABLE_SETTINGS = "settings";
 
     private static final String KEY_ID = "id";
+    private static final String KEY_CID = "cid";
     private static final String KEY_DATE = "birthdate";
     private static final String KEY_PROFILEID = "profileid";
     private static final String KEY_FIRSTNAME = "firstname";
@@ -156,7 +158,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             db.close();
 
             if (findProfile(profile.getFirstName(), profile.getLastName())) {
-                saveSettings("Medium", "Blue", "English");
+                boolean b = saveSettings("Medium", "Blue", "English");
                 return findProfile(profile.getFirstName(), profile.getLastName());
             } else return false;
         } catch (Exception e) {
@@ -241,21 +243,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return _profile;
     }
 
-    public boolean editProfile(String newfirstname, String newlastname, String newnumber) {
+    public boolean editProfile(String newfirstname, String newlastname, String newdate, String newnumber) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
 
             if (newfirstname == null) newfirstname = _profile.getFirstName();
             if (newlastname == null) newfirstname = _profile.getFirstName();
+            if (newdate == null) newdate = _profile.getBirthDate();
             if (newnumber == null) newfirstname = _profile.getFirstName();
             String oldpath = _profile.getImagePath();
-            _profile.updateImagePath(_profile.getID() + "_" + _profile.getFirstName() + "_" + _profile.getLastName());
+            _profile.updateImagePath(_profile.getID() + "_" + newfirstname + "_" + newlastname);
 
             new File(oldpath).renameTo(new File(_profile.getImagePath()));
 
             ContentValues values = new ContentValues();
             values.put(KEY_FIRSTNAME, newfirstname);
             values.put(KEY_LASTNAME, newlastname);
+            values.put(KEY_DATE, newdate);
             values.put(KEY_NUMBER, newnumber);
 
             if (db.update(TABLE_PROFILES, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())}) == 1)
@@ -279,8 +283,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 SQLiteDatabase db = this.getWritableDatabase();
                 db.update(TABLE_SETTINGS, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())});
                 db.close();
-            }
-            else {
+            } else {
                 SQLiteDatabase db = this.getWritableDatabase();
                 db.insert(TABLE_SETTINGS, null, values);
                 db.close();
@@ -331,9 +334,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         try {
             Cursor cursor = db.query(TABLE_CONTACTS, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_DATE, KEY_LASTNAME, KEY_RELATION, KEY_NUMBER, KEY_INFORMATION}, KEY_PROFILEID + " = ?", new String[]{Integer.toString(_profile.getID())}, null, null, null, null);
+
+            int i = 1;
             if (cursor.moveToFirst()) {
                 do {
-                    _profile.addContact(new Contact(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), _profile.getImagePath()));
+                    _profile.addContact(new Contact(cursor.getInt(0), i, cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), _profile.getImagePath()));
+                    i++;
                 } while (cursor.moveToNext());
                 db.close();
                 return true;
@@ -361,9 +367,45 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             return false;
         } catch (Exception e) {
             Log.e("loadSettings", "Error: " + e.getMessage());
-            return false;
-        } finally {
             db.close();
+            return false;
+        }
+    }
+
+    public ArrayList<Profile> getAllProfiles() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            ArrayList<Profile> list = new ArrayList<Profile>();
+            Cursor cursor = db.query(TABLE_PROFILES, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_DATE, KEY_NUMBER}, null, null, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                do {
+                    Profile newprofile = new Profile(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+
+                    Cursor cursor2 = db.query(TABLE_CONTACTS, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_DATE, KEY_LASTNAME, KEY_RELATION, KEY_NUMBER, KEY_INFORMATION}, KEY_PROFILEID + " = ?", new String[]{Integer.toString(newprofile.getID())}, null, null, null, null);
+                    int i = 1;
+                    if (cursor2.moveToFirst()) {
+                        do {
+                            newprofile.addContact(new Contact(cursor2.getInt(0), i, cursor2.getString(1), cursor2.getString(2), cursor2.getString(3), cursor2.getString(4), cursor2.getString(5), cursor2.getString(6), newprofile.getImagePath()));
+                            i++;
+                        } while (cursor2.moveToNext());
+                    }
+
+                    Cursor cursor3 = db.query(TABLE_SETTINGS, new String[]{KEY_SIZE, KEY_COLOR, KEY_LANGUAGE}, KEY_ID + " = ?", new String[]{Integer.toString(newprofile.getID())}, null, null, null, null);
+                    if (cursor3.moveToFirst()) {
+                        newprofile.updateSettings(cursor3.getString(0), cursor3.getString(1), cursor3.getString(2));
+                    }
+
+                    list.add(newprofile);
+                } while (cursor.moveToNext());
+
+                return list;
+            }
+            db.close();
+            return new ArrayList<Profile>();
+        } catch (Exception e) {
+            Log.e("getAllProfiles", "Error: " + e.getMessage());
+            db.close();
+            return new ArrayList<Profile>();
         }
     }
 

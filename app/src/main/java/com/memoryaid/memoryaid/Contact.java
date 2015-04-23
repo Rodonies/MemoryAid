@@ -6,7 +6,8 @@ import java.util.List;
  * Created by Matthew on 2/03/2015.
  */
 public class Contact {
-    private Integer _id;
+    private Integer _aid;
+    private Integer _cid;
     private String _firstname;
     private String _lastname;
     private String _birthdate;
@@ -24,19 +25,24 @@ public class Contact {
         _information = information;
     }
 
-    public Contact(Integer id, String firstname, String lastname, String birthdate, String relation, String number, String information, String profilepath) {
-        _id = id;
+    public Contact(Integer aid, Integer cid, String firstname, String lastname, String birthdate, String relation, String number, String information, String profilepath) {
+        _aid = aid;
+        _cid = cid;
         _firstname = firstname;
         _lastname = lastname;
         _birthdate = birthdate;
         _relation = relation;
         _number = number;
         _information = information;
-        _imagepath = profilepath + "/" + _id + "_" + _firstname + "_" + _lastname;
+        _imagepath = profilepath + "/" + _aid + "_" + _firstname + "_" + _lastname;
     }
 
     public Integer getID() {
-        return _id;
+        return _aid;
+    }
+
+    public Integer getCID() {
+        return _cid;
     }
 
     public String getFullName() {

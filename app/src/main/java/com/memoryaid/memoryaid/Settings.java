@@ -20,14 +20,12 @@ public class Settings extends ActionBarActivity {
     @Override
     public void onBackPressed() {
 
-        SharedPreferences settings = getSharedPreferences(PREFS_FIRST_LAUNCH,0);
-        First_Launch = settings.getString("First_Launch","true");
+        SharedPreferences settings = getSharedPreferences(PREFS_FIRST_LAUNCH, 0);
+        First_Launch = settings.getString("First_Launch", "true");
 
-        if( First_Launch == "true")
-        {
+        if (First_Launch == "true") {
             CreateNewUser(V);
-        }
-        else{
+        } else {
             Intent i = new Intent(this, Homescreen.class);
             startActivity(i);
         }
@@ -168,32 +166,33 @@ public class Settings extends ActionBarActivity {
 
     public void onColorButtonClicked(View view) {
 
-     switch (view.getId()) {
-        case R.id.button2:
-        themeUtils.ChangeToColor(this, themeUtils.blue);
-        break;
-        case R.id.button3:
-        themeUtils.ChangeToColor(this, themeUtils.green);
-        break;
-        case R.id.button4:
-        themeUtils.ChangeToColor(this, themeUtils.red);
-        break;
-        case R.id.button5:
-        themeUtils.ChangeToColor(this, themeUtils.yellow);
-        break;
-        case R.id.button6:
-        themeUtils.ChangeToColor(this, themeUtils.pink);
-        break;
-        case R.id.button7:
-        themeUtils.ChangeToColor(this, themeUtils.purple);
-        break;
-        case R.id.button8:
-        themeUtils.ChangeToColor(this, themeUtils.white);
-        break;
-        case R.id.button9:
-            themeUtils.ChangeToColor(this, themeUtils.black);
-        break;
-    }}
-
+        switch (view.getId()) {
+            case R.id.button2:
+                themeUtils.ChangeToColor(this, themeUtils.blue);
+                break;
+            case R.id.button3:
+                themeUtils.ChangeToColor(this, themeUtils.green);
+                break;
+            case R.id.button4:
+                themeUtils.ChangeToColor(this, themeUtils.red);
+                break;
+            case R.id.button5:
+                themeUtils.ChangeToColor(this, themeUtils.yellow);
+                break;
+            case R.id.button6:
+                themeUtils.ChangeToColor(this, themeUtils.pink);
+                break;
+            case R.id.button7:
+                themeUtils.ChangeToColor(this, themeUtils.purple);
+                break;
+            case R.id.button8:
+                themeUtils.ChangeToColor(this, themeUtils.white);
+                break;
+            case R.id.button9:
+                themeUtils.ChangeToColor(this, themeUtils.black);
+                break;
+        }
     }
+
+}
 

@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
 
 
 public class Homescreen extends ActionBarActivity implements View.OnClickListener {
@@ -43,28 +44,38 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         btnViewProfiles.setOnClickListener(this);
         btnProfileManager.setOnClickListener(this);
 
-        DatabaseHandler db = new DatabaseHandler(this);
-        /*
-        db.addProfile(new Profile("Jan", "Jansens", "127.0.0.1"));
-        db.addContact(new Contact("Jos", "Jansens", "Family", "13.33.33.37", "Jos Jansens is my nephew"));
+        /*DatabaseHandler db = new DatabaseHandler(this);
+        if (!db.findProfile("Jan", "Jansens")) {
+            db.addProfile(new Profile("Jan", "Jansens", "2/2/2015", "127.0.0.1"));
+            db.addContact(new Contact("Jos1", "Jansens", "2/2/2015", "Family", "13.33.33.37", "Jos1 Jansens is my nephew"));
+            db.addContact(new Contact("Jos2", "Jansens", "2/2/2015", "Family", "13.33.33.37", "Jos2 Jansens is my cousin"));
+            db.addContact(new Contact("Jos3", "Jansens", "2/2/2015", "Family", "13.33.33.37", "Jos3 Jansens is my wife"));
 
-        if (db.findProfile("Jan", "Jansens")) {
-            if (!db.getProfile().settingsInitialized()) db.saveSettings("Big", "Rood", "Engels");
-            db.getProfile().Show();
-        }
-        */
+            db.addProfile(new Profile("BRAK", "OBAMA", "2/2/2015", "127.0.0.1"));
+            db.addContact(new Contact("MICHELLE", "OBAMA", "2/2/2015", "Family", "13.33.33.37", "wife"));
+            db.addContact(new Contact("SOMETHINGELSE", "OBAMA", "2/2/2015", "Family", "13.33.33.37", "kid"));
 
-        SharedPreferences settings = getSharedPreferences(PREFS_FIRST_LAUNCH,0);
-        First_Launch = settings.getString("First_Launch","true");
+        } else {
+            ArrayList<Profile> list = db.getAllProfiles();
+            for (Profile profile : list) {
+
+                ArrayList<Contact> contactlist = profile.getContacts();
+
+                for (Contact contact : contactlist) {
+                    contact.getFullName();
+                }
+
+            }
+        }*/
 
 
-        if( First_Launch == "true")
-        {
+        SharedPreferences settings = getSharedPreferences(PREFS_FIRST_LAUNCH, 0);
+        First_Launch = settings.getString("First_Launch", "true");
+
+
+        if (First_Launch == "true") {
             Settings(V);
         }
-
-
-
 
 
     }
@@ -72,7 +83,7 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
 
     public void Settings(View view) {
 
-        Intent i = new Intent(getApplicationContext(),Settings.class);
+        Intent i = new Intent(getApplicationContext(), Settings.class);
         startActivity(i);
     }
 

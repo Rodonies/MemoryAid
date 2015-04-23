@@ -43,7 +43,7 @@ public class themeUtils {
         }
     }
 
-    public static void ChangeToColor(Activity activity, char color ) {
+    public static void ChangeToColor(Activity activity, char color) {
         cColor = color;
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));

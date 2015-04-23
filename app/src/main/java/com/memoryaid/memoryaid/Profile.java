@@ -48,7 +48,7 @@ public class Profile {
         Log.e("Profile", "language: " + getLanguage());
 
         for (Contact contact : getContacts()) {
-            Log.e("ShowContacts", "Contact " + contact.getID() + ": " + contact.getFullName() + " " + contact.getNumber());
+            Log.e("ShowContacts", "Contact " + contact.getCID() + ": " + contact.getFullName() + " " + contact.getNumber());
         }
     }
 
@@ -80,7 +80,7 @@ public class Profile {
         return _number;
     }
 
-    public List<Contact> getContacts() {
+    public ArrayList<Contact> getContacts() {
         return _contacts;
     }
 
