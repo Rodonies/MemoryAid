@@ -61,7 +61,6 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         if( First_Launch == "true")
         {
             Settings(V);
-
         }
 
 

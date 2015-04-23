@@ -44,11 +44,6 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
     private Uri imageUri;
 
-    private EditText NameBuffer;
-    private EditText Name;
-    private EditText LastName;
-    private EditText BirthDateBuffer;
-
 
     private String CURRENT_PHOTO;
     private String Name;
@@ -66,14 +61,10 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         btnAddPhoto = (Button) findViewById(R.id.btnAddPhoto);
         contactImgView = (ImageView) findViewById(R.id.ChosenPhoto);
 
-        NameBuffer = (EditText) findViewById(R.id.First_Name_Field);
-        LastNameBuffer = (EditText)findViewById(R.id.Last_Name_Field);
-        PhoneBuffer = (EditText)findViewById(R.id.PhoneNumber);
-
-        Name = NameBuffer.toString();
-        LastName = LastNameBuffer.toString();
-        Phone = PhoneBuffer.toString();
-        BirthDate = BirthDateBuffer.toString();
+        Name = ((EditText) findViewById(R.id.First_Name_Field)).toString();
+        LastName = ((EditText)findViewById(R.id.Last_Name_Field)).toString();
+        Phone = ((EditText)findViewById(R.id.PhoneNumber)).toString();
+        BirthDate = ((EditText)findViewById(R.id.Date_Of_Birth)).toString();
     }
 
 
@@ -173,40 +164,31 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
             case R.id.PhotoCamera: /** AlerDialog when click on Exit */
                 TakePhoto();
                 break;
-
             case R.id.PhotoGallery: /** AlerDialog when click on Exit */
-
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath() + "/Camera/");
                 intent.setDataAndType(uri, "image/*");
                 startActivityForResult(Intent.createChooser(intent, "Select contact image"), SELECT_IMAGE);
-
                 break;
-
         }
-
     }
 
     public void SaveProfile(View view)
     {
-
         SharedPreferences settings = getSharedPreferences(PREFS_FIRST_LAUNCH,0);
         First_Launch = settings.getString("First_Launch","true");
 
         if(First_Launch == "true")
         {
-
             DatabaseHandler db = new DatabaseHandler(this);
             db.addProfile(new Profile(Name,LastName,BirthDate,Phone));
+            db.close();
 
             SharedPreferences.Editor editor = settings.edit();
             editor.putString("First_Launch","false");
             editor.commit();
             Intent i = new Intent(this, Homescreen.class);
             startActivity(i);
-
-
-
         }
     }
 
