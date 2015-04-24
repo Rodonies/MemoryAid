@@ -15,8 +15,8 @@
     <string name="title_activity_new_user_creation">NewUserCreation</string>
     <string name="title_activity_create_new_user">Create new user</string>
 
-    <string name ="ContactList">Contact list</string>
-
+    <string name="ContactList">Contact list</string>
+    <string name="Add_Contact">Add contact</string>
     <string name="TitleCreateNewProfile">Create new profile</string>
     <string name="btnPicture">Add picture</string>
     <string name="Firstname">First name: </string>
@@ -60,4 +60,5 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_profile_view">ProfileView</string>
+    <string name="title_activity_contact_adding">ContactAdding</string>
 </resources>

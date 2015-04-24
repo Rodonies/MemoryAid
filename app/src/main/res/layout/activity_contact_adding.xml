@@ -1,14 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.memoryaid.memoryaid.CreateNewUser">
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.memoryaid.memoryaid.ContactAdding">
 
 
     <ScrollView
@@ -33,7 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/TitleCreateNewProfile"
+                    android:text="@string/Add_Contact"
                     android:textColor="#000000"
                     android:textSize="28sp"
                     android:textStyle="bold" />
@@ -68,7 +65,7 @@
                 android:theme="@style/NewUserUI" />
 
             <EditText
-                android:id="@+id/First_Name_Field"
+                android:id="@+id/Contact_First_Name"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hintFirstName"
@@ -83,7 +80,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/Last_Name_Field"
+                android:id="@+id/Contact_Last_Name"
                 android:hint="@string/hintLastName"
                 android:inputType="text" />
 
@@ -97,7 +94,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hintPhoneNumber"
-                android:id="@+id/PhoneNumber"
+                android:id="@+id/Contact_Phone_Number"
                 android:inputType="text" />
 
 
@@ -111,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hintDate_of_birth"
-                android:id="@+id/Date_Of_Birth"
+                android:id="@+id/Contact_Date_Of_Birth"
                 android:inputType="text" />
 
             <TextView
@@ -124,7 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hintBasicInfo"
-                android:id="@+id/Notes"
+                android:id="@+id/Contact_Extra_Info"
                 android:inputType="text" />
 
 
@@ -148,5 +145,7 @@
             android:text="Save" />
 
     </LinearLayout>
+
+
 
 </LinearLayout>

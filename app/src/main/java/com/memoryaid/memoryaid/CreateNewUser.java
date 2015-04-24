@@ -60,11 +60,6 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         btnAddPhoto = (Button) findViewById(R.id.btnAddPhoto);
         contactImgView = (ImageView) findViewById(R.id.ChosenPhoto);
 
-        Name = ((EditText) findViewById(R.id.First_Name_Field)).toString();
-        LastName = ((EditText) findViewById(R.id.Last_Name_Field)).toString();
-        Phone = ((EditText) findViewById(R.id.PhoneNumber)).toString();
-        BirthDate = ((EditText) findViewById(R.id.Date_Of_Birth)).toString();
-        //Note = ((EditText) findViewById(R.id.)).toString();
     }
 
 
@@ -174,21 +169,17 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
     }
 
     public void SaveProfile(View view) {
-        SharedPreferences settings = getSharedPreferences(PREFS_FIRST_LAUNCH, 0);
-        First_Launch = settings.getString("First_Launch", "true");
-
-        if (First_Launch == "true") {
-            DatabaseHandler db = new DatabaseHandler(this);
-            db.addProfile(new Profile(Name, LastName, BirthDate, Phone, Note));
-            db.close();
-
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putString("First_Launch", "false");
-            editor.commit();
-            Intent i = new Intent(this, Homescreen.class);
-            startActivity(i);
+        Name = ((EditText) findViewById(R.id.First_Name_Field)).toString();
+        LastName = ((EditText) findViewById(R.id.Last_Name_Field)).toString();
+        Phone = ((EditText) findViewById(R.id.PhoneNumber)).toString();
+        BirthDate = ((EditText) findViewById(R.id.Date_Of_Birth)).toString();
+        Note = ((EditText) findViewById(R.id.Notes)).toString();
+        DatabaseHandler db = new DatabaseHandler(this);
+        db.addProfile(new Profile(Name, LastName, BirthDate, Phone, Note));
+        db.close();
+        Intent i = new Intent(this, Homescreen.class);
+        startActivity(i);
         }
-    }
 
     public void TakePhoto() {
 

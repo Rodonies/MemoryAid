@@ -55,6 +55,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.memoryaid.memoryaid.Homescreen" />
         </activity>
+        <activity
+            android:name=".ContactAdding"
+            android:label="@string/title_activity_contact_adding"
+            android:parentActivityName=".ProfileView" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.memoryaid.memoryaid.ProfileView" />
+        </activity>
     </application>
 
 </manifest>
