@@ -73,6 +73,10 @@ public class Contact {
         return _information;
     }
 
+    public String getImage() {
+        return _imagepath + "/image.png";
+    }
+
     public String getImagePath() {
         return _imagepath;
     }

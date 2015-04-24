@@ -45,11 +45,11 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
     private Uri imageUri;
 
 
-
     private String Name;
     private String LastName;
     private String Phone;
     private String BirthDate;
+    private String Note;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +64,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         LastName = ((EditText) findViewById(R.id.Last_Name_Field)).toString();
         Phone = ((EditText) findViewById(R.id.PhoneNumber)).toString();
         BirthDate = ((EditText) findViewById(R.id.Date_Of_Birth)).toString();
+        //Note = ((EditText) findViewById(R.id.)).toString();
     }
 
 
@@ -178,7 +179,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
         if (First_Launch == "true") {
             DatabaseHandler db = new DatabaseHandler(this);
-            db.addProfile(new Profile(Name, LastName, BirthDate, Phone));
+            db.addProfile(new Profile(Name, LastName, BirthDate, Phone, Note));
             db.close();
 
             SharedPreferences.Editor editor = settings.edit();
@@ -195,10 +196,18 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         //test.png -> naam gebruiker + datum + tijd ofzo voor uniek te maken
-        File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), Name + CURRENT_PHOTONUMBER + ".png");
+        File photo = new File(GetPath());
         imageUri = Uri.fromFile(photo);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         startActivityForResult(intent, TAKE_PICTURE);
+    }
+
+    public String GetPath() {
+        DatabaseHandler db = new DatabaseHandler(this);
+        if (db.findProfile(Name, LastName)) {
+            return db.getProfile().getImage();
+        }
+        return null;
     }
 
 

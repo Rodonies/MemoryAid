@@ -14,6 +14,7 @@ public class Profile {
     private String _lastname;
     private String _birthdate;
     private String _number;
+    private String _information;
     private String _imagepath;
     private ArrayList<Contact> _contacts;
 
@@ -21,20 +22,22 @@ public class Profile {
     private String _color;
     private String _size;
 
-    public Profile(String firstname, String lastname, String birthdate, String number) {
+    public Profile(String firstname, String lastname, String birthdate, String number, String information) {
         _firstname = firstname;
         _lastname = lastname;
         _birthdate = birthdate;
         _number = number;
+        _information = information;
         _contacts = new ArrayList<Contact>();
     }
 
-    public Profile(Integer id, String firstname, String lastname, String birthdate, String number) {
+    public Profile(Integer id, String firstname, String lastname, String birthdate, String number, String information) {
         _id = id;
         _firstname = firstname;
         _lastname = lastname;
         _birthdate = birthdate;
         _number = number;
+        _information = information;
         _imagepath = _id + "_" + _firstname + "_" + _lastname;
         _contacts = new ArrayList<Contact>();
     }
@@ -80,8 +83,16 @@ public class Profile {
         return _number;
     }
 
+    public String getInformation() {
+        return _information;
+    }
+
     public ArrayList<Contact> getContacts() {
         return _contacts;
+    }
+
+    public String getImage() {
+        return _imagepath + "/image.png";
     }
 
     public String getImagePath() {

@@ -27,7 +27,7 @@ if (db.findProfile("naam", "achternaam")) //Profiel zoeken met deze naam/achtern
 else
 {
     //Profiel niet gevonden dus aanmaken
-    db.addProfile(new Profile("naam", "achternaam", "geboortedatum", "nummer"));
+    db.addProfile(new Profile("naam", "achternaam", "geboortedatum", "nummer", "note"));
 }
 
 
@@ -68,7 +68,7 @@ if (!db.getProfile().settingsInitialized()) StartNieuweSettingsIntentHier();
 */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 25;
+    private static final int DATABASE_VERSION = 26;
     private static final String DATABASE_NAME = "database";
 
     private static final String TABLE_PROFILES = "profiles";
@@ -107,6 +107,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         "\t`" + KEY_LASTNAME + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_DATE + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_NUMBER + "`\tTEXT NOT NULL\n" +
+                        "\t`" + KEY_INFORMATION + "`\tTEXT NOT NULL\n" +
                         ");";
 
         String CREATE_CONTACTS_TABLE =
@@ -200,9 +201,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         try {
             SQLiteDatabase db = this.getReadableDatabase();
 
-            Cursor cursor = db.query(TABLE_PROFILES, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_DATE, KEY_NUMBER}, KEY_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null, null);
+            Cursor cursor = db.query(TABLE_PROFILES, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_DATE, KEY_NUMBER, KEY_INFORMATION}, KEY_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null, null);
             if (cursor.moveToFirst()) {
-                _profile = new Profile(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                _profile = new Profile(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
                 db.close();
                 updateContacts();
                 loadSettings();
@@ -220,9 +221,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public boolean findProfile(String firstname, String lastname) {
         SQLiteDatabase db = this.getReadableDatabase();
         try {
-            Cursor cursor = db.query(TABLE_PROFILES, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_DATE, KEY_NUMBER}, KEY_FIRSTNAME + " = ? AND " + KEY_LASTNAME + " = ?", new String[]{firstname, lastname}, null, null, null, null);
+            Cursor cursor = db.query(TABLE_PROFILES, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_DATE, KEY_NUMBER, KEY_INFORMATION}, KEY_FIRSTNAME + " = ? AND " + KEY_LASTNAME + " = ?", new String[]{firstname, lastname}, null, null, null, null);
             if (cursor.moveToFirst()) {
-                _profile = new Profile(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                _profile = new Profile(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
                 db.close();
                 updateContacts();
                 loadSettings();
@@ -376,10 +377,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         try {
             ArrayList<Profile> list = new ArrayList<Profile>();
-            Cursor cursor = db.query(TABLE_PROFILES, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_DATE, KEY_NUMBER}, null, null, null, null, null, null);
+            Cursor cursor = db.query(TABLE_PROFILES, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_DATE, KEY_NUMBER, KEY_INFORMATION}, null, null, null, null, null, null);
             if (cursor.moveToFirst()) {
                 do {
-                    Profile newprofile = new Profile(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                    Profile newprofile = new Profile(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
 
                     Cursor cursor2 = db.query(TABLE_CONTACTS, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_DATE, KEY_RELATION, KEY_NUMBER, KEY_INFORMATION}, KEY_PROFILEID + " = ?", new String[]{Integer.toString(newprofile.getID())}, null, null, null, null);
                     int i = 1;

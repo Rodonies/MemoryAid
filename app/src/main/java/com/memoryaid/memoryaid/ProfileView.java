@@ -22,7 +22,7 @@ public class ProfileView extends ActionBarActivity {
 
         DatabaseHandler db = new DatabaseHandler(this);
 
-        if(db.findProfile(1)) {
+        if (db.findProfile(1)) {
             db.addContact(new Contact("Jos1", "Jansens", "2/2/2015", "Family", "13.33.33.37", "Jos1 Jansens is my nephew"));
 
             ArrayList<Profile> list = db.getAllProfiles();
@@ -31,7 +31,7 @@ public class ProfileView extends ActionBarActivity {
 
                 ArrayList<Contact> contactlist = profile.getContacts();
                 ListView ContactList = (ListView) findViewById(R.id.ListContacts);
-                ContactList.setAdapter(new AdapterContacts(this,contactlist));
+                ContactList.setAdapter(new AdapterContacts(this, contactlist));
 
                 //ArrayList<String> ContactNames = new ArrayList<String>();
                 /*
@@ -52,7 +52,6 @@ public class ProfileView extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_profile_view, menu);
         return true;
-
 
 
     }

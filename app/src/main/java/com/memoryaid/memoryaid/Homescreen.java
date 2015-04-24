@@ -51,12 +51,9 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         First_Launch = settings.getString("First_Launch", "true");
 
 
-
         if (First_Launch == "true") {
             Settings(V);
-        }
-        else
-        {
+        } else {
 
         }
 
@@ -86,7 +83,6 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         }*/
 
 
-
     }
 
 
@@ -100,8 +96,8 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         Intent i = new Intent(this, ProfileManager.class);
         startActivity(i);
     }
-    public void ContactView(View view)
-    {
+
+    public void ContactView(View view) {
         Intent i = new Intent(this, ProfileView.class);
         startActivity(i);
     }
