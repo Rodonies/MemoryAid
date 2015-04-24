@@ -4,6 +4,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 public class ProfileView extends ActionBarActivity {
@@ -14,6 +19,32 @@ public class ProfileView extends ActionBarActivity {
         themeUtils.onActivityCreateSetTheme(this);
         themeUtils.onActivityCreateSetColor(this);
         setContentView(R.layout.activity_profile_view2);
+
+        DatabaseHandler db = new DatabaseHandler(this);
+
+        if(db.findProfile(1)) {
+            db.addContact(new Contact("Jos1", "Jansens", "2/2/2015", "Family", "13.33.33.37", "Jos1 Jansens is my nephew"));
+
+            ArrayList<Profile> list = db.getAllProfiles();
+
+            for (Profile profile : list) {
+
+                ArrayList<Contact> contactlist = profile.getContacts();
+                ListView ContactList = (ListView) findViewById(R.id.ListContacts);
+                ListAdapter ContactAdapter = new AdapterContacts(this, R.layout.contactlist_normalsize,contactlist);
+                ContactList.setAdapter(ContactAdapter);
+
+                //ArrayList<String> ContactNames = new ArrayList<String>();
+                /*
+                for (Contact contact : contactlist) {
+                    ContactNames.add(contact.getFirstName()+ contact.getLastName());
+                }
+                */
+
+
+            }
+        }
+
     }
 
 
@@ -22,6 +53,9 @@ public class ProfileView extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_profile_view, menu);
         return true;
+
+
+
     }
 
     @Override

@@ -45,10 +45,9 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
     private Uri imageUri;
 
 
-    private String CURRENT_PHOTO;
+
     private String Name;
     private String LastName;
-    private String FirstName;
     private String Phone;
     private String BirthDate;
 

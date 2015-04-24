@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -44,6 +47,20 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         btnViewProfiles.setOnClickListener(this);
         btnProfileManager.setOnClickListener(this);
 
+        SharedPreferences settings = getSharedPreferences(PREFS_FIRST_LAUNCH, 0);
+        First_Launch = settings.getString("First_Launch", "true");
+
+
+
+        if (First_Launch == "true") {
+            Settings(V);
+        }
+        else
+        {
+
+        }
+
+
         /*DatabaseHandler db = new DatabaseHandler(this);
         if (!db.findProfile("Jan", "Jansens")) {
             db.addProfile(new Profile("Jan", "Jansens", "2/2/2015", "127.0.0.1"));
@@ -69,14 +86,6 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         }*/
 
 
-        SharedPreferences settings = getSharedPreferences(PREFS_FIRST_LAUNCH, 0);
-        First_Launch = settings.getString("First_Launch", "true");
-
-
-        if (First_Launch == "true") {
-            Settings(V);
-        }
-
 
     }
 
@@ -91,11 +100,17 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         Intent i = new Intent(this, ProfileManager.class);
         startActivity(i);
     }
+    public void ContactView(View view)
+    {
+        Intent i = new Intent(this, ProfileView.class);
+        startActivity(i);
+    }
 
     public void onClick(View v) {
 
         switch (v.getId()) {
             case R.id.btnProfileView:
+                ContactView(V);
                 break;
             case R.id.btnProfileManager:
                 ProfileManager(v);
