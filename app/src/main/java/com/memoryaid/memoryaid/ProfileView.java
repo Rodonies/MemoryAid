@@ -31,8 +31,7 @@ public class ProfileView extends ActionBarActivity {
 
                 ArrayList<Contact> contactlist = profile.getContacts();
                 ListView ContactList = (ListView) findViewById(R.id.ListContacts);
-                ListAdapter ContactAdapter = new AdapterContacts(this, R.layout.contactlist_normalsize,contactlist);
-                ContactList.setAdapter(ContactAdapter);
+                ContactList.setAdapter(new AdapterContacts(this,contactlist));
 
                 //ArrayList<String> ContactNames = new ArrayList<String>();
                 /*

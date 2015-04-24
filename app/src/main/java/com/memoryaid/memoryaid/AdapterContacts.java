@@ -16,47 +16,23 @@ import java.util.ArrayList;
 /**
  * Created by Bart on 24/04/2015.
  */
-
-
-
 class AdapterContacts extends ArrayAdapter<Contact>{
-
-    Context context;
-    int layoutid;
-    ArrayList<Contact> contactlist;
-    Contact bufferContact;
-    TextView ContactName;
-    ImageView ContactImage;
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Contact contact = getItem(position);
 
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.contactlist_normalsize, parent, false);
+        }
         convertView = LayoutInflater.from(this.getContext()).inflate(R.layout.contactlist_normalsize,parent,false);
 
-       /* LayoutInflater theInflator = LayoutInflater.from(getContext());
-        View theView = theInflator.inflate(layoutid,parent,false);*/
-        bufferContact = getItem(position);
-        ContactName = (TextView) ContactName.findViewById(R.id.TextName);
-        ContactName.setText(bufferContact.getFirstName());
+        TextView ContactName = (TextView) convertView.findViewById(R.id.TextName);
+        ContactName.setText(contact.getFullName());
 
-
-
-        //ContactImage = (ImageView) ContactImage.findViewById(R.id.imgContact);
-        //Uri photobuffer = Uri.parse(bufferContact.getImagePath());
-        //ContactImage.setImageURI(photobuffer);
         return convertView;
     }
 
-    public AdapterContacts(Context context,int layoutid,  ArrayList<Contact> contactlist) {
-        super(context,R.layout.contactlist_normalsize,contactlist);
-
-        this.layoutid = layoutid;
-        this.context = context;
-
-        for(Contact contact: contactlist)
-        {
-            this.contactlist.add(contact);
-        }
-
+    public AdapterContacts(Context context, ArrayList<Contact> contactlist) {
+        super(context,0,contactlist);
     }
 }
