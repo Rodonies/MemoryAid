@@ -68,7 +68,7 @@ if (!db.getProfile().settingsInitialized()) StartNieuweSettingsIntentHier();
 */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 26;
+    private static final int DATABASE_VERSION = 27;
     private static final String DATABASE_NAME = "database";
 
     private static final String TABLE_PROFILES = "profiles";
@@ -106,7 +106,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         "\t`" + KEY_FIRSTNAME + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_LASTNAME + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_DATE + "`\tTEXT NOT NULL,\n" +
-                        "\t`" + KEY_NUMBER + "`\tTEXT NOT NULL\n" +
+                        "\t`" + KEY_NUMBER + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_INFORMATION + "`\tTEXT NOT NULL\n" +
                         ");";
 
