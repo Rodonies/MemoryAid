@@ -154,6 +154,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             values.put(KEY_LASTNAME, profile.getLastName());
             values.put(KEY_DATE, profile.getBirthDate());
             values.put(KEY_NUMBER, profile.getNumber());
+            values.put(KEY_INFORMATION,profile.getInformation());
 
             db.insert(TABLE_PROFILES, null, values);
             db.close();

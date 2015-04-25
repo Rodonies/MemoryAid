@@ -26,6 +26,8 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.util.jar.Attributes;
 
+import javax.xml.namespace.NamespaceContext;
+
 public class CreateNewUser extends ActionBarActivity implements View.OnClickListener {
 
     public static final String SaveData = "MyPreferenceFiles";
@@ -43,6 +45,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
     private int CURRENT_PHOTONUMBER;
 
     private Uri imageUri;
+
 
 
     private String Name;
@@ -194,12 +197,15 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                 editor.putString("First_Launch","false");
                 editor.commit();
             }
-            Name = ((EditText) findViewById(R.id.First_Name_Field)).toString();
-            LastName = ((EditText) findViewById(R.id.Last_Name_Field)).toString();
-            Phone = ((EditText) findViewById(R.id.PhoneNumber)).toString();
-            BirthDate = ((EditText) findViewById(R.id.Date_Of_Birth)).toString();
-            Note = ((EditText) findViewById(R.id.Notes)).toString();
-            db.addProfile(new Profile(Name, LastName, BirthDate, Phone, Note));
+
+            Name = ((EditText) findViewById(R.id.First_Name_Field)).getText().toString();
+            LastName = ((EditText) findViewById(R.id.Last_Name_Field)).getText().toString();
+            Phone = ((EditText) findViewById(R.id.PhoneNumber)).getText().toString();
+            BirthDate = ((EditText) findViewById(R.id.Date_Of_Birth)).getText().toString();
+            Note = ((EditText) findViewById(R.id.Notes)).getText().toString();
+            db.addProfile(new Profile(Name,LastName,Phone,BirthDate,Note));
+
+
 
             if (db.findProfile(Name,LastName))
             {
@@ -214,12 +220,14 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
         }
         else if(Contact_Or_Profile == "Contact"){
-            Name = ((EditText) findViewById(R.id.Contact_First_Name)).toString();
-            LastName = ((EditText) findViewById(R.id.Contact_Last_Name)).toString();
-            Phone = ((EditText) findViewById(R.id.Contact_Phone_Number)).toString();
-            BirthDate = ((EditText) findViewById(R.id.Contact_Date_Of_Birth)).toString();
-            Extra_Info = ((EditText) findViewById(R.id.Contact_Extra_Info)).toString();
-            Relation = ((EditText) findViewById(R.id.Contact_Relation)).toString();
+
+
+            Name = ((EditText) findViewById(R.id.Contact_First_Name)).getText().toString();
+            LastName = ((EditText) findViewById(R.id.Contact_Last_Name)).getText().toString();
+            Phone = ((EditText) findViewById(R.id.Contact_Phone_Number)).getText().toString();
+            BirthDate = ((EditText) findViewById(R.id.Contact_Date_Of_Birth)).getText().toString();
+            Extra_Info = ((EditText) findViewById(R.id.Contact_Extra_Info)).getText().toString();
+            Relation = ((EditText) findViewById(R.id.Contact_Relation)).getText().toString();
 
             CurrentProfile = settings.getInt("CurrentProfile",1);
             if (db.findProfile(CurrentProfile))
