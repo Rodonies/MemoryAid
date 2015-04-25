@@ -2,12 +2,10 @@ package com.memoryaid.memoryaid;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.ContentResolver;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -30,8 +28,10 @@ import java.util.jar.Attributes;
 
 public class CreateNewUser extends ActionBarActivity implements View.OnClickListener {
 
-    public static final String PREFS_FIRST_LAUNCH = "MyPreferenceFiles";
+    public static final String SaveData = "MyPreferenceFiles";
     private String First_Launch;
+    private String Contact_Or_Profile;
+    private int CurrentProfile;
 
     private static int TAKE_PICTURE = 1;
     private static int SELECT_IMAGE = 2;
@@ -50,13 +50,23 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
     private String Phone;
     private String BirthDate;
     private String Note;
+    private String Extra_Info;
+    private String Relation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         themeUtils.onActivityCreateSetTheme(this);
         themeUtils.onActivityCreateSetColor(this);
+
+        SharedPreferences settings = getSharedPreferences(SaveData, 0);
+        Contact_Or_Profile = settings.getString("Contact_Or_Profile", "Profile");
+
+        if (Contact_Or_Profile == "Profile")
         setContentView(R.layout.activity_create_new_user);
+        else
+        setContentView(R.layout.activity_contact_adding);
+
         btnAddPhoto = (Button) findViewById(R.id.btnAddPhoto);
         contactImgView = (ImageView) findViewById(R.id.ChosenPhoto);
 
@@ -66,7 +76,9 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_create_new_user, menu);
+
+            getMenuInflater().inflate(R.menu.menu_create_new_user, menu);
+
         return true;
     }
 
@@ -169,24 +181,60 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
     }
 
     public void SaveProfile(View view) {
-        Name = ((EditText) findViewById(R.id.First_Name_Field)).toString();
-        LastName = ((EditText) findViewById(R.id.Last_Name_Field)).toString();
-        Phone = ((EditText) findViewById(R.id.PhoneNumber)).toString();
-        BirthDate = ((EditText) findViewById(R.id.Date_Of_Birth)).toString();
-        Note = ((EditText) findViewById(R.id.Notes)).toString();
+
         DatabaseHandler db = new DatabaseHandler(this);
-        db.addProfile(new Profile(Name, LastName, BirthDate, Phone, Note));
-        db.close();
+        SharedPreferences settings = getSharedPreferences(SaveData, 0);
+        Contact_Or_Profile = settings.getString("Contact_Or_Profile", "Profile");
+        First_Launch = settings.getString("First_Launch","true");
+
+        if (Contact_Or_Profile == "Profile" || First_Launch == "true") {
+            SharedPreferences.Editor editor = settings.edit();
+            if (First_Launch == "true")
+            {
+                editor.putString("First_Launch","false");
+                editor.commit();
+            }
+            Name = ((EditText) findViewById(R.id.First_Name_Field)).toString();
+            LastName = ((EditText) findViewById(R.id.Last_Name_Field)).toString();
+            Phone = ((EditText) findViewById(R.id.PhoneNumber)).toString();
+            BirthDate = ((EditText) findViewById(R.id.Date_Of_Birth)).toString();
+            Note = ((EditText) findViewById(R.id.Notes)).toString();
+            db.addProfile(new Profile(Name, LastName, BirthDate, Phone, Note));
+
+            if (db.findProfile(Name,LastName))
+            {
+                editor.putInt("CurrentProfile",db.getProfile().getID());
+                editor.commit();
+            }
+            db.close();
+
+
+
+
+
+        }
+        else if(Contact_Or_Profile == "Contact"){
+            Name = ((EditText) findViewById(R.id.Contact_First_Name)).toString();
+            LastName = ((EditText) findViewById(R.id.Contact_Last_Name)).toString();
+            Phone = ((EditText) findViewById(R.id.Contact_Phone_Number)).toString();
+            BirthDate = ((EditText) findViewById(R.id.Contact_Date_Of_Birth)).toString();
+            Extra_Info = ((EditText) findViewById(R.id.Contact_Extra_Info)).toString();
+            Relation = ((EditText) findViewById(R.id.Contact_Relation)).toString();
+
+            CurrentProfile = settings.getInt("CurrentProfile",1);
+            if (db.findProfile(CurrentProfile))
+            {
+              db.addContact(new Contact(Name,LastName,BirthDate,Relation,Phone,Extra_Info));
+              db.close();
+            }
+        }
+
         Intent i = new Intent(this, Homescreen.class);
         startActivity(i);
         }
 
     public void TakePhoto() {
-
-        String FirstName = ((EditText) findViewById(R.id.First_Name_Field)).getText().toString();
-
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        //test.png -> naam gebruiker + datum + tijd ofzo voor uniek te maken
         File photo = new File(GetPath());
         imageUri = Uri.fromFile(photo);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
@@ -197,7 +245,9 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         DatabaseHandler db = new DatabaseHandler(this);
         if (db.findProfile(Name, LastName)) {
             return db.getProfile().getImage();
+
         }
+         db.close();
         return null;
     }
 

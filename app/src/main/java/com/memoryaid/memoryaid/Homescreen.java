@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class Homescreen extends ActionBarActivity implements View.OnClickListener {
 
 
-    public static final String PREFS_FIRST_LAUNCH = "MyPreferenceFiles";
+    public static final String SaveData = "MyPreferenceFiles";
     private String First_Launch;
     private Button btnViewProfiles;
     private Button btnProfileManager;
@@ -47,14 +47,12 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         btnViewProfiles.setOnClickListener(this);
         btnProfileManager.setOnClickListener(this);
 
-        SharedPreferences settings = getSharedPreferences(PREFS_FIRST_LAUNCH, 0);
+        SharedPreferences settings = getSharedPreferences(SaveData, 0);
         First_Launch = settings.getString("First_Launch", "true");
 
 
         if (First_Launch == "true") {
-            Settings(V);
-        } else {
-
+          Settings(V);
         }
 
 

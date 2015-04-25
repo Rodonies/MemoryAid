@@ -124,6 +124,19 @@
                 android:id="@+id/Contact_Extra_Info"
                 android:inputType="text" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Relation"
+                android:theme="@style/NewUserUI" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hintBasicInfo"
+                android:id="@+id/Contact_Relation"
+                android:inputType="text" />
+
 
         </LinearLayout>
 

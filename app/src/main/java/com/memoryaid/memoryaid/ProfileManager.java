@@ -1,6 +1,7 @@
 package com.memoryaid.memoryaid;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +15,7 @@ public class ProfileManager extends ActionBarActivity implements View.OnClickLis
     private Button btnAddProfile;
     private Button btnEditProfile;
     private Button btnDeleteProfile;
+    public static final String SaveData = "MyPreferenceFiles";
 
     @Override
     public void onBackPressed() {
@@ -42,6 +44,10 @@ public class ProfileManager extends ActionBarActivity implements View.OnClickLis
 
         switch (v.getId()) {
             case R.id.btnAddProfile:
+                SharedPreferences settings = getSharedPreferences(SaveData, 0);
+                    SharedPreferences.Editor editor = settings.edit();
+                    editor.putString("Contact_Or_Profile","Contact");
+                    editor.commit();
                 CreateNewUser(v);
                 break;
             case R.id.btnEditProfile:

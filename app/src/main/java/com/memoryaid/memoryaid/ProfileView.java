@@ -1,5 +1,6 @@
 package com.memoryaid.memoryaid;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +14,9 @@ import java.util.ArrayList;
 
 public class ProfileView extends ActionBarActivity {
 
+    public static final String SaveData = "MyPreferenceFiles";
+    private int CurrentProfile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,9 +25,10 @@ public class ProfileView extends ActionBarActivity {
         setContentView(R.layout.activity_profile_view2);
 
         DatabaseHandler db = new DatabaseHandler(this);
+        SharedPreferences settings = getSharedPreferences(SaveData,0);
+        CurrentProfile = settings.getInt("CurrentProfile",1);
 
-        if (db.findProfile(1)) {
-            db.addContact(new Contact("Jos1", "Jansens", "2/2/2015", "Family", "13.33.33.37", "Jos1 Jansens is my nephew"));
+        if (db.findProfile(CurrentProfile)) {
 
             ArrayList<Profile> list = db.getAllProfiles();
 
@@ -32,17 +37,15 @@ public class ProfileView extends ActionBarActivity {
                 ArrayList<Contact> contactlist = profile.getContacts();
                 ListView ContactList = (ListView) findViewById(R.id.ListContacts);
                 ContactList.setAdapter(new AdapterContacts(this, contactlist));
-
-                //ArrayList<String> ContactNames = new ArrayList<String>();
-                /*
-                for (Contact contact : contactlist) {
-                    ContactNames.add(contact.getFirstName()+ contact.getLastName());
-                }
-                */
+                db.close();
 
 
             }
         }
+        else{
+            ArrayList<Profile> list = db.getAllProfiles();}
+
+
 
     }
 
