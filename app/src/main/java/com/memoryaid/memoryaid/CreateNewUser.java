@@ -192,11 +192,6 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
         if (Contact_Or_Profile == "Profile" || First_Launch == "true") {
             SharedPreferences.Editor editor = settings.edit();
-            if (First_Launch == "true")
-            {
-                editor.putString("First_Launch","false");
-                editor.commit();
-            }
 
             Name = ((EditText) findViewById(R.id.First_Name_Field)).getText().toString();
             LastName = ((EditText) findViewById(R.id.Last_Name_Field)).getText().toString();
@@ -209,6 +204,12 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
             if (db.findProfile(Name,LastName))
             {
+                if (First_Launch == "true")
+                {
+                    editor.putString("First_Launch","false");
+                    editor.commit();
+                }
+
                 editor.putInt("CurrentProfile",db.getProfile().getID());
                 editor.commit();
             }
@@ -251,10 +252,20 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
     public String GetPath() {
         DatabaseHandler db = new DatabaseHandler(this);
+
+        if (Contact_Or_Profile == "Contact") {
+            Name = ((EditText) findViewById(R.id.Contact_First_Name)).getText().toString();
+            LastName = ((EditText) findViewById(R.id.Contact_Last_Name)).getText().toString();
+        }
+        else if(Contact_Or_Profile == "Profile")
+        {
+            Name = ((EditText) findViewById(R.id.First_Name_Field)).getText().toString();
+            LastName = ((EditText) findViewById(R.id.Last_Name_Field)).getText().toString();
+        }
+
         if (db.findProfile(Name, LastName)) {
             return db.getProfile().getImage();
-
-        }
+            }
          db.close();
         return null;
     }
