@@ -4,8 +4,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    android:gravity="center"
-   tools:context="com.memoryaid.memoryaid.ProfileManager">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.memoryaid.memoryaid.ProfileManager_advanced">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -24,18 +24,42 @@
             android:textSize="30dp"
             android:gravity="center"
             android:layout_marginBottom="40dp"
-            android:text="@string/ContactTitle"
+            android:text="Profile Management"
             android:background="#FFFFFF"/>
 
 
         <Button
-            android:id="@+id/btnAddContact"
+            android:id="@+id/btnChangeProfile"
             style="@style/AudioFileInfoOverlayText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
+            android:linksClickable="false"
             android:textColor="#ff000000"
-            android:text="@string/Add_Contact"
+            android:text="@string/ProfileManagertxt4"
+            />
+
+        <Button
+            android:id="@+id/btnAddProfile"
+            style="@style/AudioFileInfoOverlayText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:linksClickable="false"
+            android:textColor="#ff000000"
+            android:text="@string/ProfileManagertxt1"
+            />
+
+
+
+        <Button
+            style="@style/AudioFileInfoOverlayText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:id="@+id/btnEditProfile"
+            android:textColor="#ff000000"
+            android:text="@string/ProfileManagertxt2"
             />
 
         <Button
@@ -43,31 +67,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:id="@+id/btnEditContact"
             android:textColor="#ff000000"
-            android:text="@string/EditeContact"
-            />
-
-        <Button
-            style="@style/AudioFileInfoOverlayText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:textColor="#ff000000"
-            android:id="@+id/btnDeleteContact"
-            android:text="@string/DeleteContact"
-            />
-        <Button
-            style="@style/AudioFileInfoOverlayText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:textColor="#ff000000"
-            android:id="@+id/btnProfileManager"
-            android:text="@string/ProfileHeader"
+            android:id="@+id/btnDeleteProfile"
+            android:text="@string/ProfileManagertxt3"
             />
 
 
     </LinearLayout>
 
-    </LinearLayout>
+
+</LinearLayout>

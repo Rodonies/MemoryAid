@@ -5,12 +5,20 @@
 
     <string name="title_Settings">Settings</string>
     <string name="title_activity_profile_manager">profile manager</string>
-    <string name="Headmenutxt1"> View profiles </string>
-    <string name="Headmenutxt2"> profile manager </string>
+    <string name="Headmenutxt1"> View Contacts </string>
+    <string name="Headmenutxt2">Contact / Profile manager </string>
     <string name="Headmenutxt3"> Settings </string>
+
+    <string name="ProfileHeader"> Profile management</string>
     <string name="ProfileManagertxt1"> Add Profile </string>
     <string name="ProfileManagertxt2"> Edit Profile </string>
     <string name="ProfileManagertxt3"> Delete Profile </string>
+    <string name="ProfileManagertxt4"> Change Profile </string>
+
+    <string name="ContactTitle">Contact Manager</string>
+    <string name="AddContact">Add contact</string>
+    <string name="EditeContact">Edit Contact</string>
+    <string name="DeleteContact">Delete Contact</string>
 
     <string name="title_activity_new_user_creation">NewUserCreation</string>
     <string name="title_activity_create_new_user">Create new user</string>
@@ -61,4 +69,5 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_profile_view">ProfileView</string>
     <string name="title_activity_contact_adding">ContactAdding</string>
+    <string name="title_activity_profile_manager_advanced">Profile Manager</string>
 </resources>

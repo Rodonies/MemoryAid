@@ -28,22 +28,18 @@ public class ProfileView extends ActionBarActivity {
         SharedPreferences settings = getSharedPreferences(SaveData,0);
         CurrentProfile = settings.getInt("CurrentProfile",1);
 
+
         if (db.findProfile(CurrentProfile)) {
 
-            ArrayList<Profile> list = db.getAllProfiles();
-
-            for (Profile profile : list) {
-
-                ArrayList<Contact> contactlist = profile.getContacts();
+                ArrayList<Contact> contactlist = db.getProfile().getContacts();
                 ListView ContactList = (ListView) findViewById(R.id.ListContacts);
                 ContactList.setAdapter(new AdapterContacts(this, contactlist));
                 db.close();
 
-
-            }
         }
+        /*
         else{
-            ArrayList<Profile> list = db.getAllProfiles();}
+            ArrayList<Profile> list = db.getAllProfiles();}*/
 
 
 

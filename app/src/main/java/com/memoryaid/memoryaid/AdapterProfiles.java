@@ -1,7 +1,6 @@
 package com.memoryaid.memoryaid;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,33 +9,29 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
-
 /**
- * Created by Bart on 24/04/2015.
+ * Created by Bart on 26/04/2015.
  */
-class AdapterContacts extends ArrayAdapter<Contact> {
-    @Override
+public class AdapterProfiles extends ArrayAdapter<Profile> {
+
     public View getView(int position, View convertView, ViewGroup parent) {
-        Contact contact = getItem(position);
+        Profile profile = getItem(position);
 
         convertView = LayoutInflater.from(this.getContext()).inflate(R.layout.contactlist_normalsize, parent, false);
 
         TextView ContactName = (TextView) convertView.findViewById(R.id.TextName);
-        ContactName.setText(contact.getFullName());
+        ContactName.setText(profile.getFullName());
 
         ImageView ContactImage = (ImageView) convertView.findViewById(R.id.imgContact);
-        // ContactImage.setImageURI(Uri.parse(contact.getImage()));
-        Picasso.with(getContext()).load(R.drawable.defaultimage).resize(150, 150).into(ContactImage);
+        ContactImage.setImageURI(Uri.parse(profile.getImage()));
+
         return convertView;
     }
 
-    public AdapterContacts(Context context, ArrayList<Contact> contactlist) {
-        super(context, 0, contactlist);
+    public AdapterProfiles(Context context, ArrayList<Profile>Profilelist) {
+        super(context, 0, Profilelist);
     }
+
 }

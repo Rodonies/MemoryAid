@@ -7,25 +7,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-
-import java.util.ArrayList;
 
 
 public class Homescreen extends ActionBarActivity implements View.OnClickListener {
-
-
     public static final String SaveData = "MyPreferenceFiles";
     private String First_Launch;
-    private Button btnViewProfiles;
-    private Button btnProfileManager;
+    private Button btnViewContacts;
+    private Button btnManager;
     private Button btnSettings;
-
     private View V;
-
     @Override
     public void onBackPressed() {
         Intent setIntent = new Intent(Intent.ACTION_MAIN);
@@ -33,19 +24,18 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(setIntent);
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homescreen);
 
-        btnProfileManager = (Button) findViewById(R.id.btnProfileManager);
-        btnViewProfiles = (Button) findViewById(R.id.btnProfileView);
+        btnManager = (Button) findViewById(R.id.btnManager);
+        btnViewContacts = (Button) findViewById(R.id.btnContactView);
         btnSettings = (Button) findViewById(R.id.btnSettings);
 
         btnSettings.setOnClickListener(this);
-        btnViewProfiles.setOnClickListener(this);
-        btnProfileManager.setOnClickListener(this);
+        btnViewContacts.setOnClickListener(this);
+        btnManager.setOnClickListener(this);
 
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         First_Launch = settings.getString("First_Launch", "true");
@@ -103,10 +93,10 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.btnProfileView:
+            case R.id.btnContactView:
                 ContactView(V);
                 break;
-            case R.id.btnProfileManager:
+            case R.id.btnManager:
                 ProfileManager(v);
                 break;
             case R.id.btnSettings:
