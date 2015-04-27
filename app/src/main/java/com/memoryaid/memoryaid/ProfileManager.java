@@ -15,6 +15,7 @@ public class ProfileManager extends FragmentActivity implements View.OnClickList
     private Button btnDeleteContact;
     private Button btnProfileManager;
 
+
     public static final String SaveData = "MyPreferenceFiles";
 
     @Override
@@ -50,14 +51,24 @@ public class ProfileManager extends FragmentActivity implements View.OnClickList
                     SharedPreferences settings = getSharedPreferences(SaveData, 0);
                     SharedPreferences.Editor editor = settings.edit();
                     editor.putString("Contact_Or_Profile","Contact");
+                    editor.putString("ProfileMode","View");
                     editor.commit();
                 CreateNewUser(v);
                 break;
             case R.id.btnEditContact:
 
+                settings = getSharedPreferences(SaveData, 0);
+                editor = settings.edit();
+                editor.putString("ProfileMode","Edit");
+                editor.commit();
+                ContactView(v);
+
                 break;
             case R.id.btnDeleteContact:
-
+                settings = getSharedPreferences(SaveData, 0);
+                editor = settings.edit();
+                editor.putString("ProfileMode","Delete");
+                editor.commit();
                 break;
             case R.id.btnProfileManager:
                     AdvancedProfileManager(v);
@@ -74,6 +85,10 @@ public class ProfileManager extends FragmentActivity implements View.OnClickList
 
     public void AdvancedProfileManager(View view){
         Intent i = new Intent(this,ProfileManager_advanced.class);
+        startActivity(i);
+    }
+    public void ContactView(View view) {
+        Intent i = new Intent(this, ProfileView.class);
         startActivity(i);
     }
 
