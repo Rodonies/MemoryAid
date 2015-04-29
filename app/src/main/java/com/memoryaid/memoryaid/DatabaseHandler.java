@@ -76,7 +76,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TABLE_SETTINGS = "settings";
 
     private static final String KEY_ID = "id";
-    private static final String KEY_CID = "cid";
     private static final String KEY_DATE = "birthdate";
     private static final String KEY_PROFILEID = "profileid";
     private static final String KEY_FIRSTNAME = "firstname";
@@ -158,7 +157,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             db.close();
 
             if (findProfile(profile.getFirstName(), profile.getLastName())) {
-                boolean b = saveSettings("Medium", "Blue", "English");
+                boolean b = saveSettings("Medium", "Blue");
                 return findProfile(profile.getFirstName(), profile.getLastName());
             } else return false;
         } catch (Exception e) {
@@ -271,12 +270,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    public boolean saveSettings(String size, String color, String language) {
+    public boolean saveSettings(String size, String color) {
         try {
             ContentValues values = new ContentValues();
             values.put(KEY_ID, _profile.getID());
-            values.put(KEY_SIZE, size);
-            values.put(KEY_COLOR, color);
+            if (size == null) values.put(KEY_SIZE,_profile.getSize()); else values.put(KEY_SIZE, size);
+            if (color == null) values.put(KEY_COLOR,_profile.getColor()); else values.put(KEY_COLOR, color);
 
             if (loadSettings()) {
                 SQLiteDatabase db = this.getWritableDatabase();
@@ -287,6 +286,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 db.insert(TABLE_SETTINGS, null, values);
                 db.close();
             }
+            loadSettings();
             return true;
         } catch (Exception e) {
             Log.e("saveSettings", "Error: " + e.getMessage());
