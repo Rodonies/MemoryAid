@@ -87,7 +87,7 @@
 
             <Button
                 android:id="@+id/button2"
-                android:layout_width="73dp"
+                android:layout_width="70dp"
                 android:layout_height="38dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10px"
@@ -97,7 +97,7 @@
 
             <Button
                 android:id="@+id/button3"
-                android:layout_width="73dp"
+                android:layout_width="70dp"
                 android:layout_height="38dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10px"
@@ -106,7 +106,7 @@
 
             <Button
                 android:id="@+id/button4"
-                android:layout_width="73dp"
+                android:layout_width="70dp"
                 android:layout_height="38dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10px"
@@ -115,7 +115,7 @@
 
             <Button
                 android:id="@+id/button5"
-                android:layout_width="73dp"
+                android:layout_width="70dp"
                 android:layout_height="38dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10px"
@@ -134,7 +134,7 @@
 
             <Button
                 android:id="@+id/button6"
-                android:layout_width="73dp"
+                android:layout_width="70dp"
                 android:layout_height="38dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10px"
@@ -143,7 +143,7 @@
 
             <Button
                 android:id="@+id/button7"
-                android:layout_width="73dp"
+                android:layout_width="70dp"
                 android:layout_height="38dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10px"
@@ -152,7 +152,7 @@
 
             <Button
                 android:id="@+id/button8"
-                android:layout_width="73dp"
+                android:layout_width="70dp"
                 android:layout_height="38dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10px"
@@ -161,7 +161,7 @@
 
             <Button
                 android:id="@+id/button9"
-                android:layout_width="73dp"
+                android:layout_width="70dp"
                 android:layout_height="38dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10px"
