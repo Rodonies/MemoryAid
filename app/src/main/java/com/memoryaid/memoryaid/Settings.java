@@ -52,17 +52,17 @@ public class Settings extends ActionBarActivity {
         final RadioButton C = (RadioButton) findViewById(R.id.RadioBig);
 
         switch (themeUtils.cTheme) {
-            case 1:
+            case "Small":
                 A.setChecked(true);
                 B.setChecked(false);
                 C.setChecked(false);
                 break;
-            case 0:
+            case "Big":
                 A.setChecked(false);
                 B.setChecked(false);
                 C.setChecked(true);
                 break;
-            case 2:
+            case "Medium":
                 A.setChecked(false);
                 B.setChecked(true);
                 C.setChecked(false);
@@ -131,15 +131,15 @@ public class Settings extends ActionBarActivity {
         switch (view.getId()) {
 
             case R.id.RadioMedium:
-                themeUtils.changeToTheme(this, themeUtils.Medium);
+                    themeUtils.changeToTheme(this, "Medium");
                 break;
             case R.id.RadioBig:
                 if (checked)
-                    themeUtils.changeToTheme(this, themeUtils.Big);
+                    themeUtils.changeToTheme(this, "Big");
                 break;
             case R.id.RadioSmall:
                 if (checked)
-                    themeUtils.changeToTheme(this, themeUtils.Small);
+                    themeUtils.changeToTheme(this, "Small");
                 break;
         }
 
@@ -149,28 +149,28 @@ public class Settings extends ActionBarActivity {
 
         switch (view.getId()) {
             case R.id.button2:
-                themeUtils.ChangeToColor(this, themeUtils.blue);
+                themeUtils.ChangeToColor(this, "Blue");
                 break;
             case R.id.button3:
-                themeUtils.ChangeToColor(this, themeUtils.green);
+                themeUtils.ChangeToColor(this, "green");
                 break;
             case R.id.button4:
-                themeUtils.ChangeToColor(this, themeUtils.red);
+                themeUtils.ChangeToColor(this, "red");
                 break;
             case R.id.button5:
-                themeUtils.ChangeToColor(this, themeUtils.yellow);
+                themeUtils.ChangeToColor(this, "yellow");
                 break;
             case R.id.button6:
-                themeUtils.ChangeToColor(this, themeUtils.pink);
+                themeUtils.ChangeToColor(this, "pink");
                 break;
             case R.id.button7:
-                themeUtils.ChangeToColor(this, themeUtils.purple);
+                themeUtils.ChangeToColor(this, "purple");
                 break;
             case R.id.button8:
-                themeUtils.ChangeToColor(this, themeUtils.white);
+                themeUtils.ChangeToColor(this, "white");
                 break;
             case R.id.button9:
-                themeUtils.ChangeToColor(this, themeUtils.black);
+                themeUtils.ChangeToColor(this, "black");
                 break;
         }
 

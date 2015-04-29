@@ -10,10 +10,8 @@ import android.view.View;
 import android.widget.RadioButton;
 
 public class themeUtils {
-    public final static int Big = 0;
-    public final static int Small = 1;
-    public final static int Medium = 2;
-    public static int cTheme = 2;
+
+    public static String cTheme = "Medium" ;
 
     public final static int Englisch = 0;
     public final static int Espagnol = 1;
@@ -21,18 +19,7 @@ public class themeUtils {
     public final static int Frans = 3;
     public static int cLanguage = 0;
 
-    public final static char blue = 'b';
-    public final static char red = 'r';
-    public final static char yellow = 'y';
-    public final static char green = 'g';
-    public final static char black = 'l';
-    public final static char white = 'w';
-    public final static char pink = 'p';
-    public final static char purple = 'z';
-    public static int cColor = 'b';
-
-
-    public static void changeToTheme(Activity activity, int theme) {
+    public static void changeToTheme(Activity activity, String theme) {
         cTheme = theme;
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));
@@ -40,13 +27,13 @@ public class themeUtils {
 
     public static void onActivityCreateSetTheme(Activity activity) {
         switch (cTheme) {
-            case Big:
+            case "Big":
                 activity.setTheme(R.style.Big);
                 break;
-            case Small:
+            case "Small":
                 activity.setTheme(R.style.Small);
                 break;
-            case Medium:
+            case "Medium":
                 activity.setTheme(R.style.Medium);
                 break;
         }
@@ -79,36 +66,40 @@ public class themeUtils {
         }
     }
 
-    public static void ChangeToColor(Activity activity, char color ) {
-        cColor = color;
+    public static void ChangeToColor(Activity activity, String color ) {
+        DatabaseHandler db = new DatabaseHandler(activity);
+        if (db.findProfile(DatabaseHandler.getProfile().getID()));
+        {
+            db.saveSettings("null", color);
+        }
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));
     }
 
     public static void onActivityCreateSetColor(Activity activity) {
-        switch (cColor) {
-            case blue:
+        switch (DatabaseHandler.getProfile().getColor()) {
+            case "Blue":
                 activity.setTheme(R.style.Blue);
                 break;
-            case red:
+            case "red":
                 activity.setTheme(R.style.Red);
                 break;
-            case yellow:
+            case "yellow":
                 activity.setTheme(R.style.Yellow);
                 break;
-            case green:
+            case "green":
                 activity.setTheme(R.style.Green);
                 break;
-            case white:
+            case "white":
                 activity.setTheme(R.style.White);
                 break;
-            case black:
+            case "black":
                 activity.setTheme(R.style.Black);
                 break;
-            case purple:
+            case "purple":
                 activity.setTheme(R.style.Purple);
                 break;
-            case pink:
+            case "pink":
                 activity.setTheme(R.style.Pink);
                 break;
         }
