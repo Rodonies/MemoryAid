@@ -188,7 +188,7 @@
             android:layout_width="126dp"
             android:layout_height="32dp"
             android:layout_gravity="center_horizontal"
-            android:text="@string/Language" />
+            android:text="@string/Font" />
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
@@ -208,7 +208,7 @@
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:onClick="onRadioButtonLanguageClicked"
-                    android:text="@string/English"
+                    android:text="@string/Arial"
                     android:background="#FFFFFF"/>
 
                 <RadioButton
@@ -216,8 +216,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onRadioButtonLanguageClicked"
-                    android:text="@string/Frans"
-                    android:background="#FFFFFF"/>
+                    android:text="@string/CenturyGothic"
+                    android:background="#FFFFFF"
+                    android:checked="false" />
             </LinearLayout>
 
             <LinearLayout
@@ -231,16 +232,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onRadioButtonLanguageClicked"
-                    android:text="@string/Deutsch"
-                    android:background="#FFFFFF"/>
+                    android:text="@string/TimesNewRoman"
+                    android:background="#FFFFFF"
+                    android:checked="false" />
 
                 <RadioButton
                     android:id="@+id/RadioEspanol"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onRadioButtonLanguageClicked"
-                    android:text="@string/Espanol"
-                    android:background="#FFFFFF"/>
+                    android:text="@string/BradleyHandITC"
+                    android:background="#FFFFFF"
+                    android:checked="false" />
             </LinearLayout>
         </RadioGroup>
 

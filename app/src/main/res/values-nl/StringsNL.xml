@@ -44,7 +44,10 @@
 
     <string name="Language">Taal</string>
     <string name="TextAndImageSize">Tekst &amp; Afbeeldings grootte</string>
-    <string name="English">Engels</string>
+    <string name="Arial">Arial</string>
+    <string name="TimesNewRoman">Times new roman</string>
+    <string name="CenturyGothic">Century Gothic</string>
+    <string name="BradleyHandITC">Bradley Hand ITC</string>
     <string name="Big">Groot</string>
     <string name="Medium">Medium</string>
     <string name="Small">Klein</string>

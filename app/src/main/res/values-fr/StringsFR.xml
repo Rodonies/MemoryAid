@@ -44,13 +44,13 @@
 
     <string name="Language">Langue</string>
     <string name="TextAndImageSize">Texte et Taille de le image</string>
-    <string name="English">Anglais</string>
+    <string name="Arial">Arial</string>
+    <string name="TimesNewRoman">Times new roman</string>
+    <string name="CenturyGothic">Century Gothic</string>
+    <string name="BradleyHandITC">Bradley Hand ITC</string>
     <string name="Big">Grand</string>
     <string name="Medium">Moyen</string>
     <string name="Small">petit</string>
-    <string name="Frans">Françias</string>
-    <string name="Deutsch">Deutsch</string>
-    <string name="Espanol">Espanol</string>
     <string name="ChooseFavColor">Choisissez votre couleur préférée</string>
 
     <string name="ImageLabel">Image de la personne</string>
