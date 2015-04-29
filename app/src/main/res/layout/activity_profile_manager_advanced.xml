@@ -24,8 +24,8 @@
             android:textSize="30dp"
             android:gravity="center"
             android:layout_marginBottom="40dp"
-            android:text="Profile Management"
-            android:background="#FFFFFF"/>
+            android:text="@string/title_activity_profile_manager_advanced"
+            android:background="#FFFFFF" />
 
 
         <Button

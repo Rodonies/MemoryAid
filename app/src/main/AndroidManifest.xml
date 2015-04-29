@@ -41,7 +41,7 @@
         </activity>
         <activity
             android:name=".ProfileManager"
-            android:label="@string/title_activity_profile_manager"
+            android:label="@string/title_activity_profile_manager_advanced"
             android:parentActivityName=".Homescreen" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

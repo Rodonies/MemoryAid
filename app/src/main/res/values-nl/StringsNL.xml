@@ -4,10 +4,8 @@
     <string name="action_settings"> Memory Aid </string>
 
     <string name="title_Settings">Instellingen</string>
-    <string name="title_activity_profile_manager">Profielbeheer</string>
     <string name="Headmenutxt1"> Toon profielen </string>
     <string name="Headmenutxt2"> Profielbeheer </string>
-    <string name="Headmenutxt3"> Instellingen </string>
 
     <string name="ProfileHeader"> Profielbeheer</string>
     <string name="ProfileManagertxt1"> Profiel toevoegen </string>
@@ -24,7 +22,6 @@
     <string name="title_activity_create_new_user">Creëer nieuwe gebruiker</string>
 
     <string name="ContactList">COntactlijst</string>
-    <string name="Add_Contact">Contact toevoegen</string>
     <string name="TitleCreateNewProfile">Creëer nieuw profiel</string>
     <string name="btnPicture">Foto toevoegen</string>
     <string name="Firstname">Voornaam: </string>
@@ -58,12 +55,6 @@
 
     <string name="ImageLabel">Afbeelding van de persoon</string>
     <string name="FirstNameText">  </string>
-    <string name="LastNameText">  </string>
-    <string name="RelationText">  </string>
-    <string name="PhonenmrText">  </string>
-    <string name="BasicInfoText1">  </string>
-    <string name="BasicInfoText2">   </string>
-    <string name="BasicInfoText3">   </string>
     <string name="SaveButton">Opslaan</string>
 
     <string name="hello_world">Hallo wereld!</string>

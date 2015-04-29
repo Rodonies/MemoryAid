@@ -4,10 +4,8 @@
     <string name="action_settings"> Memory Aid </string>
 
     <string name="title_Settings">Settings</string>
-    <string name="title_activity_profile_manager">profile manager</string>
     <string name="Headmenutxt1"> View Contacts </string>
     <string name="Headmenutxt2">Contact / Profile manager </string>
-    <string name="Headmenutxt3"> Settings </string>
 
     <string name="ProfileHeader"> Profile management</string>
     <string name="ProfileManagertxt1"> Add Profile </string>
@@ -24,7 +22,6 @@
     <string name="title_activity_create_new_user">Create new user</string>
 
     <string name="ContactList">Contact list</string>
-    <string name="Add_Contact">Add contact</string>
     <string name="TitleCreateNewProfile">Create new profile</string>
     <string name="btnPicture">Add picture</string>
     <string name="Firstname">First name: </string>
@@ -58,12 +55,6 @@
 
     <string name="ImageLabel">Image of the person</string>
     <string name="FirstNameText">  </string>
-    <string name="LastNameText">  </string>
-    <string name="RelationText">  </string>
-    <string name="PhonenmrText">  </string>
-    <string name="BasicInfoText1">  </string>
-    <string name="BasicInfoText2">   </string>
-    <string name="BasicInfoText3">   </string>
     <string name="SaveButton">Save</string>
 
     <string name="hello_world">Hello world!</string>

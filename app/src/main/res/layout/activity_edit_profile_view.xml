@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:inputType="date"
-                    android:text="@string/RelationText"
+                    android:text="@string/FirstNameText"
                     android:textColor="#000000"
                     android:textSize="23sp" />
             </LinearLayout>
@@ -157,7 +157,7 @@
                     android:id="@+id/PhonenmrText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/PhonenmrText"
+                    android:text="@string/FirstNameText"
                     android:textSize="23sp" />
 
 
@@ -187,7 +187,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:inputType="date"
-                    android:text="@string/BasicInfoText1"
+                    android:text="@string/FirstNameText"
                     android:textSize="23sp" />
 
                 <EditText
@@ -196,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:inputType="date"
-                    android:text="@string/BasicInfoText2"
+                    android:text="@string/FirstNameText"
                     android:textSize="23sp" />
 
                 <EditText
@@ -205,7 +205,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:inputType="date"
-                    android:text="@string/BasicInfoText3"
+                    android:text="@string/FirstNameText"
                     android:textSize="23sp" />
 
             </LinearLayout>

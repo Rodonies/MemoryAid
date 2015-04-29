@@ -174,8 +174,7 @@ public class Settings extends ActionBarActivity {
                 break;
         }
 
-        //Volgende code voegt settings toe aan het eerste profiel
-        //db.saveSettings("Big", "Rood", "Engels");
+        
     }
 
 }
