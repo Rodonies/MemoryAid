@@ -44,10 +44,10 @@
 
     <string name="Language">Langue</string>
     <string name="TextAndImageSize">Texte et Taille de le image</string>
-    <string name="Arial">Arial</string>
-    <string name="TimesNewRoman">Times new roman</string>
-    <string name="CenturyGothic">Century Gothic</string>
-    <string name="BradleyHandITC">Bradley Hand ITC</string>
+    <string name="Normal">Normal</string>
+    <string name="Bold">Bold</string>
+    <string name="Italic">Italic</string>
+    <string name="Underlined">Underlined</string>
     <string name="Big">Grand</string>
     <string name="Medium">Moyen</string>
     <string name="Small">petit</string>

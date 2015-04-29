@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:Width="100sp"
+            android:width="250sp"
             android:textColor="#ff000000"
             android:text="@string/AddContact"
             />
@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
             android:id="@+id/btnEditContact"
+            android:width="250sp"
             android:textColor="#ff000000"
             android:text="@string/EditeContact"
             />
@@ -57,6 +58,7 @@
             android:textColor="#ff000000"
             android:id="@+id/btnDeleteContact"
             android:text="@string/DeleteContact"
+            android:width="250sp"
             />
         <Button
             style="@style/AudioFileInfoOverlayText"
@@ -66,6 +68,7 @@
             android:textColor="#ff000000"
             android:id="@+id/btnProfileManager"
             android:text="@string/ProfileHeader"
+            android:width="250sp"
             />
 
 
