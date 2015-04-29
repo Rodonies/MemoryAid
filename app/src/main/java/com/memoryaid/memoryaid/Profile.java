@@ -97,8 +97,8 @@ public class Profile {
         else return Uri.fromFile(new File("@drawable/defaultimage.gif"));
     }
 
-    public Uri getUriLoc() {
-        return Uri.fromFile(new File(_imagepath + "/image.png"));
+    public File getImageFile() {
+        return new File(_imagepath + "/image.png");
     }
 
     public String getImagePath() {
