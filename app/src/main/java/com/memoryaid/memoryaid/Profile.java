@@ -50,9 +50,9 @@ public class Profile {
         Log.e("Profile", "size: " + getSize());
         Log.e("Profile", "color: " + getColor());
 
-        for (Contact contact : getContacts()) {
+        for (Contact contact : getContacts())
             Log.e("ShowContacts", "Contact " + contact.getCID() + ": " + contact.getFullName() + " " + contact.getNumber());
-        }
+
     }
 
     public void addContact(Contact contact) {

@@ -1,5 +1,8 @@
 package com.memoryaid.memoryaid;
 
+import android.net.Uri;
+
+import java.io.File;
 import java.util.List;
 
 /**
@@ -73,8 +76,14 @@ public class Contact {
         return _information;
     }
 
-    public String getImage() {
-        return _imagepath + "/image.png";
+    public Uri getImageUri() {
+        File image = new File(_imagepath + "/image.png");
+        if (image.exists()) return Uri.fromFile(image);
+        else return Uri.fromFile(new File("@drawable/defaultimage.gif"));
+    }
+
+    public File getImageFile() {
+        return new File(_imagepath + "/image.png");
     }
 
     public String getImagePath() {
