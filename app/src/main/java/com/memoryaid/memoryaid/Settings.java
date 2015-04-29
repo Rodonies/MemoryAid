@@ -20,7 +20,6 @@ public class Settings extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
-
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         First_Launch = settings.getString("First_Launch", "true");
 
@@ -33,6 +32,7 @@ public class Settings extends ActionBarActivity {
             Intent i = new Intent(this, Homescreen.class);
             startActivity(i);
         }
+
     }
 
     public void CreateNewUser(View view) {
@@ -42,7 +42,6 @@ public class Settings extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         themeUtils.onActivityCreateSetTheme(this);
         themeUtils.onActivityCreateSetColor(this);
@@ -176,7 +175,7 @@ public class Settings extends ActionBarActivity {
         }
 
         //Volgende code voegt settings toe aan het eerste profiel
-        db.saveSettings("Big", "Rood", "Engels");
+        //db.saveSettings("Big", "Rood", "Engels");
     }
 
 }

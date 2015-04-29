@@ -240,7 +240,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         }
 
         if (db.findProfile(Name, LastName)) {
-            return db.getProfile().getImage();
+            return db.getProfile().getImagePath();
             }
          db.close();
         return null;

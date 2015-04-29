@@ -238,7 +238,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    Profile getProfile() {
+    public static Profile getProfile() {
         return _profile;
     }
 

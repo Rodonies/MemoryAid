@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 
 public class Homescreen extends ActionBarActivity implements View.OnClickListener {
     public static final String SaveData = "MyPreferenceFiles";
@@ -46,14 +48,14 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         }
 
 
-        /*DatabaseHandler db = new DatabaseHandler(this);
+        DatabaseHandler db = new DatabaseHandler(this);
         if (!db.findProfile("Jan", "Jansens")) {
-            db.addProfile(new Profile("Jan", "Jansens", "2/2/2015", "127.0.0.1"));
+            db.addProfile(new Profile("Jan", "Jansens", "2/2/2015", "127.0.0.1", "hi"));
             db.addContact(new Contact("Jos1", "Jansens", "2/2/2015", "Family", "13.33.33.37", "Jos1 Jansens is my nephew"));
             db.addContact(new Contact("Jos2", "Jansens", "2/2/2015", "Family", "13.33.33.37", "Jos2 Jansens is my cousin"));
             db.addContact(new Contact("Jos3", "Jansens", "2/2/2015", "Family", "13.33.33.37", "Jos3 Jansens is my wife"));
 
-            db.addProfile(new Profile("BRAK", "OBAMA", "2/2/2015", "127.0.0.1"));
+            db.addProfile(new Profile("BRAK", "OBAMA", "2/2/2015", "127.0.0.1", "hi"));
             db.addContact(new Contact("MICHELLE", "OBAMA", "2/2/2015", "Family", "13.33.33.37", "wife"));
             db.addContact(new Contact("SOMETHINGELSE", "OBAMA", "2/2/2015", "Family", "13.33.33.37", "kid"));
 
@@ -68,7 +70,7 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
                 }
 
             }
-        }*/
+        }
 
 
     }

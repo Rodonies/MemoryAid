@@ -25,7 +25,7 @@ public class AdapterProfiles extends ArrayAdapter<Profile> {
         ContactName.setText(profile.getFullName());
 
         ImageView ContactImage = (ImageView) convertView.findViewById(R.id.imgContact);
-        ContactImage.setImageURI(Uri.parse(profile.getImage()));
+        ContactImage.setImageURI(Uri.parse(profile.getImagePath()));
 
         return convertView;
     }
