@@ -115,12 +115,6 @@ public class Settings extends ActionBarActivity {
     }
 
 
-
-
-
-
-
-
     public void onRadioButtonLanguageClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
 
@@ -180,6 +174,9 @@ public class Settings extends ActionBarActivity {
                 themeUtils.ChangeToColor(this, themeUtils.black);
                 break;
         }
+
+        //Volgende code voegt settings toe aan het eerste profiel
+        db.saveSettings("Big", "Rood", "Engels");
     }
 
 }
