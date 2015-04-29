@@ -18,7 +18,6 @@ public class Profile {
     private String _imagepath;
     private ArrayList<Contact> _contacts;
 
-    private String _language;
     private String _color;
     private String _size;
 
@@ -48,7 +47,6 @@ public class Profile {
 
         Log.e("Profile", "size: " + getSize());
         Log.e("Profile", "color: " + getColor());
-        Log.e("Profile", "language: " + getLanguage());
 
         for (Contact contact : getContacts()) {
             Log.e("ShowContacts", "Contact " + contact.getCID() + ": " + contact.getFullName() + " " + contact.getNumber());
@@ -107,22 +105,17 @@ public class Profile {
         return _color;
     }
 
-    public String getLanguage() {
-        return _language;
-    }
-
     public void updateImagePath(String newpath) {
         _imagepath = newpath;
     }
 
-    public void updateSettings(String size, String color, String language) {
+    public void updateSettings(String size, String color) {
         _size = size;
         _color = color;
-        _language = language;
     }
 
     public boolean settingsInitialized() {
-        if (_size == null || _color == null || _language == null) return false;
+        if (_size == null || _color == null) return false;
         else return true;
     }
 }

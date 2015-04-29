@@ -59,7 +59,7 @@ if (findprofile(1)) db.deleteProfile();
 
 
 //Volgende code voegt settings toe aan het eerste profiel
-db.saveSettings("Big", "Rood", "Engels");
+db.saveSettings("Big", "Rood");
 
 
 //volgende code dient voor te zien of de settings bestaan of niet, als ze niet bestaan moet de settings intent worden opgestart
@@ -68,7 +68,7 @@ if (!db.getProfile().settingsInitialized()) StartNieuweSettingsIntentHier();
 */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 27;
+    private static final int DATABASE_VERSION = 28;
     private static final String DATABASE_NAME = "database";
 
     private static final String TABLE_PROFILES = "profiles";
@@ -86,7 +86,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_NUMBER = "number";
     private static final String KEY_INFORMATION = "information";
 
-    private static final String KEY_LANGUAGE = "language";
     private static final String KEY_SIZE = "size";
     private static final String KEY_COLOR = "color";
 
@@ -125,7 +124,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_SETTINGS_TABLE =
                 "CREATE TABLE `" + TABLE_SETTINGS + "` (\n" +
                         "\t`" + KEY_ID + "`\tINTEGER NOT NULL,\n" +
-                        "\t`" + KEY_LANGUAGE + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_SIZE + "`\tTEXT NOT NULL,\n" +
                         "\t`" + KEY_COLOR + "`\tTEXT NOT NULL\n" +
                         ");";
@@ -279,7 +277,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             values.put(KEY_ID, _profile.getID());
             values.put(KEY_SIZE, size);
             values.put(KEY_COLOR, color);
-            values.put(KEY_LANGUAGE, language);
 
             if (loadSettings()) {
                 SQLiteDatabase db = this.getWritableDatabase();
@@ -359,9 +356,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private boolean loadSettings() {
         SQLiteDatabase db = this.getReadableDatabase();
         try {
-            Cursor cursor = db.query(TABLE_SETTINGS, new String[]{KEY_SIZE, KEY_COLOR, KEY_LANGUAGE}, KEY_ID + " = ?", new String[]{Integer.toString(_profile.getID())}, null, null, null, null);
+            Cursor cursor = db.query(TABLE_SETTINGS, new String[]{KEY_SIZE, KEY_COLOR}, KEY_ID + " = ?", new String[]{Integer.toString(_profile.getID())}, null, null, null, null);
             if (cursor.moveToFirst()) {
-                _profile.updateSettings(cursor.getString(0), cursor.getString(1), cursor.getString(2));
+                _profile.updateSettings(cursor.getString(0), cursor.getString(1));
                 db.close();
                 return true;
             }
@@ -392,9 +389,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         } while (cursor2.moveToNext());
                     }
 
-                    Cursor cursor3 = db.query(TABLE_SETTINGS, new String[]{KEY_SIZE, KEY_COLOR, KEY_LANGUAGE}, KEY_ID + " = ?", new String[]{Integer.toString(newprofile.getID())}, null, null, null, null);
+                    Cursor cursor3 = db.query(TABLE_SETTINGS, new String[]{KEY_SIZE, KEY_COLOR}, KEY_ID + " = ?", new String[]{Integer.toString(newprofile.getID())}, null, null, null, null);
                     if (cursor3.moveToFirst()) {
-                        newprofile.updateSettings(cursor3.getString(0), cursor3.getString(1), cursor3.getString(2));
+                        newprofile.updateSettings(cursor3.getString(0), cursor3.getString(1));
                     }
 
                     list.add(newprofile);
