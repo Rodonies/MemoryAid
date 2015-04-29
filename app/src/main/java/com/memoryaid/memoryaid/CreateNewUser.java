@@ -170,7 +170,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         DatabaseHandler db = new DatabaseHandler(this);
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         Contact_Or_Profile = settings.getString("Contact_Or_Profile", "Profile");
-        First_Launch = settings.getString("First_Launch","true");
+        First_Launch = settings.getString("First_Launch", "true");
         if (Contact_Or_Profile == "Profile" || First_Launch == "true") {
 
             SharedPreferences.Editor editor = settings.edit();
@@ -179,35 +179,29 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
             Phone = ((EditText) findViewById(R.id.PhoneNumber)).getText().toString();
             BirthDate = ((EditText) findViewById(R.id.Date_Of_Birth)).getText().toString();
             Note = ((EditText) findViewById(R.id.Notes)).getText().toString();
-            db.addProfile(new Profile(Name,LastName,Phone,BirthDate,Note));
+
+            //CHECK HIER VOOR INVGEVULDE SHIT
+
+            db.addProfile(new Profile(Name, LastName, Phone, BirthDate, Note));
 
 
-
-
-            if (db.findProfile(Name,LastName))
-            {
-                if (First_Launch == "true")
-                {
-                    editor.putString("First_Launch","false");
+            if (db.findProfile(Name, LastName)) {
+                if (First_Launch == "true") {
+                    editor.putString("First_Launch", "false");
                     editor.commit();
                 }
 
-                editor.putInt("CurrentProfile",db.getProfile().getID());
+                editor.putInt("CurrentProfile", db.getProfile().getID());
                 editor.commit();
             }
             db.close();
-            File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),"temp.png");
-            if(photo.exists())
-            {
-                try{
-                    InputStream in = new FileInputStream(photo);
-                    OutputStream out;
-                    if (Contact_Or_Profile == "Profile") {
-                        out = new FileOutputStream(DatabaseHandler.getProfile().getImageFile());
-                    }
-                    else {
-                        out = new FileOutputStream(DatabaseHandler.getProfile().getContacts().indexOf(DatabaseHandler.getProfile().getContacts().size()).getImageFile());
-                    }
+
+            File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
+            if (photo.exists()) {
+                try {
+                    //InputStream in = new FileInputStream(photo);
+                    photo.renameTo(DatabaseHandler.getProfile().getImageFile());
+                    /*OutputStream out = new FileOutputStream(DatabaseHandler.getProfile().getImageFile());
                     // Transfer bytes from in to out
                     byte[] buf = new byte[1024];
                     int len;
@@ -215,20 +209,15 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                         out.write(buf, 0, len);
                     }
                     in.close();
-                    out.close();
-                }
-                catch (Exception fuck)
-                {
-
+                    out.close();*/
+                } catch (Exception fuck) {
+Log.e("TOP KEK", "FUCK THIS SHIT");
                 }
 
             }
 
 
-
-
-        }
-        else if(Contact_Or_Profile == "Contact"){
+        } else if (Contact_Or_Profile.equals("Contact")) {
 
 
             Name = ((EditText) findViewById(R.id.Contact_First_Name)).getText().toString();
@@ -238,18 +227,23 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
             Extra_Info = ((EditText) findViewById(R.id.Contact_Extra_Info)).getText().toString();
             Relation = ((EditText) findViewById(R.id.Contact_Relation)).getText().toString();
 
-            CurrentProfile = settings.getInt("CurrentProfile",1);
-            if (db.findProfile(CurrentProfile))
-            {
-              db.addContact(new Contact(Name,LastName,BirthDate,Relation,Phone,Extra_Info));
+            CurrentProfile = settings.getInt("CurrentProfile", 1);
+            if (db.findProfile(CurrentProfile)) {
+                db.addContact(new Contact(Name, LastName, BirthDate, Relation, Phone, Extra_Info));
 
-              db.close();
+
+                db.close();
+
+                File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
+                if (photo.exists()) {
+
+                        photo.renameTo(DatabaseHandler.getProfile().getContacts().get(DatabaseHandler.getProfile().getContacts().size()).getImageFile());
+                }
             }
         }
-
         Intent i = new Intent(this, Homescreen.class);
         startActivity(i);
-        }
+    }
 
     public void TakePhoto() {
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");

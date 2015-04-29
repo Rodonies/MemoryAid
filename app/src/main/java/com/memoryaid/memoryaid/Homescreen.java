@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,7 +45,7 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         First_Launch = settings.getString("First_Launch", "true");
 
 
-        if (First_Launch == "true") {
+        if (First_Launch.equals("true")) {
           Settings(V);
         }
 
@@ -65,13 +66,14 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
             for (Profile profile : list) {
 
                 ArrayList<Contact> contactlist = profile.getContacts();
-
+                Log.e("profile", profile.getFullName());
                 for (Contact contact : contactlist) {
-                    contact.getFullName();
+                    Log.e("contact", contact.getFullName());
                 }
 
             }
         }
+
 
 
     }

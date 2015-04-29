@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ListAdapter;
+import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
@@ -41,15 +43,15 @@ public class ProfileView extends ActionBarActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     BufferContact = (Contact) ContactList.getItemAtPosition(position);
 
-                    if (ContactMode == "View")
+                    if (ContactMode.equals("View"))
                     {
                         ViewProfile(V);
                     }
-                    else if(ContactMode == "Edit")
+                    else if(ContactMode.equals("Edit"))
                     {
 
                     }
-                    else if(ContactMode == "Delete")
+                    else if(ContactMode.equals("Delete"))
                     {
 
                     }
@@ -75,7 +77,7 @@ public class ProfileView extends ActionBarActivity {
         LastName = (EditText) findViewById(R.id.LastNameText);
         LastName.setText(BufferContact.getLastName());
         Phone = (EditText) findViewById(R.id.PhonenmrText);
-        Phone.setText(BufferContact.getNumber());
+        Phone.setText(BufferContact.getFirstName());
         Information = (EditText) findViewById(R.id.BasicInfoText);
         Information.setText(BufferContact.getInformation());
         Relation = (EditText) findViewById(R.id.RelationText);
