@@ -20,7 +20,11 @@ public class themeUtils {
     public static int cLanguage = 0;
 
     public static void changeToTheme(Activity activity, String theme) {
-        cTheme = theme;
+        DatabaseHandler db = new DatabaseHandler(activity);
+        if (db.findProfile(DatabaseHandler.getProfile().getID()));
+        {
+            db.saveSettings(theme, "null");
+        }
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));
     }
