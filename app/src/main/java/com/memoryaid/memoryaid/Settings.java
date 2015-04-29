@@ -69,10 +69,10 @@ public class Settings extends ActionBarActivity {
                 break;
         }
 
-        final RadioButton m_one = (RadioButton) findViewById(R.id.RadioEnglish);
-        final RadioButton m_two = (RadioButton) findViewById(R.id.RadioFrans);
-        final RadioButton m_three = (RadioButton) findViewById(R.id.RadioDeutsch);
-        final RadioButton m_four = (RadioButton) findViewById(R.id.RadioEspanol);
+        final RadioButton m_one = (RadioButton) findViewById(R.id.RadioArial);
+        final RadioButton m_two = (RadioButton) findViewById(R.id.RadioTimesNewRoman);
+        final RadioButton m_three = (RadioButton) findViewById(R.id.RadioCenturyGothic);
+        final RadioButton m_four = (RadioButton) findViewById(R.id.RadioBradleyHandITC);
 
 
         m_one.setOnClickListener(new View.OnClickListener() {

@@ -43,7 +43,7 @@
     <string name="txtCamera">Camera</string>
 
     <string name="Font">Font</string>
-    <string name="TextAndImageSize">Text &amp; Image Size</string>
+    <string name="ImageSize">Image Size</string>
     <string name="Arial">Arial</string>
     <string name="Big">Big</string>
     <string name="Medium">Medium</string>
