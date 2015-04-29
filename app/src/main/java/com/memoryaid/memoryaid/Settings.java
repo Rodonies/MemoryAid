@@ -51,23 +51,10 @@ public class Settings extends ActionBarActivity {
         final RadioButton B = (RadioButton) findViewById(R.id.RadioMedium);
         final RadioButton C = (RadioButton) findViewById(R.id.RadioBig);
 
-        switch (themeUtils.cTheme) {
-            case "Small":
-                A.setChecked(true);
-                B.setChecked(false);
-                C.setChecked(false);
-                break;
-            case "Big":
-                A.setChecked(false);
-                B.setChecked(false);
-                C.setChecked(true);
-                break;
-            case "Medium":
                 A.setChecked(false);
                 B.setChecked(true);
                 C.setChecked(false);
-                break;
-        }
+
 
         final RadioButton m_one = (RadioButton) findViewById(R.id.RadioArial);
         final RadioButton m_two = (RadioButton) findViewById(R.id.RadioTimesNewRoman);
@@ -131,15 +118,13 @@ public class Settings extends ActionBarActivity {
         switch (view.getId()) {
 
             case R.id.RadioMedium:
-                    themeUtils.changeToTheme(this, "Medium");
-                break;
-            case R.id.RadioBig:
-                if (checked)
-                    themeUtils.changeToTheme(this, "Big");
+                themeUtils.changeToTheme(this, "Medium");
                 break;
             case R.id.RadioSmall:
-                if (checked)
-                    themeUtils.changeToTheme(this, "Small");
+                themeUtils.changeToTheme(this, "Small");
+                break;
+            case R.id.RadioBig:
+                themeUtils.changeToTheme(this, "Big");
                 break;
         }
 

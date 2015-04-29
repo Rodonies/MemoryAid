@@ -25,8 +25,6 @@ public class themeUtils {
         {
             db.saveSettings(theme, "null");
         }
-        activity.finish();
-        activity.startActivity(new Intent(activity, activity.getClass()));
     }
 
     public static void onActivityCreateSetTheme(Activity activity) {
