@@ -16,8 +16,9 @@ public class ProfileView extends ActionBarActivity {
     public static final String SaveData = "MyPreferenceFiles";
     private int CurrentProfile;
     private String ContactMode;
-
-    private String Name,LastName,Phone,Date_of_Birth,Information,Relation;
+    private View V;
+    private Contact BufferContact;
+    private EditText Name,LastName,Phone,Date_of_Birth,Information,Relation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,30 +30,32 @@ public class ProfileView extends ActionBarActivity {
         DatabaseHandler db = new DatabaseHandler(this);
         SharedPreferences settings = getSharedPreferences(SaveData,0);
         CurrentProfile = settings.getInt("CurrentProfile",1);
-        ContactMode = settings.getString("ProfileMode","view");
+        ContactMode = settings.getString("ProfileMode","View");
 
         if (db.findProfile(CurrentProfile)) {
 
                 ArrayList<Contact> contactlist = db.getProfile().getContacts();
-                ListView ContactList = (ListView) findViewById(R.id.ListContacts);
-                ContactList.setOnClickListener(new AdapterView.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (ContactMode == "View")
-                        {
+                final ListView ContactList = (ListView) findViewById(R.id.ListContacts);
+                 ContactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    BufferContact = (Contact) ContactList.getItemAtPosition(position);
 
-                        }
-                        else if(ContactMode == "Edit")
-                        {
-
-                        }
-                        else if(ContactMode == "Delete")
-                        {
-
-                        }
+                    if (ContactMode == "View")
+                    {
+                        ViewProfile(V);
                     }
-                });
-                ContactList.setAdapter(new AdapterContacts(this, contactlist));
+                    else if(ContactMode == "Edit")
+                    {
+
+                    }
+                    else if(ContactMode == "Delete")
+                    {
+
+                    }
+                }
+            });
+                   ContactList.setAdapter(new AdapterContacts(this, contactlist));
                 db.close();
 
         }
@@ -65,8 +68,19 @@ public class ProfileView extends ActionBarActivity {
     }
     void ViewProfile(View v)
     {
-        setContentView(R.layout.activity_profile_view);
-         Name = ((EditText) findViewById(R.id.FirstNameText)).getText().toString();
+         setContentView(R.layout.activity_profile_view);
+
+        Name = (EditText) findViewById(R.id.FirstNameText);
+        Name.setText(BufferContact.getFirstName());
+        LastName = (EditText) findViewById(R.id.LastNameText);
+        LastName.setText(BufferContact.getLastName());
+        Phone = (EditText) findViewById(R.id.PhonenmrText);
+        Phone.setText(BufferContact.getNumber());
+        Information = (EditText) findViewById(R.id.BasicInfoText);
+        Information.setText(BufferContact.getInformation());
+        Relation = (EditText) findViewById(R.id.RelationText);
+        Relation.setText(BufferContact.getRelation());
+
 
     }
 

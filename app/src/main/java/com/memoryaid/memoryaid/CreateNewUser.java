@@ -165,10 +165,8 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         Contact_Or_Profile = settings.getString("Contact_Or_Profile", "Profile");
         First_Launch = settings.getString("First_Launch","true");
-
         if (Contact_Or_Profile == "Profile" || First_Launch == "true") {
             SharedPreferences.Editor editor = settings.edit();
-
             Name = ((EditText) findViewById(R.id.First_Name_Field)).getText().toString();
             LastName = ((EditText) findViewById(R.id.Last_Name_Field)).getText().toString();
             Phone = ((EditText) findViewById(R.id.PhoneNumber)).getText().toString();
@@ -227,6 +225,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
     }
 
     public String GetPath() {
+
         DatabaseHandler db = new DatabaseHandler(this);
 
         if (Contact_Or_Profile == "Contact") {
