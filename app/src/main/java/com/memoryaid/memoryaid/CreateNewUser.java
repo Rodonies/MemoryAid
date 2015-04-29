@@ -199,17 +199,29 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
             File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),"temp.png");
             if(photo.exists())
             {
-                InputStream in = new FileInputStream(photo);
-                OutputStream out = new FileOutputStream();
-
-                // Transfer bytes from in to out
-                byte[] buf = new byte[1024];
-                int len;
-                while ((len = in.read(buf)) > 0) {
-                    out.write(buf, 0, len);
+                try{
+                    InputStream in = new FileInputStream(photo);
+                    OutputStream out;
+                    if (Contact_Or_Profile == "Profile") {
+                        out = new FileOutputStream(DatabaseHandler.getProfile().getImageFile());
+                    }
+                    else {
+                        out = new FileOutputStream(DatabaseHandler.getProfile().getContacts().indexOf(DatabaseHandler.getProfile().getContacts().size()).getImageFile());
+                    }
+                    // Transfer bytes from in to out
+                    byte[] buf = new byte[1024];
+                    int len;
+                    while ((len = in.read(buf)) > 0) {
+                        out.write(buf, 0, len);
+                    }
+                    in.close();
+                    out.close();
                 }
-                in.close();
-                out.close();
+                catch (Exception fuck)
+                {
+
+                }
+
             }
 
 
