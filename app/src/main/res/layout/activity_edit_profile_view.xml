@@ -32,7 +32,8 @@
                 android:layout_gravity="center"
                 android:text="@string/ProfileManagertxt2"
                 android:textColor="#000000"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                android:background="#FFFFFF"/>
         </LinearLayout>
 
 
@@ -48,7 +49,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="#FFFFFF">
 
                 <TextView
                     android:id="@+id/FirstNameLabel"
@@ -57,7 +59,8 @@
                     android:layout_gravity="left|top"
                     android:text="@string/Firstname"
                     android:textColor="#000000"
-                    android:textSize="29sp" />
+                    android:textSize="29sp"
+                    android:background="#FFFFFF"/>
 
                 <EditText
                     android:id="@+id/FirstNameText"
@@ -76,7 +79,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="#FFFFFF">
 
                 <TextView
                     android:id="@+id/LastNameLabel"
@@ -85,7 +89,8 @@
                     android:layout_gravity="left|top"
                     android:text="@string/Lastname"
                     android:textColor="#000000"
-                    android:textSize="29sp" />
+                    android:textSize="29sp"
+                    android:background="#FFFFFF"/>
 
                 <EditText
                     android:id="@+id/LastNameText"
@@ -105,7 +110,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="#FFFFFF">
 
                 <TextView
                     android:id="@+id/RelationLabel"
@@ -114,7 +120,8 @@
                     android:layout_gravity="left|top"
                     android:text="@string/Relation"
                     android:textColor="#000000"
-                    android:textSize="29sp" />
+                    android:textSize="29sp"
+                    android:background="#FFFFFF"/>
 
                 <EditText
                     android:id="@+id/RelationText"
@@ -132,7 +139,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="#FFFFFF">
 
 
                 <TextView
@@ -142,7 +150,8 @@
                     android:layout_gravity="left|center"
                     android:text="@string/PhoneNumber"
                     android:textColor="#000000"
-                    android:textSize="29sp" />
+                    android:textSize="29sp"
+                    android:background="#FFFFFF"/>
 
                 <EditText
                     android:id="@+id/PhonenmrText"
@@ -159,7 +168,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="180dp"
                 android:layout_gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="#FFFFFF">
 
                 <TextView
                     android:id="@+id/BasicInfoLabel"
@@ -168,7 +178,8 @@
                     android:layout_gravity="left|bottom"
                     android:text="@string/Basic_info"
                     android:textColor="#000000"
-                    android:textSize="29sp" />
+                    android:textSize="29sp"
+                    android:background="#FFFFFF"/>
 
                 <EditText
                     android:id="@+id/BasicInfoText1"

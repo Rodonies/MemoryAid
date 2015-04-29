@@ -33,7 +33,8 @@
                     android:text="@string/Add_Contact"
                     android:textColor="#000000"
                     android:textSize="28sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:background="#FFFFFF"/>
 
                 <Button
                     android:id="@+id/btnAddPhoto"
@@ -62,7 +63,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Firstname"
-                android:theme="@style/NewUserUI" />
+                android:theme="@style/NewUserUI"
+                android:background="#FFFFFF"/>
 
             <EditText
                 android:id="@+id/Contact_First_Name"
@@ -75,7 +77,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Lastname"
-                android:theme="@style/NewUserUI" />
+                android:theme="@style/NewUserUI"
+                android:background="#FFFFFF"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -88,7 +91,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/PhoneNumber"
-                android:theme="@style/NewUserUI" />
+                android:theme="@style/NewUserUI"
+                android:background="#FFFFFF"/>
 
             <EditText
                 android:layout_width="fill_parent"
@@ -102,7 +106,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Date_of_birth"
-                android:theme="@style/NewUserUI" />
+                android:theme="@style/NewUserUI"
+                android:background="#FFFFFF"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -115,7 +120,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Basic_info"
-                android:theme="@style/NewUserUI" />
+                android:theme="@style/NewUserUI"
+                android:background="#FFFFFF"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -128,7 +134,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Relation"
-                android:theme="@style/NewUserUI" />
+                android:theme="@style/NewUserUI"
+                android:background="#FFFFFF"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -147,7 +154,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:background="#FFFFFF">
 
         <Button
             android:layout_width="wrap_content"
