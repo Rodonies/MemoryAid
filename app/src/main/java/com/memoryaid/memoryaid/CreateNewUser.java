@@ -24,6 +24,10 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.jar.Attributes;
 
 import javax.xml.namespace.NamespaceContext;
@@ -45,7 +49,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
     private int CURRENT_PHOTONUMBER;
 
     private Uri imageUri;
-
+    private Uri GlobalUri;
 
 
     private String Name;
@@ -85,6 +89,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                 if (resCode == Activity.RESULT_OK) {
                     Uri selectedImage = imageUri;
                     Picasso.with(getApplicationContext()).load(selectedImage).centerCrop().resize(300, 250).into(contactImgView);
+
                     Toast.makeText(this, "photo was added to database", Toast.LENGTH_LONG).show();
                     CURRENT_PHOTONUMBER++;
                     btnAddPhoto.setVisibility(View.GONE);
@@ -95,6 +100,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                 break;
             case 2:
                 try {
+                    GlobalUri = data.getData();
                     Picasso.with(getApplicationContext()).load(data.getData()).centerCrop().resize(300, 250).into(contactImgView);
                     Toast.makeText(this, "photo was selected", Toast.LENGTH_LONG).show();
                     btnAddPhoto.setVisibility(View.GONE);
@@ -166,6 +172,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         Contact_Or_Profile = settings.getString("Contact_Or_Profile", "Profile");
         First_Launch = settings.getString("First_Launch","true");
         if (Contact_Or_Profile == "Profile" || First_Launch == "true") {
+
             SharedPreferences.Editor editor = settings.edit();
             Name = ((EditText) findViewById(R.id.First_Name_Field)).getText().toString();
             LastName = ((EditText) findViewById(R.id.Last_Name_Field)).getText().toString();
@@ -173,6 +180,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
             BirthDate = ((EditText) findViewById(R.id.Date_Of_Birth)).getText().toString();
             Note = ((EditText) findViewById(R.id.Notes)).getText().toString();
             db.addProfile(new Profile(Name,LastName,Phone,BirthDate,Note));
+
 
 
 
@@ -188,7 +196,21 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                 editor.commit();
             }
             db.close();
+            File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),"temp.png");
+            if(photo.exists())
+            {
+                InputStream in = new FileInputStream(photo);
+                OutputStream out = new FileOutputStream();
 
+                // Transfer bytes from in to out
+                byte[] buf = new byte[1024];
+                int len;
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
+                }
+                in.close();
+                out.close();
+            }
 
 
 
@@ -208,6 +230,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
             if (db.findProfile(CurrentProfile))
             {
               db.addContact(new Contact(Name,LastName,BirthDate,Relation,Phone,Extra_Info));
+
               db.close();
             }
         }
@@ -218,32 +241,14 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
     public void TakePhoto() {
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        File photo = new File(GetPath());
+        File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),"temp.png");
+        //photo.deleteOnExit();
         imageUri = Uri.fromFile(photo);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         startActivityForResult(intent, TAKE_PICTURE);
     }
 
-    public String GetPath() {
 
-        DatabaseHandler db = new DatabaseHandler(this);
-
-        if (Contact_Or_Profile == "Contact") {
-            Name = ((EditText) findViewById(R.id.Contact_First_Name)).getText().toString();
-            LastName = ((EditText) findViewById(R.id.Contact_Last_Name)).getText().toString();
-        }
-        else if(Contact_Or_Profile == "Profile")
-        {
-            Name = ((EditText) findViewById(R.id.First_Name_Field)).getText().toString();
-            LastName = ((EditText) findViewById(R.id.Last_Name_Field)).getText().toString();
-        }
-
-        if (db.findProfile(Name, LastName)) {
-            return db.getProfile().getImagePath();
-            }
-         db.close();
-        return null;
-    }
 
 
 }
