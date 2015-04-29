@@ -8,13 +8,24 @@
     <string name="Headmenutxt1"> Voir les profils </string>
     <string name="Headmenutxt2"> Gestion des profils </string>
     <string name="Headmenutxt3"> Paramètres </string>
+
+    <string name="ProfileHeader"> Gestion de profil</string>
     <string name="ProfileManagertxt1"> Ajouter Profil </string>
     <string name="ProfileManagertxt2"> Modifier le profil </string>
     <string name="ProfileManagertxt3"> supprimer le profil </string>
+    <string name="ProfileManagertxt4"> Changer de profil </string>
+
+
+    <string name="ContactTitle">Contactez-gestionnaire</string>
+    <string name="AddContact">Ajouter le contact</string>
+    <string name="EditeContact">Modifier le contact</string>
+    <string name="DeleteContact">supprimer contact</string>
 
     <string name="title_activity_new_user_creation">NouvelleCréationDeLutilisateur</string>
     <string name="title_activity_create_new_user">Créer un nouvel utilisateur</string>
 
+    <string name="ContactList">Liste de contacts</string>
+    <string name="Add_Contact">Ajouter le contact</string>
     <string name="TitleCreateNewProfile">Créer un nouveau profil</string>
     <string name="btnPicture">Ajouter une image</string>
     <string name="Firstname">Prénom: </string>
@@ -57,4 +68,7 @@
     <string name="SaveButton">Sauver</string>
 
     <string name="hello_world">Bonjour le monde!</string>
+    <string name="title_activity_profile_view">VoirLeProfil</string>
+    <string name="title_activity_contact_adding">Contactez Ajout</string>
+    <string name="title_activity_profile_manager_advanced">GestionnaireProfil</string>
 </resources>
