@@ -48,6 +48,25 @@
 
     </style>
 
+
+
+    <style name="Arial">
+          <item name="android:fontFamily='arial'"/>
+    </style>
+
+    <style name="Times">
+        <item name="android:fontFamily='arial'"/>
+    </style>
+
+    <style name="Century">
+
+    </style>
+
+    <style name="Bradley">
+
+    </style>
+
+
     <style name="Blue">
         <item name="android:background">#1E90FF</item>
     </style>
