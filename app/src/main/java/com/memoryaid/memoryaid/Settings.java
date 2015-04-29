@@ -32,7 +32,6 @@ public class Settings extends ActionBarActivity {
             Intent i = new Intent(this, Homescreen.class);
             startActivity(i);
         }
-
     }
 
     public void CreateNewUser(View view) {
@@ -42,6 +41,7 @@ public class Settings extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         themeUtils.onActivityCreateSetTheme(this);
         themeUtils.onActivityCreateSetColor(this);
@@ -174,7 +174,6 @@ public class Settings extends ActionBarActivity {
                 break;
         }
 
-        
     }
 
 }
