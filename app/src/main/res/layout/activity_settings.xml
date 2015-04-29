@@ -26,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
+            android:textSize="15sp"
             android:text="@string/TextAndImageSize"
             />
 
@@ -75,6 +76,7 @@
         <TextView
             android:layout_width="199dp"
             android:layout_height="32dp"
+            android:textSize="15sp"
             android:text="@string/ChooseFavColor"
             android:background="#FFFFFF"/>
 
@@ -186,6 +188,7 @@
             android:background="#FFFFFF"
             android:gravity="center"
             android:layout_width="126dp"
+            android:textSize="15sp"
             android:layout_height="32dp"
             android:layout_gravity="center_horizontal"
             android:text="@string/Font" />

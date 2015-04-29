@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#ff000000"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:gravity="center"
             android:layout_marginBottom="40dp"
             android:text="@string/title_activity_profile_manager_advanced"
@@ -49,8 +49,6 @@
             android:textColor="#ff000000"
             android:text="@string/ProfileManagertxt1"
             />
-
-
 
         <Button
             style="@style/AudioFileInfoOverlayText"
