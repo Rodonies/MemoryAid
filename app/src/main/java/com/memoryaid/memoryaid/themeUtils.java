@@ -6,12 +6,20 @@ package com.memoryaid.memoryaid;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.view.View;
+import android.widget.RadioButton;
 
 public class themeUtils {
     public final static int Big = 0;
     public final static int Small = 1;
     public final static int Medium = 2;
     public static int cTheme = 2;
+
+    public final static int Englisch = 0;
+    public final static int Espagnol = 1;
+    public final static int Nederlands = 2;
+    public final static int Frans = 3;
+    public static int cLanguage = 0;
 
     public final static char blue = 'b';
     public final static char red = 'r';
@@ -22,6 +30,7 @@ public class themeUtils {
     public final static char pink = 'p';
     public final static char purple = 'z';
     public static int cColor = 'b';
+
 
     public static void changeToTheme(Activity activity, int theme) {
         cTheme = theme;
@@ -43,7 +52,34 @@ public class themeUtils {
         }
     }
 
-    public static void ChangeToColor(Activity activity, char color) {
+    public static void changeToLanguage(Activity activity, int Language) {
+        cLanguage = Language;
+        if(cLanguage == 0)
+        {
+
+
+        }
+        activity.finish();
+        activity.startActivity(new Intent(activity, activity.getClass()));
+    }
+
+    public static void onActivityCreateSetLanguage(Activity activity) {
+        switch (cLanguage) {
+            case 0:
+                //
+                break;
+            case 1:
+                //
+                break;
+            case 2:
+                //
+            case 3:
+                //
+                break;
+        }
+    }
+
+    public static void ChangeToColor(Activity activity, char color ) {
         cColor = color;
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));
@@ -77,6 +113,8 @@ public class themeUtils {
                 break;
         }
     }
+
+
 
 
 }

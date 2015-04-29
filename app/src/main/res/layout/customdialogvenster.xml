@@ -15,7 +15,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
-        android:background="#FFFFFF"/>
+        />
 
     <TextView
         android:id="@+id/txtGallery"
@@ -23,14 +23,14 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/txtGallery"
-        android:background="#FFFFFF"/>
+        />
 
     <ImageView
         android:id="@+id/PhotoCamera"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
-        android:background="#FFFFFF"/>
+        />
 
     <TextView
         android:id="@+id/txtCamera"
@@ -49,7 +49,6 @@
         android:layout_marginTop="5dp"
         android:onClick="CloseDialog"
         android:text=" cancel "
-        android:background="#FFFFFF"
         />
 
 </LinearLayout>

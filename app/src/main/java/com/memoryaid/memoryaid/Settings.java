@@ -87,6 +87,7 @@ public class Settings extends ActionBarActivity {
 
         m_two.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                themeUtils.cLanguage = 2;
                 m_one.setChecked(false);
                 m_two.setChecked(true);
                 m_three.setChecked(false);
