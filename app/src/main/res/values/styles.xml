@@ -51,11 +51,11 @@
 
 
     <style name="Arial">
-          <item name="android:fontFamily='arial'"/>
+          <item name="android:fontFamily">Arial</item>
     </style>
 
     <style name="Times">
-        <item name="android:fontFamily='arial'"/>
+        <item name="android:fontFamily">Times New Roman</item>
     </style>
 
     <style name="Century">
