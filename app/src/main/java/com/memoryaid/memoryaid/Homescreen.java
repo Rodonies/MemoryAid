@@ -46,47 +46,20 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
 
 
         if (First_Launch.equals("true")) {
-          Settings(V);
+            Settings(V);
+
         }
 
-
-        DatabaseHandler db = new DatabaseHandler(this);
-        if (!db.findProfile("Jan", "Jansens")) {
-            db.addProfile(new Profile("Jan", "Jansens", "2/2/2015", "127.0.0.1", "hi"));
-            db.addContact(new Contact("Jos1", "Jansens", "2/2/2015", "Family", "13.33.33.37", "Jos1 Jansens is my nephew"));
-            db.addContact(new Contact("Jos2", "Jansens", "2/2/2015", "Family", "13.33.33.37", "Jos2 Jansens is my cousin"));
-            db.addContact(new Contact("Jos3", "Jansens", "2/2/2015", "Family", "13.33.33.37", "Jos3 Jansens is my wife"));
-
-            db.addProfile(new Profile("BRAK", "OBAMA", "2/2/2015", "127.0.0.1", "hi"));
-            db.addContact(new Contact("MICHELLE", "OBAMA", "2/2/2015", "Family", "13.33.33.37", "wife"));
-            db.addContact(new Contact("SOMETHINGELSE", "OBAMA", "2/2/2015", "Family", "13.33.33.37", "kid"));
-
-        } else {
-            ArrayList<Profile> list = db.getAllProfiles();
-            for (Profile profile : list) {
-
-                ArrayList<Contact> contactlist = profile.getContacts();
-                Log.e("profile", profile.getFullName());
-                for (Contact contact : contactlist) {
-                    Log.e("contact", contact.getFullName());
-                }
-
-            }
-        }
-
-
-
-    }
+   }
 
 
     public void Settings(View view) {
-
-        Intent i = new Intent(getApplicationContext(), Settings.class);
+        Intent i = new Intent(this,Settings.class);
         startActivity(i);
     }
 
     public void ProfileManager(View view) {
-        Intent i = new Intent(this, ProfileManager.class);
+        Intent i = new Intent(this,ProfileManager.class);
         startActivity(i);
     }
 

@@ -1,5 +1,6 @@
 package com.memoryaid.memoryaid;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -36,7 +37,7 @@ public class ProfileView extends ActionBarActivity {
 
         if (db.findProfile(CurrentProfile)) {
 
-                ArrayList<Contact> contactlist = db.getProfile().getContacts();
+                final ArrayList<Contact> contactlist = db.getProfile().getContacts();
                 final ListView ContactList = (ListView) findViewById(R.id.ListContacts);
                  ContactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -45,15 +46,16 @@ public class ProfileView extends ActionBarActivity {
 
                     if (ContactMode.equals("View"))
                     {
-                        ViewProfile(V);
+                        ViewProfile(V,0);
                     }
                     else if(ContactMode.equals("Edit"))
                     {
-
+                        ViewProfile(V,1);
                     }
                     else if(ContactMode.equals("Delete"))
                     {
-
+                       DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+                       db.deleteContact(BufferContact);
                     }
                 }
             });
@@ -68,7 +70,7 @@ public class ProfileView extends ActionBarActivity {
 
 
     }
-    void ViewProfile(View v)
+    void ViewProfile(View v, int mode)
     {
          setContentView(R.layout.activity_profile_view);
 
@@ -82,6 +84,41 @@ public class ProfileView extends ActionBarActivity {
         Information.setText(BufferContact.getInformation());
         Relation = (EditText) findViewById(R.id.RelationText);
         Relation.setText(BufferContact.getRelation());
+
+        switch (mode) {
+            case 0:
+                Name.setClickable(false);
+                Name.setFocusable(false);
+                LastName.setClickable(false);
+                LastName.setFocusable(false);
+                Phone.setClickable(false);
+                Phone.setFocusable(false);
+                Information.setClickable(false);
+                Information.setFocusable(false);
+                Relation.setClickable(false);
+                Relation.setFocusable(false);
+
+
+                break;
+            case 1 :
+                Name.setClickable(true);
+                Name.setFocusable(true);
+                LastName.setClickable(true);
+                LastName.setFocusable(true);
+                Phone.setClickable(true);
+                Phone.setFocusable(true);
+                Information.setClickable(true);
+                Information.setFocusable(true);
+                Relation.setClickable(true);
+                Relation.setFocusable(true);
+                break;
+            default:
+                break;
+
+        }
+
+
+
 
 
     }
