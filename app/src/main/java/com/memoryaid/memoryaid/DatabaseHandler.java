@@ -239,7 +239,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public static Profile getProfile() {
-        if (_profile.getFirstName() == null) {
+        if (_profile == null) {
             Profile prof = new Profile(null, null, null, null, null, null);
             prof.updateSettings("Medium","Blue");
             return prof;
