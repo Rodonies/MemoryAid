@@ -15,7 +15,7 @@ public class ProfileManager extends FragmentActivity implements View.OnClickList
     private Button btnDeleteContact;
     private Button btnProfileManager;
 
-
+    public static boolean test = false;
     public static final String SaveData = "MyPreferenceFiles";
 
     @Override
@@ -42,6 +42,7 @@ public class ProfileManager extends FragmentActivity implements View.OnClickList
         btnDeleteContact.setOnClickListener(this);
         btnProfileManager.setOnClickListener(this);
 
+        btnProfileManager.setEnabled(test);
     }
 
     public void onClick(View v) {

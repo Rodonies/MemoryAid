@@ -19,15 +19,14 @@ public class Settings extends ActionBarActivity {
     private View V;
     private String First_Launch;
     private String Contact_Or_Profile;
-
+    private String StateCheckbox;
+    public boolean test;
 
 
 
     @Override
     public void onBackPressed() {
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
-
-
         Intent i = new Intent(this, Homescreen.class);
         startActivity(i);
 
@@ -44,8 +43,20 @@ public class Settings extends ActionBarActivity {
             themeUtils.onActivityCreateSetTheme(this);
             themeUtils.onActivityCreateSetColor(this);
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_settings);
+
+        SharedPreferences settings = getSharedPreferences(SaveData, 0);
+        StateCheckbox = settings.getString("StateCheckbox","false");
+
+
+        CheckBox Advanced = (CheckBox) findViewById(R.id.checkboxAdvanced);
+        if (StateCheckbox == "true")
+            Advanced.setChecked(true);
+        else
+            Advanced.setChecked(false);
+
+
+
 
         final RadioButton A = (RadioButton) findViewById(R.id.RadioSmall);
         final RadioButton B = (RadioButton) findViewById(R.id.RadioMedium);
@@ -54,8 +65,9 @@ public class Settings extends ActionBarActivity {
                 A.setChecked(false);
                 B.setChecked(true);
                 C.setChecked(false);
-        final CheckBox Advanced = (CheckBox) findViewById(R.id.checkboxAdvanced);
-                Advanced.setChecked(false);
+
+
+
     }
 
 
@@ -123,16 +135,23 @@ public class Settings extends ActionBarActivity {
 
         boolean checked = ((CheckBox) view).isChecked();
         Button button = (Button)findViewById(R.id.btnProfileManager);
-        setContentView(R.layout.activity_profile_manager);
+
+        DatabaseHandler db = new DatabaseHandler(this);
+        SharedPreferences settings = getSharedPreferences(SaveData, 0);
+        SharedPreferences.Editor editor = settings.edit();
+
 
         if(checked)
             {
-                button.setVisibility(View.VISIBLE);
-                //button.isEnabled(true);
+                test = true;
+                editor.putString("StateCheckbox", "true");
+                editor.commit();
             }
         else
             {
-                button.setVisibility(View.GONE);
+                test = false;
+                editor.putString("StateCheckbox", "false");
+                editor.commit();
             }
 
 
