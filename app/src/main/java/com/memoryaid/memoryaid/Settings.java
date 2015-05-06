@@ -39,13 +39,13 @@ public class Settings extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-            themeUtils.onActivityCreateSetTheme(this);
-            themeUtils.onActivityCreateSetColor(this);
+        themeUtils.onActivityCreateSetTheme(this);
+        themeUtils.onActivityCreateSetColor(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
-        StateCheckbox = settings.getBoolean("StateCheckbox",false);
+        StateCheckbox = settings.getBoolean("StateCheckbox", false);
 
 
         Advanced = (CheckBox) findViewById(R.id.checkboxAdvanced);
@@ -55,16 +55,13 @@ public class Settings extends ActionBarActivity {
             Advanced.setChecked(false);
 
 
-
-
         final RadioButton A = (RadioButton) findViewById(R.id.RadioSmall);
         final RadioButton B = (RadioButton) findViewById(R.id.RadioMedium);
         final RadioButton C = (RadioButton) findViewById(R.id.RadioBig);
 
-                A.setChecked(false);
-                B.setChecked(true);
-                C.setChecked(false);
-
+        A.setChecked(false);
+        B.setChecked(true);
+        C.setChecked(false);
 
 
     }
@@ -130,26 +127,23 @@ public class Settings extends ActionBarActivity {
 
     }
 
-    public void AdvancedCheckboxChecked(View view){
+    public void AdvancedCheckboxChecked(View view) {
 
         DatabaseHandler db = new DatabaseHandler(this);
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         SharedPreferences.Editor editor = settings.edit();
 
 
-        if(Advanced.isChecked())
-            {
+        if (Advanced.isChecked()) {
 
-                editor.putBoolean("StateCheckbox", true);
-                editor.commit();
+            editor.putBoolean("StateCheckbox", true);
+            editor.commit();
 
-            }
-        else
-            {
+        } else {
 
-                editor.putBoolean("StateCheckbox", false);
-                editor.commit();
-            }
+            editor.putBoolean("StateCheckbox", false);
+            editor.commit();
+        }
     }
 
 }

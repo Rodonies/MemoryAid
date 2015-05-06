@@ -10,13 +10,13 @@ import android.view.View;
 import android.widget.Button;
 
 
-public class ProfileManager_advanced extends ActionBarActivity implements View.OnClickListener  {
+public class ProfileManager_advanced extends ActionBarActivity implements View.OnClickListener {
 
-    private Button btnAddProfile, btnEditProfile, btnShowProfile,btnDeleteProfile;
+    private Button btnAddProfile, btnEditProfile, btnShowProfile, btnDeleteProfile;
     public static final String SaveData = "MyPreferenceFiles";
 
     @Override
-        protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         themeUtils.onActivityCreateSetTheme(this);
@@ -45,7 +45,7 @@ public class ProfileManager_advanced extends ActionBarActivity implements View.O
                 CreateNewUser(v);
                 break;
             case R.id.btnEditProfile:
-               settings = getSharedPreferences(SaveData, 0);
+                settings = getSharedPreferences(SaveData, 0);
                 editor = settings.edit();
                 editor.putString("ProfileMode", "Edit");
                 editor.commit();
@@ -66,12 +66,13 @@ public class ProfileManager_advanced extends ActionBarActivity implements View.O
         }
 
 
-
     }
+
     public void CreateNewUser(View view) {
         Intent i = new Intent(this, CreateNewUser.class);
         startActivity(i);
     }
+
     public void ProfileView(View view) {
         Intent i = new Intent(this, ProfileView.class);
         startActivity(i);

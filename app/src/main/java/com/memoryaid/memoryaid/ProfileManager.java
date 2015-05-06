@@ -42,11 +42,11 @@ public class ProfileManager extends FragmentActivity implements View.OnClickList
         btnDeleteContact.setOnClickListener(this);
         btnProfileManager.setOnClickListener(this);
 
-        SharedPreferences settings = getSharedPreferences(SaveData,0);
-        if(settings.getBoolean("StateCheckbox",false) == true)
-        btnProfileManager.setEnabled(true);
+        SharedPreferences settings = getSharedPreferences(SaveData, 0);
+        if (settings.getBoolean("StateCheckbox", false) == true)
+            btnProfileManager.setEnabled(true);
         else
-        btnProfileManager.setEnabled(false);
+            btnProfileManager.setEnabled(false);
 
     }
 
@@ -57,7 +57,7 @@ public class ProfileManager extends FragmentActivity implements View.OnClickList
                 SharedPreferences settings = getSharedPreferences(SaveData, 0);
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putString("Contact_Or_Profile", "Contact");
-                editor.putString("ProfileMode","View");
+                editor.putString("ProfileMode", "View");
                 editor.commit();
                 CreateNewUser(v);
                 break;

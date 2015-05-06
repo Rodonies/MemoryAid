@@ -30,12 +30,10 @@ public class ProfileView extends ActionBarActivity {
     public void onBackPressed() {
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         ContactMode = settings.getString("ProfileMode", "View");
-        if(ContactMode.equals("View")) {
+        if (ContactMode.equals("View")) {
             Intent i = new Intent(this, ProfileManager.class);
             startActivity(i);
-        }
-        else if (ContactMode.equals("Edit"))
-        {
+        } else if (ContactMode.equals("Edit")) {
 
         }
 
@@ -62,9 +60,9 @@ public class ProfileView extends ActionBarActivity {
                     BufferContact = (Contact) ContactList.getItemAtPosition(position);
 
                     if (ContactMode.equals("View")) {
-                        ViewProfile(V,0);
+                        ViewProfile(V, 0);
                     } else if (ContactMode.equals("Edit")) {
-                        ViewProfile(V,1);
+                        ViewProfile(V, 1);
                     } else if (ContactMode.equals("Delete")) {
                         AskOption().show();
 
@@ -75,7 +73,6 @@ public class ProfileView extends ActionBarActivity {
             db.close();
 
         }
-
 
 
     }
@@ -141,8 +138,8 @@ public class ProfileView extends ActionBarActivity {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
                         DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-                        db.deleteContact(BufferContact);
-                        final ArrayList<Contact> contactlist = db.getProfile().getContacts();
+                        boolean test = db.deleteContact(BufferContact);
+                        ArrayList<Contact> contactlist = db.getProfile().getContacts();
                         final ListView ContactList = (ListView) findViewById(R.id.ListContacts);
                         ContactList.setAdapter(new AdapterContacts(getApplicationContext(), contactlist));
                         dialog.dismiss();

@@ -262,8 +262,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
             if (Name.equals("") || LastName.equals("")) {
                 Toast.makeText(this, R.string.Error1, Toast.LENGTH_LONG).show();
-            }
-            else {
+            } else {
                 CurrentProfile = settings.getInt("CurrentProfile", 1);
                 if (db.findProfile(CurrentProfile)) {
                     db.addContact(new Contact(Name, LastName, BirthDate, Relation, Phone, Extra_Info));

@@ -45,7 +45,9 @@ public class Contact {
         return _aid;
     }
 
-    public Integer getCID() { return _cid; }
+    public Integer getCID() {
+        return _cid;
+    }
 
     public String getFullName() {
         return _firstname + " " + _lastname;
@@ -76,11 +78,11 @@ public class Contact {
     }
 
     public File getImageUri() {
-        File image = new File("/data/data/com.memoryaid.memoryaid/files/" +_imagepath + "/image.png");
+        File image = new File("/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png");
         if (image.exists())
             return image;
         else {
-                return null;
+            return null;
         }
     }
 
