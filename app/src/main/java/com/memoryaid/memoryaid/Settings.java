@@ -50,6 +50,7 @@ public class Settings extends ActionBarActivity {
 
 
         CheckBox Advanced = (CheckBox) findViewById(R.id.checkboxAdvanced);
+
         if (StateCheckbox == "true")
             Advanced.setChecked(true);
         else
@@ -134,6 +135,7 @@ public class Settings extends ActionBarActivity {
     public void AdvancedCheckboxChecked(View view){
 
         boolean checked = ((CheckBox) view).isChecked();
+
         Button button = (Button)findViewById(R.id.btnProfileManager);
 
         DatabaseHandler db = new DatabaseHandler(this);
@@ -146,6 +148,7 @@ public class Settings extends ActionBarActivity {
                 test = true;
                 editor.putString("StateCheckbox", "true");
                 editor.commit();
+
             }
         else
             {

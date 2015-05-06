@@ -3,6 +3,7 @@ package com.memoryaid.memoryaid;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -26,17 +27,31 @@ public class ProfileView extends ActionBarActivity {
     private EditText Name, LastName, Phone, Date_of_Birth, Information, Relation;
 
     @Override
+    public void onBackPressed() {
+        SharedPreferences settings = getSharedPreferences(SaveData, 0);
+        ContactMode = settings.getString("ProfileMode", "View");
+        if(ContactMode.equals("View")) {
+            Intent i = new Intent(this, ProfileManager.class);
+            startActivity(i);
+        }
+        else if (ContactMode.equals("Edit"))
+        {
+
+        }
+
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         themeUtils.onActivityCreateSetTheme(this);
         themeUtils.onActivityCreateSetColor(this);
         setContentView(R.layout.activity_profile_view2);
-
         DatabaseHandler db = new DatabaseHandler(this);
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         CurrentProfile = settings.getInt("CurrentProfile", 0);
         ContactMode = settings.getString("ProfileMode", "View");
-
         if (db.findProfile(CurrentProfile)) {
 
             final ArrayList<Contact> contactlist = db.getProfile().getContacts();
@@ -47,9 +62,9 @@ public class ProfileView extends ActionBarActivity {
                     BufferContact = (Contact) ContactList.getItemAtPosition(position);
 
                     if (ContactMode.equals("View")) {
-                        ViewProfile(V, 0);
+                        ViewProfile(V,0);
                     } else if (ContactMode.equals("Edit")) {
-                        ViewProfile(V, 1);
+                        ViewProfile(V,1);
                     } else if (ContactMode.equals("Delete")) {
                         AskOption().show();
 
@@ -60,9 +75,7 @@ public class ProfileView extends ActionBarActivity {
             db.close();
 
         }
-        /*
-        else{
-            ArrayList<Profile> list = db.getAllProfiles();}*/
+
 
 
     }
@@ -75,7 +88,7 @@ public class ProfileView extends ActionBarActivity {
         LastName = (EditText) findViewById(R.id.LastNameText);
         LastName.setText(BufferContact.getLastName());
         Phone = (EditText) findViewById(R.id.PhonenmrText);
-        Phone.setText(BufferContact.getFirstName());
+        Phone.setText(BufferContact.getNumber());
         Information = (EditText) findViewById(R.id.BasicInfoText);
         Information.setText(BufferContact.getInformation());
         Relation = (EditText) findViewById(R.id.RelationText);

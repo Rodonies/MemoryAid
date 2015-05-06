@@ -1,19 +1,23 @@
 package com.memoryaid.memoryaid;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 
 
-public class ProfileManager extends FragmentActivity implements View.OnClickListener {
+public class ProfileManager extends ActionBarActivity implements View.OnClickListener {
 
     private Button btnAddContact;
     private Button btnEditContact;
     private Button btnDeleteContact;
     private Button btnProfileManager;
+
+
 
     public static boolean test = false;
     public static final String SaveData = "MyPreferenceFiles";
@@ -42,7 +46,8 @@ public class ProfileManager extends FragmentActivity implements View.OnClickList
         btnDeleteContact.setOnClickListener(this);
         btnProfileManager.setOnClickListener(this);
 
-        btnProfileManager.setEnabled(test);
+        btnProfileManager.setEnabled(false);
+
     }
 
     public void onClick(View v) {
@@ -52,7 +57,7 @@ public class ProfileManager extends FragmentActivity implements View.OnClickList
                 SharedPreferences settings = getSharedPreferences(SaveData, 0);
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putString("Contact_Or_Profile", "Contact");
-                editor.putString("ProfileMode", "View");
+                editor.putString("ProfileMode","View");
                 editor.commit();
                 CreateNewUser(v);
                 break;
