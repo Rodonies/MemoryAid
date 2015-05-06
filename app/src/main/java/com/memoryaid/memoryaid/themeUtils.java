@@ -23,7 +23,7 @@ public class themeUtils {
         DatabaseHandler db = new DatabaseHandler(activity);
         if (db.findProfile(DatabaseHandler.getProfile().getID()));
         {
-            db.saveSettings(theme, "null");
+            db.saveSettings(theme, null);
         }
     }
 
@@ -72,7 +72,7 @@ public class themeUtils {
         DatabaseHandler db = new DatabaseHandler(activity);
         if (db.findProfile(DatabaseHandler.getProfile().getID()));
         {
-            db.saveSettings("null", color);
+            db.saveSettings(null, color);
         }
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));

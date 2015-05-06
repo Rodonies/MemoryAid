@@ -274,14 +274,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         try {
             ContentValues values = new ContentValues();
             values.put(KEY_ID, _profile.getID());
-            if (size == null)
-                values.put(KEY_SIZE,_profile.getSize());
-            else
-                values.put(KEY_SIZE, size);
-            if (color == null)
-                values.put(KEY_COLOR,_profile.getColor());
-            else
-                values.put(KEY_COLOR, color);
+
+            if (size == null) values.put(KEY_SIZE,_profile.getSize()); else values.put(KEY_SIZE, size);
+            if (color == null) values.put(KEY_COLOR,_profile.getColor()); else values.put(KEY_COLOR, color);
 
             if (loadSettings()) {
                 SQLiteDatabase db = this.getWritableDatabase();

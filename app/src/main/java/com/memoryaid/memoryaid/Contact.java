@@ -92,6 +92,7 @@ public class Contact {
     }
 
     public File getImageFile() {
+
         return new File(_imagepath + "/image.png");
     }
 
