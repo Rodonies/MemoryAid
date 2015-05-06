@@ -44,7 +44,7 @@ if (db.findProfile(2))
 }
 
 //Volgende code is voor contacten te editen, namelijk de achternaam, datum en relatie
-db.editProfile(oldContact, null, "Jansens", "2/5/5", "Familie", null, null);
+db.editContact(oldContact, null, "Jansens", "2/5/5", "Familie", null, null);
 
 //volgende code is een voorbeeld om de voornaam van het profiel met de naam "Jos Joskens"
 //die geen contacten heeft te veranderen naar "Jef" en daarnaa een contact met de naam "Jos Joskens" toe te voegen
