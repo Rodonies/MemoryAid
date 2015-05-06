@@ -21,17 +21,11 @@ public class Settings extends ActionBarActivity {
     @Override
     public void onBackPressed() {
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
-        First_Launch = settings.getString("First_Launch","true");
 
-        if (First_Launch.equals("true")) {
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putString("Contact_Or_Profile","Profile");
-            editor.commit();
-            CreateNewUser(V);
-        } else {
+
             Intent i = new Intent(this, Homescreen.class);
             startActivity(i);
-        }
+
     }
 
     public void CreateNewUser(View view) {

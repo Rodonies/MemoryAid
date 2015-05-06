@@ -83,8 +83,8 @@ public class themeUtils {
 
 
     public static void onActivityCreateSetColor(Activity activity) {
-
-        if (DatabaseHandler.getProfile().getColor()!= null)
+    String test = DatabaseHandler.getProfile().getColor();
+        if (test != null)
         {
             switch (DatabaseHandler.getProfile().getColor()) {
                 case "Blue":
