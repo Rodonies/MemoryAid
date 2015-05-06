@@ -28,6 +28,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URI;
 import java.util.jar.Attributes;
 
 import javax.xml.namespace.NamespaceContext;
@@ -86,9 +87,12 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
             case 1:
 
                 if (resCode == Activity.RESULT_OK) {
-                    Uri selectedImage = imageUri;
-                    Picasso.with(getApplicationContext()).load(selectedImage).centerCrop().resize(300, 250).into(contactImgView);
+                    File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
 
+                    if (photo.exists())
+                        Picasso.with(getApplicationContext()).load(photo).centerCrop().resize(300, 250).into(contactImgView);
+                    else
+                        Picasso.with(getApplicationContext()).load(R.drawable.defaultimage).centerCrop().resize(300, 250).into(contactImgView);
                     Toast.makeText(this, "photo was added to database", Toast.LENGTH_LONG).show();
                     CURRENT_PHOTONUMBER++;
                     btnAddPhoto.setVisibility(View.GONE);
@@ -101,6 +105,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                 try {
                     GlobalUri = data.getData();
                     Picasso.with(getApplicationContext()).load(data.getData()).centerCrop().resize(300, 250).into(contactImgView);
+
                     Toast.makeText(this, "photo was selected", Toast.LENGTH_LONG).show();
                     btnAddPhoto.setVisibility(View.GONE);
                 } catch (Exception e) {
@@ -179,12 +184,9 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
             BirthDate = ((EditText) findViewById(R.id.Date_Of_Birth)).getText().toString();
             Note = ((EditText) findViewById(R.id.Notes)).getText().toString();
 
-            if(Name == null || LastName == null || Phone == null || BirthDate == null || Note == null )
-            {
-                Toast.makeText(this,R.string.Error1,Toast.LENGTH_LONG);
-            }
-            else
-            {
+            if (Name == null || LastName == null || Phone == null || BirthDate == null || Note == null) {
+                Toast.makeText(this, R.string.Error1, Toast.LENGTH_LONG);
+            } else {
                 db.addProfile(new Profile(Name, LastName, Phone, BirthDate, Note));
 
 
@@ -206,13 +208,11 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                         photo.renameTo(DatabaseHandler.getProfile().getImageFile());
 
                     } catch (Exception fuck) {
-                        Log.e("profilesave",fuck.getMessage());
+                        Log.e("profilesave", fuck.getMessage());
                     }
 
                 }
             }
-
-
 
 
         } else if (Contact_Or_Profile.equals("Contact")) {
@@ -225,26 +225,41 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
             Extra_Info = ((EditText) findViewById(R.id.Contact_Extra_Info)).getText().toString();
             Relation = ((EditText) findViewById(R.id.Contact_Relation)).getText().toString();
 
-            if(Name.cont || LastName == null || Phone == null || BirthDate == null || Extra_Info == null || Relation == null)
-            {
-                Toast.makeText(this,R.string.Error1,Toast.LENGTH_LONG);
-            }
-            else
-            {
+            if (Name.isEmpty() || LastName.isEmpty()) {
+                Toast.makeText(this, R.string.Error1, Toast.LENGTH_LONG);
+            } else {
                 CurrentProfile = settings.getInt("CurrentProfile", 1);
                 if (db.findProfile(CurrentProfile)) {
                     db.addContact(new Contact(Name, LastName, BirthDate, Relation, Phone, Extra_Info));
-
+                    db.findProfile(CurrentProfile);
 
                     db.close();
 
                     File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
                     if (photo.exists()) {
                         try {
-                            photo.renameTo(DatabaseHandler.getProfile().getContacts().get(DatabaseHandler.getProfile().getContacts().size()).getImageFile());
+                            boolean test2 = photo.renameTo(DatabaseHandler.getProfile().getContacts().get(DatabaseHandler.getProfile().getContacts().size() - 1).getImageFile());
+                            File file = DatabaseHandler.getProfile().getContacts().get(DatabaseHandler.getProfile().getContacts().size() - 1).getImageFile();
+                            file.mkdirs();
+                            file.createNewFile();
+
+                            InputStream in = new FileInputStream(photo);
+                            OutputStream out = new FileOutputStream(file);
+
+                            // Transfer bytes from in to out
+                            byte[] buf = new byte[1024];
+                            int len;
+                            while ((len = in.read(buf)) > 0) {
+                                out.write(buf, 0, len);
+                            }
+                            in.close();
+                            out.close();
+                            Log.e("t", DatabaseHandler.getProfile().getContacts().get(DatabaseHandler.getProfile().getContacts().size() - 1).getImageFile().getPath());
+                            Log.e("t", test2 + " " + photo.getPath());
                         } catch (Exception fuck) {
-                            Log.e("contactsave",fuck.getMessage());
+                            Log.e("contactsave", fuck.getMessage());
                         }
+                        photo.delete();
                     }
                 }
             }
@@ -258,9 +273,8 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
     public void TakePhoto() {
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
         File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
-        //photo.deleteOnExit();
-        imageUri = Uri.fromFile(photo);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        if (photo.exists()) photo.delete();
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photo));
         startActivityForResult(intent, TAKE_PICTURE);
     }
 
