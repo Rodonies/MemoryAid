@@ -179,33 +179,40 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
             BirthDate = ((EditText) findViewById(R.id.Date_Of_Birth)).getText().toString();
             Note = ((EditText) findViewById(R.id.Notes)).getText().toString();
 
-            //CHECK HIER VOOR INVGEVULDE SHIT
+            if(Name == null || LastName == null || Phone == null || BirthDate == null || Note == null )
+            {
+                Toast.makeText(this,R.string.Error1,Toast.LENGTH_LONG);
+            }
+            else
+            {
+                db.addProfile(new Profile(Name, LastName, Phone, BirthDate, Note));
 
-            db.addProfile(new Profile(Name, LastName, Phone, BirthDate, Note));
 
+                if (db.findProfile(Name, LastName)) {
+                    if (First_Launch == "true") {
+                        editor.putString("First_Launch", "false");
+                        editor.commit();
+                    }
 
-            if (db.findProfile(Name, LastName)) {
-                if (First_Launch == "true") {
-                    editor.putString("First_Launch", "false");
+                    editor.putInt("CurrentProfile", db.getProfile().getID());
                     editor.commit();
                 }
+                db.close();
 
-                editor.putInt("CurrentProfile", db.getProfile().getID());
-                editor.commit();
-            }
-            db.close();
+                File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
+                if (photo.exists()) {
+                    try {
+                        //InputStream in = new FileInputStream(photo);
+                        photo.renameTo(DatabaseHandler.getProfile().getImageFile());
 
-            File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
-            if (photo.exists()) {
-                try {
-                    //InputStream in = new FileInputStream(photo);
-                    photo.renameTo(DatabaseHandler.getProfile().getImageFile());
+                    } catch (Exception fuck) {
+                        Log.e("profilesave",fuck.getMessage());
+                    }
 
-                } catch (Exception fuck) {
-                    Log.e("profilesave",fuck.getMessage());
                 }
-
             }
+
+
 
 
         } else if (Contact_Or_Profile.equals("Contact")) {
@@ -218,22 +225,31 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
             Extra_Info = ((EditText) findViewById(R.id.Contact_Extra_Info)).getText().toString();
             Relation = ((EditText) findViewById(R.id.Contact_Relation)).getText().toString();
 
-            CurrentProfile = settings.getInt("CurrentProfile", 1);
-            if (db.findProfile(CurrentProfile)) {
-                db.addContact(new Contact(Name, LastName, BirthDate, Relation, Phone, Extra_Info));
+            if(Name.cont || LastName == null || Phone == null || BirthDate == null || Extra_Info == null || Relation == null)
+            {
+                Toast.makeText(this,R.string.Error1,Toast.LENGTH_LONG);
+            }
+            else
+            {
+                CurrentProfile = settings.getInt("CurrentProfile", 1);
+                if (db.findProfile(CurrentProfile)) {
+                    db.addContact(new Contact(Name, LastName, BirthDate, Relation, Phone, Extra_Info));
 
 
-                db.close();
+                    db.close();
 
-                File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
-                if (photo.exists()) {
-                    try {
-                        photo.renameTo(DatabaseHandler.getProfile().getContacts().get(DatabaseHandler.getProfile().getContacts().size()).getImageFile());
-                    } catch (Exception fuck) {
-                    Log.e("contactsave",fuck.getMessage());
+                    File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
+                    if (photo.exists()) {
+                        try {
+                            photo.renameTo(DatabaseHandler.getProfile().getContacts().get(DatabaseHandler.getProfile().getContacts().size()).getImageFile());
+                        } catch (Exception fuck) {
+                            Log.e("contactsave",fuck.getMessage());
+                        }
                     }
                 }
             }
+
+
         }
         Intent i = new Intent(this, Homescreen.class);
         startActivity(i);

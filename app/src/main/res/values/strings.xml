@@ -63,4 +63,6 @@
     <string name="title_activity_profile_manager_advanced">Profile Manager</string>
     <string name="Advanced">Advanced profile management</string>
 
+    <string name="Error1">dont\'t leave any blank text</string>
+
 </resources>
