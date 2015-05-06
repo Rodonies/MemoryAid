@@ -19,9 +19,8 @@ public class Settings extends ActionBarActivity {
     private View V;
     private String First_Launch;
     private String Contact_Or_Profile;
-    private String StateCheckbox;
-    public boolean test;
-
+    private boolean StateCheckbox;
+    private CheckBox Advanced;
 
 
     @Override
@@ -46,12 +45,11 @@ public class Settings extends ActionBarActivity {
         setContentView(R.layout.activity_settings);
 
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
-        StateCheckbox = settings.getString("StateCheckbox","false");
+        StateCheckbox = settings.getBoolean("StateCheckbox",false);
 
 
-        CheckBox Advanced = (CheckBox) findViewById(R.id.checkboxAdvanced);
-
-        if (StateCheckbox == "true")
+        Advanced = (CheckBox) findViewById(R.id.checkboxAdvanced);
+        if (StateCheckbox == true)
             Advanced.setChecked(true);
         else
             Advanced.setChecked(false);
@@ -134,31 +132,24 @@ public class Settings extends ActionBarActivity {
 
     public void AdvancedCheckboxChecked(View view){
 
-        boolean checked = ((CheckBox) view).isChecked();
-
-        Button button = (Button)findViewById(R.id.btnProfileManager);
-
         DatabaseHandler db = new DatabaseHandler(this);
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         SharedPreferences.Editor editor = settings.edit();
 
 
-        if(checked)
+        if(Advanced.isChecked())
             {
-                test = true;
-                editor.putString("StateCheckbox", "true");
+
+                editor.putBoolean("StateCheckbox", true);
                 editor.commit();
 
             }
         else
             {
-                test = false;
-                editor.putString("StateCheckbox", "false");
+
+                editor.putBoolean("StateCheckbox", false);
                 editor.commit();
             }
-
-
-
     }
 
 }
