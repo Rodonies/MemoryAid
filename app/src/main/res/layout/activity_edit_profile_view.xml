@@ -156,6 +156,8 @@
                     android:id="@+id/PhonenmrText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:inputType="date"
                     android:text="@string/FirstNameText"
                     android:textSize="23sp" />
 
