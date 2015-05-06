@@ -153,11 +153,7 @@ public class ProfileView extends ActionBarActivity {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
                         DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-
-
                         db.deleteContact(BufferContact);
-
-
                         dialog.dismiss();
                         Intent i = new Intent(getApplicationContext(), ProfileManager.class);
                         startActivity(i);
