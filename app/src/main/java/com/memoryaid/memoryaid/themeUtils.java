@@ -12,7 +12,7 @@ import android.widget.RadioButton;
 
 public class themeUtils {
 
-    public static String cTheme = "Medium" ;
+    public static String cTheme = "Medium";
 
     public final static int Englisch = 0;
     public final static int Espagnol = 1;
@@ -23,7 +23,7 @@ public class themeUtils {
 
     public static void changeToTheme(Activity activity, String theme) {
         DatabaseHandler db = new DatabaseHandler(activity);
-        if (db.findProfile(DatabaseHandler.getProfile().getID()));
+        if (db.findProfile(DatabaseHandler.getProfile().getID())) ;
         {
             db.saveSettings(theme, null);
         }
@@ -45,8 +45,7 @@ public class themeUtils {
 
     public static void changeToLanguage(Activity activity, int Language) {
         cLanguage = Language;
-        if(cLanguage == 0)
-        {
+        if (cLanguage == 0) {
 
 
         }
@@ -70,9 +69,9 @@ public class themeUtils {
         }
     }
 
-    public static void ChangeToColor(Activity activity, String color ) {
+    public static void ChangeToColor(Activity activity, String color) {
         DatabaseHandler db = new DatabaseHandler(activity);
-        if (db.findProfile(DatabaseHandler.getProfile().getID()));
+        if (db.findProfile(DatabaseHandler.getProfile().getID())) ;
         {
             db.saveSettings(null, color);
         }
@@ -81,11 +80,9 @@ public class themeUtils {
     }
 
 
-
     public static void onActivityCreateSetColor(Activity activity) {
-    String test = DatabaseHandler.getProfile().getColor();
-        if (test != null)
-        {
+        String test = DatabaseHandler.getProfile().getColor();
+        if (test != null) {
             switch (DatabaseHandler.getProfile().getColor()) {
                 case "Blue":
                     activity.setTheme(R.style.Blue);
@@ -116,15 +113,11 @@ public class themeUtils {
                     break;
             }
 
-        }
-        else
+        } else
             activity.setTheme(R.style.Blue);
 
 
-
     }
-
-
 
 
 }

@@ -70,15 +70,14 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         Contact_Or_Profile = settings.getString("Contact_Or_Profile", "Profile");
 
         if (Contact_Or_Profile == "Profile")
-        setContentView(R.layout.activity_create_new_user);
+            setContentView(R.layout.activity_create_new_user);
         else
-        setContentView(R.layout.activity_contact_adding);
+            setContentView(R.layout.activity_contact_adding);
 
         btnAddPhoto = (Button) findViewById(R.id.btnAddPhoto);
         contactImgView = (ImageView) findViewById(R.id.ChosenPhoto);
 
     }
-
 
 
     @Override
@@ -203,7 +202,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                     photo.renameTo(DatabaseHandler.getProfile().getImageFile());
 
                 } catch (Exception fuck) {
-
+                    Log.e("profilesave",fuck.getMessage());
                 }
 
             }
@@ -228,8 +227,11 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
                 File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
                 if (photo.exists()) {
-
+                    try {
                         photo.renameTo(DatabaseHandler.getProfile().getContacts().get(DatabaseHandler.getProfile().getContacts().size()).getImageFile());
+                    } catch (Exception fuck) {
+                    Log.e("contactsave",fuck.getMessage());
+                    }
                 }
             }
         }
@@ -239,14 +241,12 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
     public void TakePhoto() {
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM),"temp.png");
+        File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
         //photo.deleteOnExit();
         imageUri = Uri.fromFile(photo);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         startActivityForResult(intent, TAKE_PICTURE);
     }
-
-
 
 
 }

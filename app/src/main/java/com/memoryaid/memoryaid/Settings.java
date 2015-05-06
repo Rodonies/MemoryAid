@@ -23,8 +23,8 @@ public class Settings extends ActionBarActivity {
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
 
 
-            Intent i = new Intent(this, Homescreen.class);
-            startActivity(i);
+        Intent i = new Intent(this, Homescreen.class);
+        startActivity(i);
 
     }
 
@@ -37,9 +37,8 @@ public class Settings extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
-
-            themeUtils.onActivityCreateSetTheme(this);
-            themeUtils.onActivityCreateSetColor(this);
+        themeUtils.onActivityCreateSetTheme(this);
+        themeUtils.onActivityCreateSetColor(this);
 
 
         super.onCreate(savedInstanceState);
@@ -50,9 +49,9 @@ public class Settings extends ActionBarActivity {
         final RadioButton B = (RadioButton) findViewById(R.id.RadioMedium);
         final RadioButton C = (RadioButton) findViewById(R.id.RadioBig);
 
-                A.setChecked(false);
-                B.setChecked(true);
-                C.setChecked(false);
+        A.setChecked(false);
+        B.setChecked(true);
+        C.setChecked(false);
     }
 
 
@@ -116,7 +115,6 @@ public class Settings extends ActionBarActivity {
 
     }
 
-  
 
 }
 

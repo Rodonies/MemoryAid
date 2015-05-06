@@ -23,7 +23,7 @@ public class ProfileView extends ActionBarActivity {
     private String ContactMode;
     private View V;
     private Contact BufferContact;
-    private EditText Name,LastName,Phone,Date_of_Birth,Information,Relation;
+    private EditText Name, LastName, Phone, Date_of_Birth, Information, Relation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,36 +33,31 @@ public class ProfileView extends ActionBarActivity {
         setContentView(R.layout.activity_profile_view2);
 
         DatabaseHandler db = new DatabaseHandler(this);
-        SharedPreferences settings = getSharedPreferences(SaveData,0);
-        CurrentProfile = settings.getInt("CurrentProfile",1);
-        ContactMode = settings.getString("ProfileMode","View");
+        SharedPreferences settings = getSharedPreferences(SaveData, 0);
+        CurrentProfile = settings.getInt("CurrentProfile", 0);
+        ContactMode = settings.getString("ProfileMode", "View");
 
         if (db.findProfile(CurrentProfile)) {
 
-                final ArrayList<Contact> contactlist = db.getProfile().getContacts();
-                final ListView ContactList = (ListView) findViewById(R.id.ListContacts);
-                 ContactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            final ArrayList<Contact> contactlist = db.getProfile().getContacts();
+            final ListView ContactList = (ListView) findViewById(R.id.ListContacts);
+            ContactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     BufferContact = (Contact) ContactList.getItemAtPosition(position);
 
-                    if (ContactMode.equals("View"))
-                    {
-                        ViewProfile(V,0);
-                    }
-                    else if(ContactMode.equals("Edit"))
-                    {
-                        ViewProfile(V,1);
-                    }
-                    else if(ContactMode.equals("Delete"))
-                    {
-                      AskOption().show();
+                    if (ContactMode.equals("View")) {
+                        ViewProfile(V, 0);
+                    } else if (ContactMode.equals("Edit")) {
+                        ViewProfile(V, 1);
+                    } else if (ContactMode.equals("Delete")) {
+                        AskOption().show();
 
                     }
                 }
             });
-                   ContactList.setAdapter(new AdapterContacts(this, contactlist));
-                db.close();
+            ContactList.setAdapter(new AdapterContacts(this, contactlist));
+            db.close();
 
         }
         /*
@@ -70,11 +65,10 @@ public class ProfileView extends ActionBarActivity {
             ArrayList<Profile> list = db.getAllProfiles();}*/
 
 
-
     }
-    void ViewProfile(View v, int mode)
-    {
-         setContentView(R.layout.activity_profile_view);
+
+    void ViewProfile(View v, int mode) {
+        setContentView(R.layout.activity_profile_view);
 
         Name = (EditText) findViewById(R.id.FirstNameText);
         Name.setText(BufferContact.getFirstName());
@@ -102,7 +96,7 @@ public class ProfileView extends ActionBarActivity {
 
 
                 break;
-            case 1 :
+            case 1:
                 Name.setClickable(true);
                 Name.setFocusable(true);
                 LastName.setClickable(true);
@@ -120,13 +114,10 @@ public class ProfileView extends ActionBarActivity {
         }
 
 
-
-
-
     }
-    private AlertDialog AskOption()
-    {
-        AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
+
+    private AlertDialog AskOption() {
+        AlertDialog myQuittingDialogBox = new AlertDialog.Builder(this)
                 //set message, title, and icon
                 .setTitle("Delete")
                 .setMessage("Do you want to Delete")
@@ -147,7 +138,6 @@ public class ProfileView extends ActionBarActivity {
                 })
 
 
-
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -159,8 +149,6 @@ public class ProfileView extends ActionBarActivity {
         return myQuittingDialogBox;
 
     }
-
-
 
 
 }

@@ -15,9 +15,4 @@ public class ProfileManager_advanced extends ActionBarActivity {
     }
 
 
-
-
-
-
-
 }

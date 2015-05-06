@@ -151,7 +151,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             values.put(KEY_LASTNAME, profile.getLastName());
             values.put(KEY_DATE, profile.getBirthDate());
             values.put(KEY_NUMBER, profile.getNumber());
-            values.put(KEY_INFORMATION,profile.getInformation());
+            values.put(KEY_INFORMATION, profile.getInformation());
 
             db.insert(TABLE_PROFILES, null, values);
             db.close();
@@ -241,10 +241,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static Profile getProfile() {
         if (_profile == null) {
             Profile prof = new Profile(null, null, null, null, null, null);
-            prof.updateSettings("Medium","Blue");
+            prof.updateSettings("Medium", "Blue");
             return prof;
-        }
-        else return _profile;
+        } else return _profile;
     }
 
     public boolean editProfile(String newfirstname, String newlastname, String newdate, String newnumber) {
@@ -280,8 +279,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             ContentValues values = new ContentValues();
             values.put(KEY_ID, _profile.getID());
 
-            if (size == null) values.put(KEY_SIZE,_profile.getSize()); else values.put(KEY_SIZE, size);
-            if (color == null) values.put(KEY_COLOR,_profile.getColor()); else values.put(KEY_COLOR, color);
+            if (size == null) values.put(KEY_SIZE, _profile.getSize());
+            else values.put(KEY_SIZE, size);
+            if (color == null) values.put(KEY_COLOR, _profile.getColor());
+            else values.put(KEY_COLOR, color);
 
             if (loadSettings()) {
                 SQLiteDatabase db = this.getWritableDatabase();

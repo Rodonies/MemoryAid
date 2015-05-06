@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 
-public class ProfileManager extends FragmentActivity implements View.OnClickListener{
+public class ProfileManager extends FragmentActivity implements View.OnClickListener {
 
     private Button btnAddContact;
     private Button btnEditContact;
@@ -48,18 +48,18 @@ public class ProfileManager extends FragmentActivity implements View.OnClickList
 
         switch (v.getId()) {
             case R.id.btnAddContact:
-                    SharedPreferences settings = getSharedPreferences(SaveData, 0);
-                    SharedPreferences.Editor editor = settings.edit();
-                    editor.putString("Contact_Or_Profile","Contact");
-                    editor.putString("ProfileMode","View");
-                    editor.commit();
+                SharedPreferences settings = getSharedPreferences(SaveData, 0);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putString("Contact_Or_Profile", "Contact");
+                editor.putString("ProfileMode", "View");
+                editor.commit();
                 CreateNewUser(v);
                 break;
             case R.id.btnEditContact:
 
                 settings = getSharedPreferences(SaveData, 0);
                 editor = settings.edit();
-                editor.putString("ProfileMode","Edit");
+                editor.putString("ProfileMode", "Edit");
                 editor.commit();
                 ContactView(v);
 
@@ -67,12 +67,12 @@ public class ProfileManager extends FragmentActivity implements View.OnClickList
             case R.id.btnDeleteContact:
                 settings = getSharedPreferences(SaveData, 0);
                 editor = settings.edit();
-                editor.putString("ProfileMode","Delete");
+                editor.putString("ProfileMode", "Delete");
                 editor.commit();
                 ContactView(v);
                 break;
             case R.id.btnProfileManager:
-                    AdvancedProfileManager(v);
+                AdvancedProfileManager(v);
                 break;
 
         }
@@ -84,20 +84,15 @@ public class ProfileManager extends FragmentActivity implements View.OnClickList
         startActivity(i);
     }
 
-    public void AdvancedProfileManager(View view){
-        Intent i = new Intent(this,ProfileManager_advanced.class);
+    public void AdvancedProfileManager(View view) {
+        Intent i = new Intent(this, ProfileManager_advanced.class);
         startActivity(i);
     }
+
     public void ContactView(View view) {
         Intent i = new Intent(this, ProfileView.class);
         startActivity(i);
     }
-
-
-
-
-
-
 
 
 }

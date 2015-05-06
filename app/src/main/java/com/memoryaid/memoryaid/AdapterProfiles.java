@@ -30,7 +30,7 @@ public class AdapterProfiles extends ArrayAdapter<Profile> {
         return convertView;
     }
 
-    public AdapterProfiles(Context context, ArrayList<Profile>Profilelist) {
+    public AdapterProfiles(Context context, ArrayList<Profile> Profilelist) {
         super(context, 0, Profilelist);
     }
 

@@ -28,6 +28,7 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(setIntent);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,42 +49,34 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         if (First_Launch.equals("true")) {
             CreateNewUser(V);
 
-        }
-        else
-        {
-            if(DatabaseHandler.getProfile().getColor() == null)
-            {
-                if (db.getAllProfiles().isEmpty())
-                {
+        } else {
+            if (!db.findProfile(settings.getInt("CurrentProfile", 0))) {
+                if (db.getAllProfiles().isEmpty()) {
                     SharedPreferences.Editor editor = settings.edit();
-                    editor.putString("Contact_Or_Profile","Profile");
+                    editor.putString("Contact_Or_Profile", "Profile");
                     editor.commit();
                     CreateNewUser(V);
 
-                }
-                else
-                {
+                } else {
                     //hier moet code in voor profile list te laden
                 }
-
             }
         }
 
-   }
+    }
 
-    public void CreateNewUser(View view)
-    {
-        Intent i = new Intent(this,CreateNewUser.class);
+    public void CreateNewUser(View view) {
+        Intent i = new Intent(this, CreateNewUser.class);
         startActivity(i);
     }
 
     public void Settings(View view) {
-        Intent i = new Intent(this,Settings.class);
+        Intent i = new Intent(this, Settings.class);
         startActivity(i);
     }
 
     public void ProfileManager(View view) {
-        Intent i = new Intent(this,ProfileManager.class);
+        Intent i = new Intent(this, ProfileManager.class);
         startActivity(i);
     }
 
