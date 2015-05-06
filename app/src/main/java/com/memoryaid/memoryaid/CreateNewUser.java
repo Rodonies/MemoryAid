@@ -2,25 +2,19 @@ package com.memoryaid.memoryaid;
 
 import android.app.Activity;
 import android.app.Dialog;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
-
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.*;
-import android.provider.Settings;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -30,11 +24,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URI;
-import java.nio.channels.FileChannel;
-import java.util.jar.Attributes;
-
-import javax.xml.namespace.NamespaceContext;
 
 public class CreateNewUser extends ActionBarActivity implements View.OnClickListener {
 
@@ -68,7 +57,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         Contact_Or_Profile = settings.getString("Contact_Or_Profile", "Profile");
 
-        if (Contact_Or_Profile == "Profile")
+        if (Contact_Or_Profile.equals("Profile"))
             setContentView(R.layout.activity_create_new_user);
         else
             setContentView(R.layout.activity_contact_adding);
@@ -132,6 +121,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                     btnAddPhoto.setVisibility(View.GONE);
                 } catch (Exception e) {
                     Toast.makeText(this, "no photo was selected " + e.getMessage(), Toast.LENGTH_LONG).show();
+
                 }
 
                 break;
@@ -183,9 +173,10 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                 TakePhoto();
                 break;
             case R.id.PhotoGallery: /** AlerDialog when click on Exit */
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath() + "/Camera/");
-                intent.setDataAndType(uri, "image/*");
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                intent.setDataAndType(uri, "image/png");
+
                 startActivityForResult(Intent.createChooser(intent, "Select contact image"), SELECT_IMAGE);
                 break;
         }
@@ -197,7 +188,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         Contact_Or_Profile = settings.getString("Contact_Or_Profile", "Profile");
         First_Launch = settings.getString("First_Launch", "true");
-        if (Contact_Or_Profile == "Profile" || First_Launch == "true") {
+        if (Contact_Or_Profile.equals("Profile") || First_Launch.equals("true")) {
 
             SharedPreferences.Editor editor = settings.edit();
             Name = ((EditText) findViewById(R.id.First_Name_Field)).getText().toString();
@@ -212,7 +203,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                 db.addProfile(new Profile(Name, LastName, Phone, BirthDate, Note));
 
                 if (db.findProfile(Name, LastName)) {
-                    if (First_Launch == "true") {
+                    if (First_Launch.equals("true")) {
                         editor.putString("First_Launch", "false");
                         editor.commit();
                     }

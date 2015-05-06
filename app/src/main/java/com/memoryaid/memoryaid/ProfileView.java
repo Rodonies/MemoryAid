@@ -30,11 +30,26 @@ public class ProfileView extends ActionBarActivity {
     public void onBackPressed() {
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         ContactMode = settings.getString("ProfileMode", "View");
-        if (ContactMode.equals("View")) {
+        if(ContactMode.equals("View")) {
+            Intent i = new Intent(this, Homescreen.class);
+            startActivity(i);
+        }
+        else if (ContactMode.equals("Edit"))
+        {
+            DatabaseHandler db = new DatabaseHandler(this);
+            settings = getSharedPreferences(SaveData, 0);
+            CurrentProfile = settings.getInt("CurrentProfile", 0);
+            if (db.findProfile(CurrentProfile))
+            {
+
+            }
             Intent i = new Intent(this, ProfileManager.class);
             startActivity(i);
-        } else if (ContactMode.equals("Edit")) {
-
+        }
+        else if (ContactMode.equals("Delete"))
+        {
+            Intent i = new Intent(this, ProfileManager.class);
+            startActivity(i);
         }
 
 
@@ -57,7 +72,7 @@ public class ProfileView extends ActionBarActivity {
             ContactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    BufferContact = (Contact) ContactList.getItemAtPosition(position);
+            BufferContact = (Contact) ContactList.getItemAtPosition(position);
 
                     if (ContactMode.equals("View")) {
                         ViewProfile(V, 0);
@@ -138,11 +153,14 @@ public class ProfileView extends ActionBarActivity {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
                         DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-                        boolean test = db.deleteContact(BufferContact);
-                        ArrayList<Contact> contactlist = db.getProfile().getContacts();
-                        final ListView ContactList = (ListView) findViewById(R.id.ListContacts);
-                        ContactList.setAdapter(new AdapterContacts(getApplicationContext(), contactlist));
+
+
+                        db.deleteContact(BufferContact);
+
+
                         dialog.dismiss();
+                        Intent i = new Intent(getApplicationContext(), ProfileManager.class);
+                        startActivity(i);
                     }
 
                 })
