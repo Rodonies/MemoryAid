@@ -21,7 +21,7 @@
     <string name="title_activity_new_user_creation">NieuweGebruikerCreatie</string>
     <string name="title_activity_create_new_user">Creëer nieuwe gebruiker</string>
 
-    <string name="ContactList">COntactlijst</string>
+    <string name="ContactList">Contactlijst</string>
     <string name="TitleCreateNewProfile">Creëer nieuw profiel</string>
     <string name="btnPicture">Foto toevoegen</string>
     <string name="Firstname">Voornaam: </string>
