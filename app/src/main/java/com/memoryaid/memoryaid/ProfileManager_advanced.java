@@ -11,6 +11,9 @@ public class ProfileManager_advanced extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        themeUtils.onActivityCreateSetTheme(this);
+        themeUtils.onActivityCreateSetColor(this);
         setContentView(R.layout.activity_profile_manager_advanced);
     }
 
