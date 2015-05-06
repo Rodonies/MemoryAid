@@ -241,7 +241,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static Profile getProfile() {
         if (_profile.getFirstName() == null) {
             Profile prof = new Profile(null, null, null, null, null, null);
-            prof.updateSettings(null,null);
+            prof.updateSettings("Medium","Blue");
             return prof;
         }
         else return _profile;
