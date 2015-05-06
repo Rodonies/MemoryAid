@@ -14,13 +14,6 @@ public class themeUtils {
 
     public static String cTheme = "Medium";
 
-    public final static int Englisch = 0;
-    public final static int Espagnol = 1;
-    public final static int Nederlands = 2;
-    public final static int Frans = 3;
-    public static int cLanguage = 0;
-
-
     public static void changeToTheme(Activity activity, String theme) {
         DatabaseHandler db = new DatabaseHandler(activity);
         if (db.findProfile(DatabaseHandler.getProfile().getID())) ;
@@ -43,32 +36,6 @@ public class themeUtils {
         }
     }
 
-    public static void changeToLanguage(Activity activity, int Language) {
-        cLanguage = Language;
-        if (cLanguage == 0) {
-
-
-        }
-        activity.finish();
-        activity.startActivity(new Intent(activity, activity.getClass()));
-    }
-
-    public static void onActivityCreateSetLanguage(Activity activity) {
-        switch (cLanguage) {
-            case 0:
-                //
-                break;
-            case 1:
-                //
-                break;
-            case 2:
-                //
-            case 3:
-                //
-                break;
-        }
-    }
-
     public static void ChangeToColor(Activity activity, String color) {
         DatabaseHandler db = new DatabaseHandler(activity);
         if (db.findProfile(DatabaseHandler.getProfile().getID())) ;
@@ -78,7 +45,6 @@ public class themeUtils {
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));
     }
-
 
     public static void onActivityCreateSetColor(Activity activity) {
         String test = DatabaseHandler.getProfile().getColor();
