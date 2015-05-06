@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
 
 
@@ -17,6 +19,9 @@ public class Settings extends ActionBarActivity {
     private View V;
     private String First_Launch;
     private String Contact_Or_Profile;
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -36,11 +41,8 @@ public class Settings extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
-        themeUtils.onActivityCreateSetTheme(this);
-        themeUtils.onActivityCreateSetColor(this);
-
-
+            themeUtils.onActivityCreateSetTheme(this);
+            themeUtils.onActivityCreateSetColor(this);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_settings);
@@ -49,9 +51,11 @@ public class Settings extends ActionBarActivity {
         final RadioButton B = (RadioButton) findViewById(R.id.RadioMedium);
         final RadioButton C = (RadioButton) findViewById(R.id.RadioBig);
 
-        A.setChecked(false);
-        B.setChecked(true);
-        C.setChecked(false);
+                A.setChecked(false);
+                B.setChecked(true);
+                C.setChecked(false);
+        final CheckBox Advanced = (CheckBox) findViewById(R.id.checkboxAdvanced);
+                Advanced.setChecked(false);
     }
 
 
@@ -115,6 +119,25 @@ public class Settings extends ActionBarActivity {
 
     }
 
+    public void AdvancedCheckboxChecked(View view){
+
+        boolean checked = ((CheckBox) view).isChecked();
+        Button button = (Button)findViewById(R.id.btnProfileManager);
+        setContentView(R.layout.activity_profile_manager);
+
+        if(checked)
+            {
+                button.setVisibility(View.VISIBLE);
+                //button.isEnabled(true);
+            }
+        else
+            {
+                button.setVisibility(View.GONE);
+            }
+
+
+
+    }
 
 }
 

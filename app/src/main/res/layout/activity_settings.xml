@@ -184,45 +184,16 @@
         android:orientation="vertical"
         android:weightSum="1">
 
-        <TextView
-            android:id="@+id/FontStyle"
-            android:background="#FFFFFF"
-            android:gravity="center"
-            android:layout_width="126dp"
-            android:textSize="15sp"
-            android:layout_height="32dp"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/FontStyle" />
 
-        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        <CheckBox
+            android:id="@+id/checkboxAdvanced"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="#FFFFFF">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="#FFFFFF">
-                <TextView
-                    android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:layout_width="126dp"
-                    android:textSize="15sp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/Advanced" />
-
-                <CheckBox
-                    android:id="@+id/checkboxAdvanced"
-                    android:checked="false"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp" />
-
-            </LinearLayout>
-        </RadioGroup>
-
+            android:layout_gravity="center_horizontal"
+            android:background="#FFFFFF"
+            android:onClick="AdvancedCheckboxChecked"
+            android:textSize="15sp"
+            android:text="@string/Advanced" />
     </LinearLayout>
 
 </LinearLayout>
