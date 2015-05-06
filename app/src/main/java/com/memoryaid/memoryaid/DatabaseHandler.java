@@ -248,11 +248,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
 
-        values.put(KEY_FIRSTNAME, newprofile.getFirstName());
-        values.put(KEY_LASTNAME, newprofile.getLastName());
-        values.put(KEY_DATE, newprofile.getBirthDate());
-        values.put(KEY_NUMBER, newprofile.getNumber());
-        values.put(KEY_INFORMATION, newprofile.getInformation());
+        values.put(KEY_FIRSTNAME, newfirstname);
+        values.put(KEY_LASTNAME, newlastname);
+        values.put(KEY_DATE, newdate);
+        values.put(KEY_NUMBER, newnumber);
+        values.put(KEY_NUMBER, newinfo);
 
         try {
             db.update(TABLE_PROFILES, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())});
@@ -269,7 +269,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public boolean editContact(Contact oldcontact, Contact newcontact) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Copy(oldcontact.getImageFile(), newcontact.getImageFile(), true);
+        if (newfirstname == null) newfirstname = oldcontact.getFirstName();
+        if (newlastname == null) newfirstname = oldcontact.getFirstName();
+        if (newdate == null) newdate = oldcontact.getBirthDate();
+        if (newrelation == null) newrelation = oldcontact.getBirthDate();
+        if (newnumber == null) newfirstname = oldcontact.getFirstName();
+        if (newinfo == null) newinfo = oldcontact.getInformation();
 
         ContentValues values = new ContentValues();
 
@@ -281,9 +286,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_NUMBER, newcontact.getInformation());
 
         try {
-            db.update(TABLE_CONTACTS, values, KEY_ID + " = ?", new String[]{String.valueOf(oldcontact.getID())});
-            updateContacts();
-            return true;
+            if (db.update(TABLE_CONTACTS, values, KEY_ID + " = ?", new String[]{String.valueOf(oldcontact.getID())}) == 1){ updateContacts(); return true;}
+            else return false;
         } catch (Exception e) {
             Log.e("editContact", "Error: " + e.getMessage());
             return false;
