@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -50,9 +51,6 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
     private ImageView imgCamera;
     private Button btnAddPhoto;
 
-    private Uri GlobalUri;
-
-
     private String Name;
     private String LastName;
     private String Phone;
@@ -88,12 +86,13 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
                 if (resCode == Activity.RESULT_OK) {
                     File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
+
                     if (photo.exists())
                         Picasso.with(getApplicationContext()).load(photo).centerCrop().resize(300, 250).into(contactImgView);
                     else
                         Picasso.with(getApplicationContext()).load(R.drawable.defaultimage).centerCrop().resize(300, 250).into(contactImgView);
                     Toast.makeText(this, "photo was added to database", Toast.LENGTH_LONG).show();
-                        btnAddPhoto.setVisibility(View.GONE);
+                    btnAddPhoto.setVisibility(View.GONE);
                 } else if (resCode == Activity.RESULT_CANCELED) {
                     Toast.makeText(this, "no photo was chosen", Toast.LENGTH_LONG).show();
                 }
@@ -101,18 +100,33 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                 break;
             case 2:
                 try {
-                    GlobalUri = data.getData();
                     Picasso.with(getApplicationContext()).load(data.getData()).centerCrop().resize(300, 250).into(contactImgView);
+
+                    Uri selectedImage = data.getData();
+                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+                    Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+                    cursor.moveToFirst();
+
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    String filePath = cursor.getString(columnIndex);
+                    cursor.close();
 
                     File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
                     if (photo.exists()) photo.delete();
 
-                    FileChannel src = new FileInputStream(new File(GlobalUri.getPath())).getChannel();
-                    FileChannel dst = new FileOutputStream(photo).getChannel();
+                    InputStream in = new FileInputStream(filePath);
+                    OutputStream out = new FileOutputStream(photo);
 
-                    dst.transferFrom(src,0,src.size());
-                    src.close();
-                    dst.close();
+                    // Transfer bytes from in to out
+                    byte[] buf = new byte[1024];
+                    int len;
+                    while ((len = in.read(buf)) > 0) {
+                        out.write(buf, 0, len);
+                    }
+                    in.close();
+                    out.close();
+
 
                     Toast.makeText(this, "photo was selected", Toast.LENGTH_LONG).show();
                     btnAddPhoto.setVisibility(View.GONE);
@@ -224,6 +238,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                             out.write(buf, 0, len);
                         }
                         in.close();
+                        out.close();
 
                     } catch (Exception fuck) {
                         Log.e("profilesave", fuck.getMessage());

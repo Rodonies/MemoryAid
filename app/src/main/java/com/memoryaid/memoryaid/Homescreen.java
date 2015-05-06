@@ -3,6 +3,7 @@ package com.memoryaid.memoryaid;
 import android.app.Application;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Environment;
 import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -74,7 +75,6 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         for (File file : path.listFiles()) {
             Log.e("" + file.isFile(), file.getPath());
             if (file.isDirectory()) Print(file);
-
         }
     }
 
