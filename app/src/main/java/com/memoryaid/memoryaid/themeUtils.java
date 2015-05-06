@@ -6,6 +6,7 @@ package com.memoryaid.memoryaid;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.RadioButton;
 
@@ -18,6 +19,7 @@ public class themeUtils {
     public final static int Nederlands = 2;
     public final static int Frans = 3;
     public static int cLanguage = 0;
+
 
     public static void changeToTheme(Activity activity, String theme) {
         DatabaseHandler db = new DatabaseHandler(activity);
@@ -78,33 +80,48 @@ public class themeUtils {
         activity.startActivity(new Intent(activity, activity.getClass()));
     }
 
+
+
     public static void onActivityCreateSetColor(Activity activity) {
-        switch (DatabaseHandler.getProfile().getColor()) {
-            case "Blue":
-                activity.setTheme(R.style.Blue);
-                break;
-            case "red":
-                activity.setTheme(R.style.Red);
-                break;
-            case "yellow":
-                activity.setTheme(R.style.Yellow);
-                break;
-            case "green":
-                activity.setTheme(R.style.Green);
-                break;
-            case "white":
-                activity.setTheme(R.style.White);
-                break;
-            case "black":
-                activity.setTheme(R.style.Black);
-                break;
-            case "purple":
-                activity.setTheme(R.style.Purple);
-                break;
-            case "pink":
-                activity.setTheme(R.style.Pink);
-                break;
+
+        if (DatabaseHandler.getProfile().getColor()!= null)
+        {
+            switch (DatabaseHandler.getProfile().getColor()) {
+                case "Blue":
+                    activity.setTheme(R.style.Blue);
+                    break;
+                case "red":
+                    activity.setTheme(R.style.Red);
+                    break;
+                case "yellow":
+                    activity.setTheme(R.style.Yellow);
+                    break;
+                case "green":
+                    activity.setTheme(R.style.Green);
+                    break;
+                case "white":
+                    activity.setTheme(R.style.White);
+                    break;
+                case "black":
+                    activity.setTheme(R.style.Black);
+                    break;
+                case "purple":
+                    activity.setTheme(R.style.Purple);
+                    break;
+                case "pink":
+                    activity.setTheme(R.style.Pink);
+                    break;
+                default:
+                    activity.setTheme(R.style.Blue);
+                    break;
+            }
+
         }
+        else
+            activity.setTheme(R.style.Blue);
+
+
+
     }
 
 

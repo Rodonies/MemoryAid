@@ -42,9 +42,14 @@ public class Settings extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
+
+            themeUtils.onActivityCreateSetTheme(this);
+            themeUtils.onActivityCreateSetColor(this);
+
+
         super.onCreate(savedInstanceState);
-        themeUtils.onActivityCreateSetTheme(this);
-        themeUtils.onActivityCreateSetColor(this);
+
         setContentView(R.layout.activity_settings);
 
         final RadioButton A = (RadioButton) findViewById(R.id.RadioSmall);

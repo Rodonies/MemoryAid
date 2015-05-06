@@ -44,14 +44,38 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         First_Launch = settings.getString("First_Launch", "true");
 
-
+        DatabaseHandler db = new DatabaseHandler(this);
         if (First_Launch.equals("true")) {
-            Settings(V);
+            CreateNewUser(V);
 
+        }
+        else
+        {
+            if(DatabaseHandler.getProfile().getColor() == null)
+            {
+                if (db.getAllProfiles().isEmpty())
+                {
+                    SharedPreferences.Editor editor = settings.edit();
+                    editor.putString("Contact_Or_Profile","Profile");
+                    editor.commit();
+                    CreateNewUser(V);
+
+                }
+                else
+                {
+                    //hier moet code in voor profile list te laden
+                }
+
+            }
         }
 
    }
 
+    public void CreateNewUser(View view)
+    {
+        Intent i = new Intent(this,CreateNewUser.class);
+        startActivity(i);
+    }
 
     public void Settings(View view) {
         Intent i = new Intent(this,Settings.class);
