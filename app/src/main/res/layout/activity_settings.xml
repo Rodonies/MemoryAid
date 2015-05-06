@@ -205,49 +205,21 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:background="#FFFFFF">
-
-                <RadioButton
-                    android:id="@+id/RadioNormal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:onClick="onRadioButtonLanguageClicked"
-                    android:text="@string/Normal"
-                    android:background="#FFFFFF"/>
-
-                <RadioButton
-                    android:id="@+id/RadioItalic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onRadioButtonLanguageClicked"
-                    android:text="@string/Italic"
+                <TextView
                     android:background="#FFFFFF"
-                    android:checked="false" />
-            </LinearLayout>
+                    android:gravity="center"
+                    android:layout_width="126dp"
+                    android:textSize="15sp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/Advanced" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="#FFFFFF">
+                <CheckBox
+                    android:id="@+id/checkboxAdvanced"
+                    android:checked="false"
+                    android:layout_width="10"
+                    android:layout_height="10" />
 
-                <RadioButton
-                    android:id="@+id/RadioBold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onRadioButtonLanguageClicked"
-                    android:text="@string/Bold"
-                    android:background="#FFFFFF"
-                    android:checked="false" />
-
-                <RadioButton
-                    android:id="@+id/RadioUnderlined"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onRadioButtonLanguageClicked"
-                    android:text="@string/Underlined"
-                    android:background="#FFFFFF"
-                    android:checked="false" />
             </LinearLayout>
         </RadioGroup>
 
