@@ -15,6 +15,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
+        android:background="#FFFFFF"
         />
 
     <TextView
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/txtGallery"
+        android:background="#FFFFFF"
         />
 
     <ImageView
@@ -30,6 +32,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
+        android:background="#FFFFFF"
         />
 
     <TextView
@@ -50,5 +53,11 @@
         android:onClick="CloseDialog"
         android:text=" cancel "
         />
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar"
+        android:layout_gravity="right" />
 
 </LinearLayout>

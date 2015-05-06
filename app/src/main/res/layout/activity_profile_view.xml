@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
     android:scrollbarSize="@dimen/abc_action_bar_default_height_material">
 
     <LinearLayout
@@ -177,6 +176,7 @@
                 android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:orientation="vertical"
+                android:background="#FFFFFF"
                 android:id="@+id/InfoField">
 
                 <TextView
@@ -185,13 +185,14 @@
                     android:text="@string/Basic_info"
                     android:layout_gravity="left|bottom"
                     android:textSize="29sp"
+                    android:background="#FFFFFF"
                     android:textColor="#000000"
                     android:id="@+id/BasicInfoLabel"/>
 
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
+                    android:background="#FFFFFF"
                     android:id="@+id/BasicInfoText"
                     android:layout_gravity="left"
 
