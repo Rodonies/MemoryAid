@@ -45,9 +45,7 @@ public class Contact {
         return _aid;
     }
 
-    public Integer getCID() {
-        return _cid;
-    }
+    public Integer getCID() { return _cid; }
 
     public String getFullName() {
         return _firstname + " " + _lastname;
