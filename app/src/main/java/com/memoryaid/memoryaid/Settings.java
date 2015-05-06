@@ -53,50 +53,6 @@ public class Settings extends ActionBarActivity {
                 A.setChecked(false);
                 B.setChecked(true);
                 C.setChecked(false);
-
-
-        final RadioButton m_one = (RadioButton) findViewById(R.id.RadioNormal);
-        final RadioButton m_two = (RadioButton) findViewById(R.id.RadioBold);
-        final RadioButton m_three = (RadioButton) findViewById(R.id.RadioItalic);
-        final RadioButton m_four = (RadioButton) findViewById(R.id.RadioUnderlined);
-
-
-        m_one.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                m_one.setChecked(true);
-                m_two.setChecked(false);
-                m_three.setChecked(false);
-                m_four.setChecked(false);
-            }
-        });
-
-        m_two.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                themeUtils.cLanguage = 2;
-                m_one.setChecked(false);
-                m_two.setChecked(true);
-                m_three.setChecked(false);
-                m_four.setChecked(false);
-            }
-        });
-
-        m_three.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                m_one.setChecked(false);
-                m_two.setChecked(false);
-                m_three.setChecked(true);
-                m_four.setChecked(false);
-            }
-        });
-
-        m_four.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                m_one.setChecked(false);
-                m_two.setChecked(false);
-                m_three.setChecked(false);
-                m_four.setChecked(true);
-            }
-        });
     }
 
 

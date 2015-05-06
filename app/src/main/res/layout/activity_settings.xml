@@ -217,8 +217,8 @@
                 <CheckBox
                     android:id="@+id/checkboxAdvanced"
                     android:checked="false"
-                    android:layout_width="10"
-                    android:layout_height="10" />
+                    android:layout_width="10dp"
+                    android:layout_height="10dp" />
 
             </LinearLayout>
         </RadioGroup>
