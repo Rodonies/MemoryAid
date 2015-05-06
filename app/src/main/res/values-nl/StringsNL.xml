@@ -11,7 +11,7 @@
     <string name="ProfileManagertxt1"> Profiel toevoegen </string>
     <string name="ProfileManagertxt2"> Profiel wijzigen </string>
     <string name="ProfileManagertxt3"> Profiel verwijderen </string>
-    <string name="ProfileManagertxt4"> Profiel wijzigen </string>
+    <string name="ProfileManagertxt4"> Profiel wisselen </string>
 
     <string name="ContactTitle">Contactbeheer</string>
     <string name="AddContact">Contact toevoegen</string>
