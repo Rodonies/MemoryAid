@@ -239,7 +239,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public static Profile getProfile() {
-        return _profile;
+        if (_profile.getFirstName() == null) return new Profile(null,null,null,null,null,null);
+        else return _profile;
     }
 
     public boolean editProfile(String newfirstname, String newlastname, String newdate, String newnumber) {
