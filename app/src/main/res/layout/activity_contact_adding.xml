@@ -163,7 +163,8 @@
             android:layout_gravity="center"
             android:onClick="SaveProfile"
             android:enabled="true"
-            android:text="Save" />
+            android:text="Save"
+            android:background="@drawable/buttonsave"/>
 
     </LinearLayout>
 

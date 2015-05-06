@@ -37,6 +37,7 @@
             android:linksClickable="false"
             android:textColor="#ff000000"
             android:text="@string/ProfileManagertxt4"
+            android:width="250sp"
             />
 
         <Button
@@ -48,6 +49,7 @@
             android:linksClickable="false"
             android:textColor="#ff000000"
             android:text="@string/ProfileManagertxt1"
+            android:width="250sp"
             />
 
         <Button
@@ -58,6 +60,7 @@
             android:id="@+id/btnEditProfile"
             android:textColor="#ff000000"
             android:text="@string/ProfileManagertxt2"
+            android:width="250sp"
             />
 
         <Button
@@ -68,6 +71,7 @@
             android:textColor="#ff000000"
             android:id="@+id/btnDeleteProfile"
             android:text="@string/ProfileManagertxt3"
+            android:width="250sp"
             />
 
 

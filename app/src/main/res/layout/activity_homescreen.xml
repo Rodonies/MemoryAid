@@ -25,7 +25,9 @@
         android:textColor="#ff000000"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
-        android:text="@string/Headmenutxt1" />
+        android:text="@string/Headmenutxt1"
+        android:width="250sp"
+        />
 
     <Button
         style="@style/AudioFileInfoOverlayText"
@@ -34,7 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:id="@+id/btnManager"
-        android:text="@string/Headmenutxt2" />
+        android:text="@string/Headmenutxt2"
+        android:width="250sp"/>
 
 
 
@@ -47,7 +50,8 @@
         android:textColor="#ff000000"
         android:linksClickable="false"
         android:id="@+id/btnSettings"
-        android:text="@string/title_Settings" />
+        android:text="@string/title_Settings"
+        android:width="250sp"/>
 
 </LinearLayout>
 
