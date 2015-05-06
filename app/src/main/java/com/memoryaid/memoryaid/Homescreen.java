@@ -1,7 +1,9 @@
 package com.memoryaid.memoryaid;
 
+import android.app.Application;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -45,6 +48,8 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         First_Launch = settings.getString("First_Launch", "true");
 
+        Print(getApplicationContext().getFilesDir());
+
         DatabaseHandler db = new DatabaseHandler(this);
         if (First_Launch.equals("true")) {
             CreateNewUser(V);
@@ -63,6 +68,13 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
             }
         }
 
+    }
+
+    public void Print(File path) {
+        for (File file : path.listFiles()) {
+            if (file.isDirectory()) Print(file);
+            else Log.e("print", file.getPath());
+        }
     }
 
     public void CreateNewUser(View view) {
@@ -88,7 +100,8 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.btnContactView: SharedPreferences settings = getSharedPreferences(SaveData, 0);
+            case R.id.btnContactView:
+                SharedPreferences settings = getSharedPreferences(SaveData, 0);
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putString("Contact_Or_Profile", "Contact");
                 editor.putString("ProfileMode", "View");

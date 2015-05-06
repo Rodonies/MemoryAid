@@ -75,10 +75,12 @@ public class Contact {
         return _information;
     }
 
-    public Uri getImageUri() {
+    public File getImageUri() {
         File image = new File(_imagepath + "/image.png");
-        if (image.exists()) return Uri.fromFile(image);
-        else return Uri.parse("android.resource://com.memoryaid.memoryaid/drawable/defalultimage.gif");
+        if (image.exists())
+            return image;
+        else
+            return new File("android.resource://com.memoryaid.memoryaid/drawable/defaultimage.gif");
     }
 
     public File getImageFile() {

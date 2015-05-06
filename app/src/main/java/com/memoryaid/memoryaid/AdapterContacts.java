@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -31,7 +32,7 @@ class AdapterContacts extends ArrayAdapter<Contact> {
         ContactName.setText(contact.getFullName());
 
         ImageView ContactImage = (ImageView) convertView.findViewById(R.id.imgContact);
-        Uri test = contact.getImageUri();
+        File test = contact.getImageUri();
 
         Picasso.with(getContext()).load(test).resize(150, 150).into(ContactImage);
         return convertView;
