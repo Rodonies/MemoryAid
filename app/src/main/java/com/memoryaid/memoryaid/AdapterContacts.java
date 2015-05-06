@@ -1,5 +1,6 @@
 package com.memoryaid.memoryaid;
 
+import android.app.Application;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -32,9 +33,9 @@ class AdapterContacts extends ArrayAdapter<Contact> {
         ContactName.setText(contact.getFullName());
 
         ImageView ContactImage = (ImageView) convertView.findViewById(R.id.imgContact);
-        File test = contact.getImageUri();
+        if (contact.getImageUri() == null) Picasso.with(getContext()).load(R.drawable.defaultimage).resize(150, 150).into(ContactImage);
+        else Picasso.with(getContext()).load(contact.getImageUri()).resize(150, 150).into(ContactImage);
 
-        Picasso.with(getContext()).load(test).resize(150, 150).into(ContactImage);
         return convertView;
     }
 

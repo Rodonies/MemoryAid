@@ -76,16 +76,17 @@ public class Contact {
     }
 
     public File getImageUri() {
-        File image = new File(_imagepath + "/image.png");
+        File image = new File("/data/data/com.memoryaid.memoryaid/files/" +_imagepath + "/image.png");
         if (image.exists())
             return image;
-        else
-            return new File("android.resource://com.memoryaid.memoryaid/drawable/defaultimage.gif");
+        else {
+                return null;
+        }
     }
 
     public File getImageFile() {
 
-        return new File(_imagepath + "/image.png");
+        return new File("/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png");
 
     }
 

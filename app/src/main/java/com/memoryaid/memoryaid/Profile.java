@@ -39,7 +39,7 @@ public class Profile {
         _birthdate = birthdate;
         _number = number;
         _information = information;
-        _imagepath = _id + "_" + _firstname + "_" + _lastname;
+        _imagepath = "/" + _id + "_" + _firstname + "_" + _lastname;
         _contacts = new ArrayList<Contact>();
     }
 
@@ -92,14 +92,14 @@ public class Profile {
     }
 
     public Uri getImageUri() {
-        File image = new File(_imagepath + "/image.png");
+        File image = new File("/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png");
         if (image.exists()) return Uri.fromFile(image);
         else
-            return Uri.parse("android.resource:/com.memoryaid.memoryaid/drawable/defaultimage.gif");
+            return Uri.parse("android.resource://com.memoryaid.memoryaid/drawable/defaultimage");
     }
 
     public File getImageFile() {
-        return new File(_imagepath + "/image.png");
+        return new File("/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png");
     }
 
     public String getImagePath() {

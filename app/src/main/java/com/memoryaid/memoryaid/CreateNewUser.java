@@ -9,7 +9,8 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
+import android.provider.*;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -29,6 +30,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
+import java.nio.channels.FileChannel;
 import java.util.jar.Attributes;
 
 import javax.xml.namespace.NamespaceContext;
@@ -106,10 +108,20 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                     GlobalUri = data.getData();
                     Picasso.with(getApplicationContext()).load(data.getData()).centerCrop().resize(300, 250).into(contactImgView);
 
+                    File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
+                    if (photo.exists()) photo.delete();
+
+                    FileChannel src = new FileInputStream(new File(GlobalUri.getPath())).getChannel();
+                    FileChannel dst = new FileOutputStream(photo).getChannel();
+
+                    dst.transferFrom(src,0,src.size());
+                    src.close();
+                    dst.close();
+
                     Toast.makeText(this, "photo was selected", Toast.LENGTH_LONG).show();
                     btnAddPhoto.setVisibility(View.GONE);
                 } catch (Exception e) {
-                    Toast.makeText(this, "no photo was selected", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "no photo was selected " + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
                 break;
@@ -204,8 +216,19 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                 File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
                 if (photo.exists()) {
                     try {
-                        //InputStream in = new FileInputStream(photo);
-                        photo.renameTo(DatabaseHandler.getProfile().getImageFile());
+                        File file = DatabaseHandler.getProfile().getImageFile();
+                        file.getParentFile().mkdirs();
+                        file.createNewFile();
+                        InputStream in = new FileInputStream(photo);
+                        OutputStream out = new FileOutputStream(file);
+
+                        // Transfer bytes from in to out
+                        byte[] buf = new byte[1024];
+                        int len;
+                        while ((len = in.read(buf)) > 0) {
+                            out.write(buf, 0, len);
+                        }
+                        in.close();
 
                     } catch (Exception fuck) {
                         Log.e("profilesave", fuck.getMessage());
@@ -238,11 +261,10 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                     File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
                     if (photo.exists()) {
                         try {
-                            boolean test2 = photo.renameTo(DatabaseHandler.getProfile().getContacts().get(DatabaseHandler.getProfile().getContacts().size() - 1).getImageFile());
-                            File file = DatabaseHandler.getProfile().getContacts().get(DatabaseHandler.getProfile().getContacts().size() - 1).getImageFile();
-                            file.mkdirs();
-                            file.createNewFile();
 
+                            File file = DatabaseHandler.getProfile().getContacts().get(DatabaseHandler.getProfile().getContacts().size() - 1).getImageFile();
+                            file.getParentFile().mkdirs();
+                            file.createNewFile();
                             InputStream in = new FileInputStream(photo);
                             OutputStream out = new FileOutputStream(file);
 
@@ -254,8 +276,6 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                             }
                             in.close();
                             out.close();
-                            Log.e("t", DatabaseHandler.getProfile().getContacts().get(DatabaseHandler.getProfile().getContacts().size() - 1).getImageFile().getPath());
-                            Log.e("t", test2 + " " + photo.getPath());
                         } catch (Exception fuck) {
                             Log.e("contactsave", fuck.getMessage());
                         }
