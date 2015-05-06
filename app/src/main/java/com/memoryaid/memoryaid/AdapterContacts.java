@@ -33,9 +33,7 @@ class AdapterContacts extends ArrayAdapter<Contact> {
         ImageView ContactImage = (ImageView) convertView.findViewById(R.id.imgContact);
         Uri test = contact.getImageUri();
 
-        ContactImage.setImageURI(test);
-
-        Picasso.with(getContext()).load(R.drawable.defaultimage).resize(150, 150).into(ContactImage);
+        Picasso.with(getContext()).load(test).resize(150, 150).into(ContactImage);
         return convertView;
     }
 

@@ -88,7 +88,11 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.btnContactView:
+            case R.id.btnContactView: SharedPreferences settings = getSharedPreferences(SaveData, 0);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putString("Contact_Or_Profile", "Contact");
+                editor.putString("ProfileMode", "View");
+                editor.commit();
                 ContactView(V);
                 break;
             case R.id.btnManager:
