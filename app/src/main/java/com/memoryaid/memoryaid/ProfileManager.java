@@ -34,7 +34,7 @@ public class ProfileManager extends FragmentActivity implements View.OnClickList
 
         btnAddContact = (Button) findViewById(R.id.btnAddContact);
         btnEditContact = (Button) findViewById(R.id.btnEditContact);
-        btnDeleteContact = (Button) findViewById(R.id.btnEditContact);
+        btnDeleteContact = (Button) findViewById(R.id.btnDeleteContact);
         btnProfileManager = (Button) findViewById(R.id.btnProfileManager);
 
         btnAddContact.setOnClickListener(this);
@@ -69,6 +69,7 @@ public class ProfileManager extends FragmentActivity implements View.OnClickList
                 editor = settings.edit();
                 editor.putString("ProfileMode","Delete");
                 editor.commit();
+                ContactView(v);
                 break;
             case R.id.btnProfileManager:
                     AdvancedProfileManager(v);

@@ -56,8 +56,8 @@ public class ProfileView extends ActionBarActivity {
                     }
                     else if(ContactMode.equals("Delete"))
                     {
-                       DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-                       db.deleteContact(BufferContact);
+                      AskOption().show();
+
                     }
                 }
             });
@@ -135,7 +135,12 @@ public class ProfileView extends ActionBarActivity {
                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        //your deleting code
+
+                        DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+                        db.deleteContact(BufferContact);
+                        final ArrayList<Contact> contactlist = db.getProfile().getContacts();
+                        final ListView ContactList = (ListView) findViewById(R.id.ListContacts);
+                        ContactList.setAdapter(new AdapterContacts(getApplicationContext(), contactlist));
                         dialog.dismiss();
                     }
 
