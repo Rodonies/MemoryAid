@@ -246,7 +246,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         } else return _profile;
     }
 
-    public boolean editProfile(String newfirstname, String newlastname, String newdate, String newnumber) {
+    public boolean editProfile(String newfirstname, String newlastname, String newdate, String newnumber, String newinfo) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -254,6 +254,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             if (newlastname == null) newfirstname = _profile.getFirstName();
             if (newdate == null) newdate = _profile.getBirthDate();
             if (newnumber == null) newfirstname = _profile.getFirstName();
+            if (newinfo == null) newinfo = _profile.getInformation();
             String oldpath = _profile.getImagePath();
             _profile.updateImagePath(_profile.getID() + "_" + newfirstname + "_" + newlastname);
 
@@ -264,6 +265,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             values.put(KEY_LASTNAME, newlastname);
             values.put(KEY_DATE, newdate);
             values.put(KEY_NUMBER, newnumber);
+            values.put(KEY_NUMBER, newinfo);
 
             if (db.update(TABLE_PROFILES, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())}) == 1)
                 return true;
