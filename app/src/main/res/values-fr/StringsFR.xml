@@ -5,7 +5,7 @@
 
     <string name="title_Settings">Paramètres</string>
     <string name="Headmenutxt1"> Voir les profils </string>
-    <string name="Headmenutxt2"> Gestion des profils </string>
+    <string name="Headmenutxt2"> Gestion des contacts </string>
 
     <string name="ProfileHeader"> Gestion de profil</string>
     <string name="ProfileManagertxt1"> Ajouter Profil </string>

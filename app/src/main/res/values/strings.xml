@@ -5,7 +5,7 @@
 
     <string name="title_Settings">Settings</string>
     <string name="Headmenutxt1"> View Contacts </string>
-    <string name="Headmenutxt2">Contact / Profile manager </string>
+    <string name="Headmenutxt2">Contact manager </string>
 
     <string name="ProfileHeader"> Profile management</string>
     <string name="ProfileManagertxt1"> Add Profile </string>
