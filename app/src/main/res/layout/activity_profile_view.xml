@@ -16,7 +16,7 @@
         android:layout_gravity="center"
         tools:context=".MainActivity"
         android:id="@+id/BlueBackground"
-        android:background="#FFFFFF">
+       >
 
 
         <LinearLayout
@@ -25,7 +25,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="#FFFFFF"
+
             >
 
             <TextView
@@ -51,6 +51,7 @@
                 android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:orientation="vertical"
+                android:background="#FFFFFF"
                 android:id="@+id/FirstNameField">
 
                 <TextView
@@ -59,6 +60,7 @@
                     android:text="@string/Firstname"
                     android:textSize="29sp"
                     android:textColor="#000000"
+                    android:background="#FFFFFF"
                     android:id="@+id/FirstNameLabel"
                     android:layout_gravity="left|top" />
 
@@ -70,6 +72,7 @@
                     android:layout_gravity="left"
                     android:textSize="23sp"
                     android:textColor="#000000"
+                    android:background="#FFFFFF"
                     android:text="@string/FirstNameText" />
 
 
@@ -80,6 +83,7 @@
                 android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:orientation="vertical"
+                android:background="#FFFFFF"
                 android:id="@+id/LastNameField">
 
                 <TextView
@@ -88,6 +92,7 @@
                     android:text="@string/Lastname"
                     android:textSize="29sp"
                     android:textColor="#000000"
+                    android:background="#FFFFFF"
                     android:id="@+id/LastNameLabel"
                     android:layout_gravity="left|top" />
 
@@ -98,6 +103,7 @@
                     android:id="@+id/LastNameText"
                     android:layout_gravity="left"
                     android:textSize="23sp"
+                    android:background="#FFFFFF"
                     android:textColor="#000000"
                     android:text="@string/FirstNameText" />
 
@@ -108,7 +114,8 @@
                 android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:orientation="vertical"
-                android:id="@+id/RelationField">
+                android:id="@+id/RelationField"
+                android:background="#FFFFFF">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -116,6 +123,7 @@
                     android:text="@string/Relation"
                     android:textSize="29sp"
                     android:textColor="#000000"
+                    android:background="#FFFFFF"
                     android:id="@+id/RelationLabel"
                     android:layout_gravity="left|top" />
 
@@ -125,15 +133,17 @@
                     android:inputType="date"
                     android:id="@+id/RelationText"
                     android:layout_gravity="left"
+                    android:background="#FFFFFF"
                     android:textSize="23sp"
                     android:textColor="#000000"
-                     /></LinearLayout>
+                    /></LinearLayout>
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:orientation="vertical"
+                android:background="#FFFFFF"
                 android:id="@+id/NumberField">
 
 
@@ -142,6 +152,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/PhoneNumber"
                     android:layout_gravity="left|center"
+                    android:background="#FFFFFF"
                     android:textSize="29sp"
 
                     android:textColor="#000000"/>
@@ -150,13 +161,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/belsymbool"
+                    android:background="#FFFFFF"
                     android:layout_gravity="right|center_vertical" />
 
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-
+                    android:background="#FFFFFF"
                     android:id="@+id/PhonenmrText"
                     android:textSize="23sp"/>
 
