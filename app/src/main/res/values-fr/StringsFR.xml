@@ -61,4 +61,7 @@
     <string name="title_activity_profile_view">VoirLeProfil</string>
     <string name="title_activity_contact_adding">Contactez Ajout</string>
     <string name="title_activity_profile_manager_advanced">GestionnaireProfil</string>
+
+    <string name="Advanced">Gestion de profil avancée</string>
+    <string name="Error1">ne pas laisser de texte vide</string>
 </resources>

@@ -61,4 +61,7 @@
     <string name="title_activity_profile_view">BekijkProfiel</string>
     <string name="title_activity_contact_adding">VoegContactToe</string>
     <string name="title_activity_profile_manager_advanced">Profielbeheer</string>
+
+    <string name="Advanced">Uitgebreid profiel beheer</string>
+    <string name="Error1">Vul alle velden in</string>
 </resources>
