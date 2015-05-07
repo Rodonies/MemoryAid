@@ -20,13 +20,12 @@ import java.util.ArrayList;
 /*
 Werking van databasehandler:
 
-DatabaseHandler db = new DatabaseHandler(this); //Nieuwe datababasehandler aanmaken
 
-
+//Nieuwe datababasehandler aanmaken
 //Profiel zoeken met deze naam/achternaam,
 //je kan ook db.findProfile(id) om een profiel te zoeken op id numers
 //Geeft true terug als het profiel bestaat, false als het niet bestaat
-
+DatabaseHandler db = new DatabaseHandler(this);
 if (db.findProfile("naam", "achternaam"))
 {
     //profiel bestaat, je kan deze vinden in db.getProfile(), je kan de data NIET AANPASSEN via deze methode
@@ -39,43 +38,27 @@ else
 }
 
 
-//volgende code is een voorbeeld voor de achternaam van het tweede profiel te veranderen naar "Jansens"
-
+//Volgende code is voor een profiel te editen
 DatabaseHandler db = new DatabaseHandler(this);
-if (db.findProfile(2))
-{
-    db.editProfile(null, "Jansens", null, null, null);
-}
+Profile newprofile = new Profile("naam", "achternaam", "geboortedatum", "nummer", "note");
+db.editProfile(newprofile);
 
-//Volgende code is voor contacten te editen, namelijk de achternaam, datum en relatie
-db.editContact(oldContact, null, "Jansens", "2/5/5", "Familie", null, null);
 
-//volgende code is een voorbeeld om de voornaam van het profiel met de naam "Jos Joskens"
-//die geen contacten heeft te veranderen naar "Jef" en daarnaa een contact met de naam "Jos Joskens" toe te voegen
-
+//Volgende code is voor contacten te editen
 DatabaseHandler db = new DatabaseHandler(this);
-if (db.findProfile("Jos", "Joskens"))
-{
-    db.getProfile(); //Geeft profiel met naam "Jos Joskens" zonder contacten terug
-    db.editProfile("Jef", null , null);
-    db.addContact(new Contact("Jos", "Joskens", "relatie", "nummer", "informatie");
-    db.getProfile(); //Geeft profiel met naam "Jef Joskens" met 1 contact, namelijk "Jos Joskens"
-}
+Contact newcontact = new Contact("Jos", "Joskens", "relatie", "nummer", "informatie");
+db.editContact(oldcontact, newcontact);
 
 
-//volgende code verwijdert het eerste profiel, inclusief contacten en fotos
-
+//volgende code verwijdert het profiel, inclusief contacten en fotos
 DatabaseHandler db = new DatabaseHandler(this);
-if (findprofile(1)) db.deleteProfile();
+db.deleteProfile();
 
 
 //Volgende code voegt settings toe aan het profiel
 db.saveSettings("Big", "Rood");
-//Volgende code zet de grootte op Big op het profiel
+//Volgende code zet alleen de grootte op Big op het profiel en laat de kleur onverandert
 db.saveSettings("Big", null);
-
-
-
 */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -100,11 +83,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_COLOR = "color";
 
     private static Profile _profile;
-    private static String dir;
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        dir = context.getFilesDir().getPath();
     }
 
     @Override
@@ -259,31 +240,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         } else return _profile;
     }
 
-    public boolean editProfile(String newfirstname, String newlastname, String newdate, String newnumber, String newinfo) {
+    public boolean editProfile(Profile newprofile) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        if (newfirstname == null) newfirstname = _profile.getFirstName();
-        if (newlastname == null) newfirstname = _profile.getFirstName();
-        if (newdate == null) newdate = _profile.getBirthDate();
-        if (newnumber == null) newfirstname = _profile.getFirstName();
-        if (newinfo == null) newinfo = _profile.getInformation();
-
-
-        Copy(_profile.getImageFile(),_profile.getImageFile(), false);
-        _profile = new Profile(_profile.getID(), newfirstname, newlastname, newdate, newnumber, newinfo);
+        Copy(_profile.getImageFile(), newprofile.getImageFile(), false);
+        _profile = newprofile;
 
         ContentValues values = new ContentValues();
 
-        values.put(KEY_FIRSTNAME, newfirstname);
-        values.put(KEY_LASTNAME, newlastname);
-        values.put(KEY_DATE, newdate);
-        values.put(KEY_NUMBER, newnumber);
-        values.put(KEY_NUMBER, newinfo);
+        values.put(KEY_FIRSTNAME, newprofile.getFirstName());
+        values.put(KEY_LASTNAME, newprofile.getLastName());
+        values.put(KEY_DATE, newprofile.getBirthDate());
+        values.put(KEY_NUMBER, newprofile.getNumber());
+        values.put(KEY_INFORMATION, newprofile.getInformation());
 
         try {
-            if (db.update(TABLE_PROFILES, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())}) == 1)
-                return true;
-            else return false;
+            db.update(TABLE_PROFILES, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())});
+            updateContacts();
+            return true;
         } catch (Exception e) {
             Log.e("editProfile", "Error: " + e.getMessage());
             return false;
@@ -292,29 +266,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    public boolean editContact(Contact oldcontact, String newfirstname, String newlastname, String newdate, String newrelation, String newnumber, String newinfo) {
+    public boolean editContact(Contact oldcontact, Contact newcontact) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        if (newfirstname == null) newfirstname = oldcontact.getFirstName();
-        if (newlastname == null) newfirstname = oldcontact.getFirstName();
-        if (newdate == null) newdate = oldcontact.getBirthDate();
-        if (newrelation == null) newrelation = oldcontact.getBirthDate();
-        if (newnumber == null) newfirstname = oldcontact.getFirstName();
-        if (newinfo == null) newinfo = oldcontact.getInformation();
+        Copy(oldcontact.getImageFile(), newcontact.getImageFile(), true);
 
         ContentValues values = new ContentValues();
 
-        values.put(KEY_FIRSTNAME, newfirstname);
-        values.put(KEY_LASTNAME, newlastname);
-        values.put(KEY_DATE, newdate);
-        values.put(KEY_RELATION, newrelation);
-        values.put(KEY_NUMBER, newnumber);
-        values.put(KEY_NUMBER, newinfo);
+        values.put(KEY_FIRSTNAME, newcontact.getFirstName());
+        values.put(KEY_LASTNAME, newcontact.getLastName());
+        values.put(KEY_DATE, newcontact.getBirthDate());
+        values.put(KEY_RELATION, newcontact.getRelation());
+        values.put(KEY_NUMBER, newcontact.getNumber());
+        values.put(KEY_NUMBER, newcontact.getInformation());
 
         try {
-            if (db.update(TABLE_CONTACTS, values, KEY_ID + " = ?", new String[]{String.valueOf(oldcontact.getID())}) == 1)
-                return true;
-            else return false;
+            db.update(TABLE_CONTACTS, values, KEY_ID + " = ?", new String[]{String.valueOf(oldcontact.getID())});
+            updateContacts();
+            return true;
         } catch (Exception e) {
             Log.e("editContact", "Error: " + e.getMessage());
             return false;
@@ -372,13 +341,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         try {
-            if (db.delete(TABLE_PROFILES, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())}) == 0)
-                return false;
-            if (db.delete(TABLE_CONTACTS, KEY_PROFILEID + " = ?", new String[]{String.valueOf(_profile.getID())}) == 0)
-                return false;
-            if (db.delete(TABLE_SETTINGS, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())}) == 0)
-                return false;
-            new File(_profile.getImagePath()).delete();
+            db.delete(TABLE_PROFILES, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())});
+            db.delete(TABLE_CONTACTS, KEY_PROFILEID + " = ?", new String[]{String.valueOf(_profile.getID())});
+            db.delete(TABLE_SETTINGS, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())});
+            _profile.getImageFile().getParentFile().delete();
             _profile = null;
             return true;
         } catch (Exception e) {
@@ -470,8 +436,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private boolean initializeProfile() {
         try {
-            String path = dir + "/" + _profile.getID() + "_" + _profile.getFirstName() + "_" + _profile.getLastName();
-            new File(path).mkdirs();
+            _profile.getImageFile().getParentFile().mkdirs();
             return true;
         } catch (Exception e) {
             Log.e("initializeProfile", "Error: " + e.getMessage());
