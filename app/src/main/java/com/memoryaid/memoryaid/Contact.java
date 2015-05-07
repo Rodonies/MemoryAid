@@ -87,9 +87,7 @@ public class Contact {
     }
 
     public File getImageFile() {
-
         return new File("/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png");
-
     }
 
     public String getImagePath() {

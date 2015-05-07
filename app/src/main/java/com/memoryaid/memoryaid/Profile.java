@@ -91,19 +91,12 @@ public class Profile {
         return _contacts;
     }
 
-    public Uri getImageUri() {
-        File image = new File("/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png");
-        if (image.exists()) return Uri.fromFile(image);
-        else
-            return Uri.parse("android.resource://com.memoryaid.memoryaid/drawable/defaultimage");
-    }
-
     public File getImageFile() {
         return new File("/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png");
     }
 
     public String getImagePath() {
-        return _imagepath;
+        return "/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png";
     }
 
     public String getSize() {
@@ -112,10 +105,6 @@ public class Profile {
 
     public String getColor() {
         return _color;
-    }
-
-    public void updateImagePath(String newpath) {
-        _imagepath = newpath;
     }
 
     public void updateSettings(String size, String color) {

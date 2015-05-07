@@ -10,6 +10,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -264,7 +268,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (newnumber == null) newfirstname = _profile.getFirstName();
         if (newinfo == null) newinfo = _profile.getInformation();
 
-        _profile.updateImagePath(_profile.getID() + "_" + newfirstname + "_" + newlastname);
+
+        copy(_profile.getImagePath());
+        _profile = new Profile(_profile.getID(), newfirstname, newlastname, newdate, newnumber, newinfo);
 
         ContentValues values = new ContentValues();
 
@@ -275,7 +281,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_NUMBER, newinfo);
 
         try {
-            if (db.update(TABLE_PROFILES, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())}) == 1) return true;
+            if (db.update(TABLE_PROFILES, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())}) == 1)
+                return true;
             else return false;
         } catch (Exception e) {
             Log.e("editProfile", "Error: " + e.getMessage());
@@ -305,7 +312,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_NUMBER, newinfo);
 
         try {
-            if (db.update(TABLE_CONTACTS, values, KEY_ID + " = ?", new String[]{String.valueOf(oldcontact.getID())}) == 1) return true;
+            if (db.update(TABLE_CONTACTS, values, KEY_ID + " = ?", new String[]{String.valueOf(oldcontact.getID())}) == 1)
+                return true;
             else return false;
         } catch (Exception e) {
             Log.e("editContact", "Error: " + e.getMessage());
@@ -329,7 +337,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         try {
 
-            if (loadSettings()) db.update(TABLE_SETTINGS, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())});
+            if (loadSettings())
+                db.update(TABLE_SETTINGS, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())});
             else db.insert(TABLE_SETTINGS, null, values);
 
             loadSettings();
@@ -346,7 +355,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         try {
-            if (db.delete(TABLE_CONTACTS, KEY_ID + " = ?", new String[]{String.valueOf(contact.getID())}) != 1) return false;
+            if (db.delete(TABLE_CONTACTS, KEY_ID + " = ?", new String[]{String.valueOf(contact.getID())}) != 1)
+                return false;
             new File(contact.getImagePath()).delete();
             updateContacts();
             return true;
@@ -460,12 +470,37 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private boolean initializeProfile() {
         try {
-            String path = dir + "//" + _profile.getID() + "_" + _profile.getFirstName() + "_" + _profile.getLastName();
+            String path = dir + "/" + _profile.getID() + "_" + _profile.getFirstName() + "_" + _profile.getLastName();
             new File(path).mkdirs();
             return true;
         } catch (Exception e) {
             Log.e("initializeProfile", "Error: " + e.getMessage());
             return false;
+        }
+    }
+
+    private void Copy(File src, File dst, boolean delete) {
+        try {
+            dst.getParentFile().mkdirs();
+
+            InputStream in = new FileInputStream(src);
+            OutputStream out = new FileOutputStream(dst);
+
+            // Transfer bytes from in to out
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+            in.close();
+            out.close();
+
+            if (delete) {
+                src.delete();
+                src.getParentFile().delete();
+            }
+        } catch (Exception e) {
+            Log.e("copyFile", "Error: " + e.getMessage());
         }
     }
 }

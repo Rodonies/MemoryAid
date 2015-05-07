@@ -30,24 +30,19 @@ public class ProfileView extends ActionBarActivity {
     public void onBackPressed() {
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         ContactMode = settings.getString("ProfileMode", "View");
-        if(ContactMode.equals("View")) {
+        if (ContactMode.equals("View")) {
             Intent i = new Intent(this, Homescreen.class);
             startActivity(i);
-        }
-        else if (ContactMode.equals("Edit"))
-        {
+        } else if (ContactMode.equals("Edit")) {
             DatabaseHandler db = new DatabaseHandler(this);
             settings = getSharedPreferences(SaveData, 0);
             CurrentProfile = settings.getInt("CurrentProfile", 0);
-            if (db.findProfile(CurrentProfile))
-            {
+            if (db.findProfile(CurrentProfile)) {
 
             }
             Intent i = new Intent(this, ProfileManager.class);
             startActivity(i);
-        }
-        else if (ContactMode.equals("Delete"))
-        {
+        } else if (ContactMode.equals("Delete")) {
             Intent i = new Intent(this, ProfileManager.class);
             startActivity(i);
         }
@@ -72,7 +67,7 @@ public class ProfileView extends ActionBarActivity {
             ContactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            BufferContact = (Contact) ContactList.getItemAtPosition(position);
+                    BufferContact = (Contact) ContactList.getItemAtPosition(position);
 
                     if (ContactMode.equals("View")) {
                         ViewProfile(V, 0);
