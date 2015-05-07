@@ -43,18 +43,6 @@ public class Profile {
         _contacts = new ArrayList<Contact>();
     }
 
-    public void Show() {
-        Log.e("Profile", getID() + ": " + getFullName());
-        Log.e("Profile", getNumber());
-
-        Log.e("Profile", "size: " + getSize());
-        Log.e("Profile", "color: " + getColor());
-
-        for (Contact contact : getContacts())
-            Log.e("ShowContacts", "Contact " + contact.getCID() + ": " + contact.getFullName() + " " + contact.getNumber());
-
-    }
-
     public void addContact(Contact contact) {
         _contacts.add(contact);
     }
@@ -92,7 +80,12 @@ public class Profile {
     }
 
     public File getImageFile() {
-        return new File("/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png");
+        File image = new File("/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png");
+        if (image.exists())
+            return image;
+        else {
+            return null;
+        }
     }
 
     public String getImagePath() {
@@ -110,10 +103,5 @@ public class Profile {
     public void updateSettings(String size, String color) {
         _size = size;
         _color = color;
-    }
-
-    public boolean settingsInitialized() {
-        if (_size == null || _color == null) return false;
-        else return true;
     }
 }

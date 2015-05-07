@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 /**
@@ -21,11 +23,14 @@ public class AdapterProfiles extends ArrayAdapter<Profile> {
 
         convertView = LayoutInflater.from(this.getContext()).inflate(R.layout.contactlist_normalsize, parent, false);
 
-        TextView ContactName = (TextView) convertView.findViewById(R.id.TextName);
-        ContactName.setText(profile.getFullName());
+        TextView ProfileName = (TextView) convertView.findViewById(R.id.TextName);
+        ProfileName.setText(profile.getFullName());
 
-        ImageView ContactImage = (ImageView) convertView.findViewById(R.id.imgContact);
-        ContactImage.setImageURI(Uri.parse(profile.getImagePath()));
+        ImageView ProfileImage = (ImageView) convertView.findViewById(R.id.imgContact);
+        if (profile.getImageFile() == null)
+            Picasso.with(getContext()).load(R.drawable.defaultimage).resize(150, 150).into(ProfileImage);
+        else
+            Picasso.with(getContext()).load(profile.getImageFile()).resize(150, 150).into(ProfileImage);
 
         return convertView;
     }
@@ -33,5 +38,4 @@ public class AdapterProfiles extends ArrayAdapter<Profile> {
     public AdapterProfiles(Context context, ArrayList<Profile> Profilelist) {
         super(context, 0, Profilelist);
     }
-
 }

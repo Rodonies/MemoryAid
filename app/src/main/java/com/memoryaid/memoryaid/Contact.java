@@ -77,7 +77,7 @@ public class Contact {
         return _information;
     }
 
-    public File getImageUri() {
+    public File getImageFile() {
         File image = new File("/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png");
         if (image.exists())
             return image;
@@ -86,11 +86,7 @@ public class Contact {
         }
     }
 
-    public File getImageFile() {
-        return new File("/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png");
-    }
-
     public String getImagePath() {
-        return _imagepath;
+        return "/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png";
     }
 }

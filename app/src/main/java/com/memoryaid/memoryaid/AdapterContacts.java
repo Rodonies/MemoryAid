@@ -33,10 +33,10 @@ class AdapterContacts extends ArrayAdapter<Contact> {
         ContactName.setText(contact.getFullName());
 
         ImageView ContactImage = (ImageView) convertView.findViewById(R.id.imgContact);
-        if (contact.getImageUri() == null)
+        if (contact.getImageFile() == null)
             Picasso.with(getContext()).load(R.drawable.defaultimage).resize(150, 150).into(ContactImage);
         else
-            Picasso.with(getContext()).load(contact.getImageUri()).resize(150, 150).into(ContactImage);
+            Picasso.with(getContext()).load(contact.getImageFile()).resize(150, 150).into(ContactImage);
 
         return convertView;
     }

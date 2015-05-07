@@ -269,7 +269,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (newinfo == null) newinfo = _profile.getInformation();
 
 
-        copy(_profile.getImagePath());
+        Copy(_profile.getImageFile(),_profile.getImageFile(), false);
         _profile = new Profile(_profile.getID(), newfirstname, newlastname, newdate, newnumber, newinfo);
 
         ContentValues values = new ContentValues();
