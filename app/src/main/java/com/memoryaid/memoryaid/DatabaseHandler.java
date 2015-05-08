@@ -149,8 +149,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             db.close();
 
             if (findProfile(profile.getFirstName(), profile.getLastName())) {
-                boolean b = saveSettings("Medium", "Blue");
-                return findProfile(profile.getFirstName(), profile.getLastName());
+                saveSettings("Medium", "Blue");
+                return true;
             } else return false;
         } catch (Exception e) {
             Log.e("addProfile", "Error: " + e.getMessage());
@@ -244,18 +244,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         Copy(_profile.getImageFile(), newprofile.getImageFile(), false);
-        _profile = newprofile;
 
         ContentValues values = new ContentValues();
 
-        values.put(KEY_FIRSTNAME, newfirstname);
-        values.put(KEY_LASTNAME, newlastname);
-        values.put(KEY_DATE, newdate);
-        values.put(KEY_NUMBER, newnumber);
-        values.put(KEY_NUMBER, newinfo);
+        values.put(KEY_FIRSTNAME, newprofile.getFirstName());
+        values.put(KEY_LASTNAME, newprofile.getLastName());
+        values.put(KEY_DATE, newprofile.getBirthDate());
+        values.put(KEY_NUMBER, newprofile.getNumber());
+        values.put(KEY_INFORMATION, newprofile.getInformation());
 
         try {
             db.update(TABLE_PROFILES, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())});
+            findProfile(_profile.getID());
+            initializeProfile();
             updateContacts();
             return true;
         } catch (Exception e) {
@@ -269,13 +270,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public boolean editContact(Contact oldcontact, Contact newcontact) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        if (newfirstname == null) newfirstname = oldcontact.getFirstName();
-        if (newlastname == null) newfirstname = oldcontact.getFirstName();
-        if (newdate == null) newdate = oldcontact.getBirthDate();
-        if (newrelation == null) newrelation = oldcontact.getBirthDate();
-        if (newnumber == null) newfirstname = oldcontact.getFirstName();
-        if (newinfo == null) newinfo = oldcontact.getInformation();
-
         ContentValues values = new ContentValues();
 
         values.put(KEY_FIRSTNAME, newcontact.getFirstName());
@@ -283,11 +277,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_DATE, newcontact.getBirthDate());
         values.put(KEY_RELATION, newcontact.getRelation());
         values.put(KEY_NUMBER, newcontact.getNumber());
-        values.put(KEY_NUMBER, newcontact.getInformation());
+        values.put(KEY_INFORMATION, newcontact.getInformation());
 
         try {
-            if (db.update(TABLE_CONTACTS, values, KEY_ID + " = ?", new String[]{String.valueOf(oldcontact.getID())}) == 1){ updateContacts(); return true;}
-            else return false;
+            db.update(TABLE_CONTACTS, values, KEY_ID + " = ?", new String[]{String.valueOf(oldcontact.getID())});
+            updateContacts();
+            return true;
         } catch (Exception e) {
             Log.e("editContact", "Error: " + e.getMessage());
             return false;
@@ -328,9 +323,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         try {
-            if (db.delete(TABLE_CONTACTS, KEY_ID + " = ?", new String[]{String.valueOf(contact.getID())}) != 1)
-                return false;
-            new File(contact.getImagePath()).delete();
+            db.delete(TABLE_CONTACTS, KEY_ID + " = ?", new String[]{String.valueOf(contact.getID())});
+            contact.getImageFile().getParentFile().delete();
             updateContacts();
             return true;
         } catch (Exception e) {
