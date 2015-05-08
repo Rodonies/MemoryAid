@@ -19,13 +19,15 @@
             android:gravity="center"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"/>
+
+
      </LinearLayout>
 
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ListContacts"
-        android:background="#FFFFFF">
-        </ListView>
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/ListContacts"
+    android:background="#FFFFFF">
+</ListView>
 
 </LinearLayout>
