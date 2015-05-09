@@ -11,9 +11,6 @@ import android.view.View;
 import android.widget.RadioButton;
 
 public class themeUtils {
-
-    public static String cTheme = "Medium";
-
     public static void changeToTheme(Activity activity, String theme) {
         DatabaseHandler db = new DatabaseHandler(activity);
         if (db.findProfile(DatabaseHandler.getProfile().getID())) ;
@@ -23,17 +20,20 @@ public class themeUtils {
     }
 
     public static void onActivityCreateSetTheme(Activity activity) {
-        switch (cTheme) {
-            case "Big":
-                activity.setTheme(R.style.Big);
-                break;
-            case "Small":
-                activity.setTheme(R.style.Small);
-                break;
-            case "Medium":
-                activity.setTheme(R.style.Medium);
-                break;
-        }
+        String test = DatabaseHandler.getProfile().getSize();
+        if (test != null) {
+            switch (DatabaseHandler.getProfile().getSize()) {
+                case "Big":
+                    activity.setTheme(R.style.Big);
+                    break;
+                case "Small":
+                    activity.setTheme(R.style.Small);
+                    break;
+                case "Medium":
+                    activity.setTheme(R.style.Medium);
+                    break;
+            }
+        } else activity.setTheme(R.style.Medium);
     }
 
     public static void ChangeToColor(Activity activity, String color) {
@@ -78,9 +78,7 @@ public class themeUtils {
                     activity.setTheme(R.style.Blue);
                     break;
             }
-
-        } else
-            activity.setTheme(R.style.Blue);
+        } else activity.setTheme(R.style.Blue);
 
 
     }
