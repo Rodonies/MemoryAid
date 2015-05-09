@@ -143,8 +143,49 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         imgGallery = (ImageView) dialog.findViewById(R.id.PhotoGallery);
         imgCamera = (ImageView) dialog.findViewById(R.id.PhotoCamera);
 
-        Picasso.with(CreateNewUser.this).load(R.drawable.galleryblauw).resize(150, 150).into(imgGallery);
-        Picasso.with(CreateNewUser.this).load(R.drawable.camerablauw).resize(150, 150).into(imgCamera);
+        String test = DatabaseHandler.getProfile().getColor();
+        if (test != null) {
+            switch (DatabaseHandler.getProfile().getColor()) {
+                        case "Blue":
+                            Picasso.with(CreateNewUser.this).load(R.drawable.galleryblauw).resize(150, 150).into(imgGallery);
+                            Picasso.with(CreateNewUser.this).load(R.drawable.camerablauw).resize(150, 150).into(imgCamera);
+                            break;
+                        case "red":
+                            Picasso.with(CreateNewUser.this).load(R.drawable.galleryrood).resize(150, 150).into(imgGallery);
+                            Picasso.with(CreateNewUser.this).load(R.drawable.camerarood).resize(150, 150).into(imgCamera);
+                            break;
+                        case "yellow":
+                            Picasso.with(CreateNewUser.this).load(R.drawable.gallerygeel).resize(150, 150).into(imgGallery);
+                            Picasso.with(CreateNewUser.this).load(R.drawable.camerageel).resize(150, 150).into(imgCamera);
+                            break;
+                        case "green":
+                            Picasso.with(CreateNewUser.this).load(R.drawable.gallerygroen).resize(150, 150).into(imgGallery);
+                            Picasso.with(CreateNewUser.this).load(R.drawable.cameragroen).resize(150, 150).into(imgCamera);
+                            break;
+                        case "white":
+                            Picasso.with(CreateNewUser.this).load(R.drawable.gallerywit).resize(150, 150).into(imgGallery);
+                            Picasso.with(CreateNewUser.this).load(R.drawable.camerawit).resize(150, 150).into(imgCamera);
+                            break;
+                        case "black":
+                            Picasso.with(CreateNewUser.this).load(R.drawable.galleryzwart).resize(150, 150).into(imgGallery);
+                            Picasso.with(CreateNewUser.this).load(R.drawable.camerazwart).resize(150, 150).into(imgCamera);
+                            break;
+                        case "purple":
+                            Picasso.with(CreateNewUser.this).load(R.drawable.gallerypaars).resize(150, 150).into(imgGallery);
+                            Picasso.with(CreateNewUser.this).load(R.drawable.camerapaars).resize(150, 150).into(imgCamera);
+                            break;
+                        case "pink":
+                            Picasso.with(CreateNewUser.this).load(R.drawable.galleryroos).resize(150, 150).into(imgGallery);
+                            Picasso.with(CreateNewUser.this).load(R.drawable.cameraroos).resize(150, 150).into(imgCamera);
+                            break;
+                        default:
+                            Picasso.with(CreateNewUser.this).load(R.drawable.galleryblauw).resize(150, 150).into(imgGallery);
+                            Picasso.with(CreateNewUser.this).load(R.drawable.camerablauw).resize(150, 150).into(imgCamera);
+                            break;
+            }
+        }
+
+
 
         Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
 
