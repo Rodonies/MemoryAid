@@ -146,45 +146,44 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         String test = DatabaseHandler.getProfile().getColor();
         if (test != null) {
             switch (DatabaseHandler.getProfile().getColor()) {
-                        case "Blue":
-                            Picasso.with(CreateNewUser.this).load(R.drawable.galleryblauw).resize(150, 150).into(imgGallery);
-                            Picasso.with(CreateNewUser.this).load(R.drawable.camerablauw).resize(150, 150).into(imgCamera);
-                            break;
-                        case "red":
-                            Picasso.with(CreateNewUser.this).load(R.drawable.galleryrood).resize(150, 150).into(imgGallery);
-                            Picasso.with(CreateNewUser.this).load(R.drawable.camerarood).resize(150, 150).into(imgCamera);
-                            break;
-                        case "yellow":
-                            Picasso.with(CreateNewUser.this).load(R.drawable.gallerygeel).resize(150, 150).into(imgGallery);
-                            Picasso.with(CreateNewUser.this).load(R.drawable.camerageel).resize(150, 150).into(imgCamera);
-                            break;
-                        case "green":
-                            Picasso.with(CreateNewUser.this).load(R.drawable.gallerygroen).resize(150, 150).into(imgGallery);
-                            Picasso.with(CreateNewUser.this).load(R.drawable.cameragroen).resize(150, 150).into(imgCamera);
-                            break;
-                        case "white":
-                            Picasso.with(CreateNewUser.this).load(R.drawable.gallerywit).resize(150, 150).into(imgGallery);
-                            Picasso.with(CreateNewUser.this).load(R.drawable.camerawit).resize(150, 150).into(imgCamera);
-                            break;
-                        case "black":
-                            Picasso.with(CreateNewUser.this).load(R.drawable.galleryzwart).resize(150, 150).into(imgGallery);
-                            Picasso.with(CreateNewUser.this).load(R.drawable.camerazwart).resize(150, 150).into(imgCamera);
-                            break;
-                        case "purple":
-                            Picasso.with(CreateNewUser.this).load(R.drawable.gallerypaars).resize(150, 150).into(imgGallery);
-                            Picasso.with(CreateNewUser.this).load(R.drawable.camerapaars).resize(150, 150).into(imgCamera);
-                            break;
-                        case "pink":
-                            Picasso.with(CreateNewUser.this).load(R.drawable.galleryroos).resize(150, 150).into(imgGallery);
-                            Picasso.with(CreateNewUser.this).load(R.drawable.cameraroos).resize(150, 150).into(imgCamera);
-                            break;
-                        default:
-                            Picasso.with(CreateNewUser.this).load(R.drawable.galleryblauw).resize(150, 150).into(imgGallery);
-                            Picasso.with(CreateNewUser.this).load(R.drawable.camerablauw).resize(150, 150).into(imgCamera);
-                            break;
+                case "Blue":
+                    Picasso.with(CreateNewUser.this).load(R.drawable.galleryblauw).resize(150, 150).into(imgGallery);
+                    Picasso.with(CreateNewUser.this).load(R.drawable.camerablauw).resize(150, 150).into(imgCamera);
+                    break;
+                case "Red":
+                    Picasso.with(CreateNewUser.this).load(R.drawable.galleryrood).resize(150, 150).into(imgGallery);
+                    Picasso.with(CreateNewUser.this).load(R.drawable.camerarood).resize(150, 150).into(imgCamera);
+                    break;
+                case "Yellow":
+                    Picasso.with(CreateNewUser.this).load(R.drawable.gallerygeel).resize(150, 150).into(imgGallery);
+                    Picasso.with(CreateNewUser.this).load(R.drawable.camerageel).resize(150, 150).into(imgCamera);
+                    break;
+                case "Green":
+                    Picasso.with(CreateNewUser.this).load(R.drawable.gallerygroen).resize(150, 150).into(imgGallery);
+                    Picasso.with(CreateNewUser.this).load(R.drawable.cameragroen).resize(150, 150).into(imgCamera);
+                    break;
+                case "White":
+                    Picasso.with(CreateNewUser.this).load(R.drawable.gallerywit).resize(150, 150).into(imgGallery);
+                    Picasso.with(CreateNewUser.this).load(R.drawable.camerawit).resize(150, 150).into(imgCamera);
+                    break;
+                case "Black":
+                    Picasso.with(CreateNewUser.this).load(R.drawable.galleryzwart).resize(150, 150).into(imgGallery);
+                    Picasso.with(CreateNewUser.this).load(R.drawable.camerazwart).resize(150, 150).into(imgCamera);
+                    break;
+                case "Purple":
+                    Picasso.with(CreateNewUser.this).load(R.drawable.gallerypaars).resize(150, 150).into(imgGallery);
+                    Picasso.with(CreateNewUser.this).load(R.drawable.camerapaars).resize(150, 150).into(imgCamera);
+                    break;
+                case "Pink":
+                    Picasso.with(CreateNewUser.this).load(R.drawable.galleryroos).resize(150, 150).into(imgGallery);
+                    Picasso.with(CreateNewUser.this).load(R.drawable.cameraroos).resize(150, 150).into(imgCamera);
+                    break;
+                default:
+                    Picasso.with(CreateNewUser.this).load(R.drawable.galleryblauw).resize(150, 150).into(imgGallery);
+                    Picasso.with(CreateNewUser.this).load(R.drawable.camerablauw).resize(150, 150).into(imgCamera);
+                    break;
             }
         }
-
 
 
         Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
@@ -257,7 +256,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                 File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
                 if (photo.exists()) {
                     try {
-                        File file = DatabaseHandler.getProfile().getImageFile();
+                        File file = new File(DatabaseHandler.getProfile().getImagePath());
                         file.getParentFile().mkdirs();
                         file.createNewFile();
                         InputStream in = new FileInputStream(photo);
@@ -275,7 +274,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                     } catch (Exception fuck) {
                         Log.e("profilesave", fuck.getMessage());
                     }
-
+                    photo.delete();
                 }
                 Intent i = new Intent(this, Homescreen.class);
                 startActivity(i);
@@ -306,7 +305,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                     if (photo.exists()) {
                         try {
 
-                            File file = DatabaseHandler.getProfile().getContacts().get(DatabaseHandler.getProfile().getContacts().size() - 1).getImageFile();
+                            File file = new File(DatabaseHandler.getProfile().getContacts().get(DatabaseHandler.getProfile().getContacts().size() - 1).getImagePath());
                             file.getParentFile().mkdirs();
                             file.createNewFile();
                             InputStream in = new FileInputStream(photo);

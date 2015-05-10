@@ -62,7 +62,7 @@ db.saveSettings("Big", null);
 */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 32;
+    private static final int DATABASE_VERSION = 33;
     private static final String DATABASE_NAME = "database";
 
     private static final String TABLE_PROFILES = "profiles";
@@ -150,6 +150,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
             if (findProfile(profile.getFirstName(), profile.getLastName())) {
                 saveSettings("Medium", "Blue");
+                loadSettings();
                 return true;
             } else return false;
         } catch (Exception e) {
@@ -324,7 +325,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         try {
             db.delete(TABLE_CONTACTS, KEY_ID + " = ?", new String[]{String.valueOf(contact.getID())});
-            contact.getImageFile().getParentFile().delete();
+            new File(contact.getImagePath()).getParentFile().delete();
             updateContacts();
             return true;
         } catch (Exception e) {
@@ -342,7 +343,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             db.delete(TABLE_PROFILES, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())});
             db.delete(TABLE_CONTACTS, KEY_PROFILEID + " = ?", new String[]{String.valueOf(_profile.getID())});
             db.delete(TABLE_SETTINGS, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())});
-            _profile.getImageFile().getParentFile().delete();
+            new File(_profile.getImagePath()).getParentFile().delete();
             _profile = null;
             return true;
         } catch (Exception e) {
@@ -434,7 +435,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private boolean initializeProfile() {
         try {
-            _profile.getImageFile().getParentFile().mkdirs();
+            new File(_profile.getImagePath()).getParentFile().mkdirs();
             return true;
         } catch (Exception e) {
             Log.e("initializeProfile", "Error: " + e.getMessage());

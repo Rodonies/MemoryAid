@@ -53,25 +53,25 @@ public class themeUtils {
                 case "Blue":
                     activity.setTheme(R.style.Blue);
                     break;
-                case "red":
+                case "Red":
                     activity.setTheme(R.style.Red);
                     break;
-                case "yellow":
+                case "Yellow":
                     activity.setTheme(R.style.Yellow);
                     break;
-                case "green":
+                case "Green":
                     activity.setTheme(R.style.Green);
                     break;
-                case "white":
+                case "White":
                     activity.setTheme(R.style.White);
                     break;
-                case "black":
+                case "Black":
                     activity.setTheme(R.style.Black);
                     break;
-                case "purple":
+                case "Purple":
                     activity.setTheme(R.style.Purple);
                     break;
-                case "pink":
+                case "Pink":
                     activity.setTheme(R.style.Pink);
                     break;
                 default:

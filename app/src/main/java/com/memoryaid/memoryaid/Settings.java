@@ -103,25 +103,25 @@ public class Settings extends ActionBarActivity {
                 themeUtils.ChangeToColor(this, "Blue");
                 break;
             case R.id.button3:
-                themeUtils.ChangeToColor(this, "green");
+                themeUtils.ChangeToColor(this, "Green");
                 break;
             case R.id.button4:
-                themeUtils.ChangeToColor(this, "red");
+                themeUtils.ChangeToColor(this, "Red");
                 break;
             case R.id.button5:
-                themeUtils.ChangeToColor(this, "yellow");
+                themeUtils.ChangeToColor(this, "Yellow");
                 break;
             case R.id.button6:
-                themeUtils.ChangeToColor(this, "pink");
+                themeUtils.ChangeToColor(this, "Pink");
                 break;
             case R.id.button7:
-                themeUtils.ChangeToColor(this, "purple");
+                themeUtils.ChangeToColor(this, "Purple");
                 break;
             case R.id.button8:
-                themeUtils.ChangeToColor(this, "white");
+                themeUtils.ChangeToColor(this, "White");
                 break;
             case R.id.button9:
-                themeUtils.ChangeToColor(this, "black");
+                themeUtils.ChangeToColor(this, "Black");
                 break;
         }
 
