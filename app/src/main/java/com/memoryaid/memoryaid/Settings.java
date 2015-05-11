@@ -17,6 +17,9 @@ public class Settings extends ActionBarActivity {
     private String First_Launch;
     private String Contact_Or_Profile;
     private boolean StateCheckbox;
+    private boolean BoolRadioButtonA;
+    private boolean BoolRadioButtonB;
+    private boolean BoolRadioButtonC;
     private CheckBox Advanced;
 
 
@@ -43,7 +46,9 @@ public class Settings extends ActionBarActivity {
 
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         StateCheckbox = settings.getBoolean("StateCheckbox", false);
-
+        BoolRadioButtonA = settings.getBoolean("BoolRadioButtonA", false);
+        BoolRadioButtonB = settings.getBoolean("BoolRadioButtonB", false);
+        BoolRadioButtonC = settings.getBoolean("BoolRadioButtonC", false);
 
         Advanced = (CheckBox) findViewById(R.id.checkboxAdvanced);
         if (StateCheckbox == true)
@@ -52,14 +57,34 @@ public class Settings extends ActionBarActivity {
             Advanced.setChecked(false);
 
 
-        final RadioButton A = (RadioButton) findViewById(R.id.RadioSmall);
-        final RadioButton B = (RadioButton) findViewById(R.id.RadioMedium);
-        final RadioButton C = (RadioButton) findViewById(R.id.RadioBig);
+        RadioButton A = (RadioButton) findViewById(R.id.RadioSmall);
+        RadioButton B = (RadioButton) findViewById(R.id.RadioMedium);
+        RadioButton C = (RadioButton) findViewById(R.id.RadioBig);
 
-        A.setChecked(false);
-        B.setChecked(true);
-        C.setChecked(false);
-
+        if (BoolRadioButtonA)
+        {
+            A.setChecked(true);
+            B.setChecked(false);
+            C.setChecked(false);
+        }
+        else if(BoolRadioButtonB)
+        {
+            A.setChecked(false);
+            B.setChecked(true);
+            C.setChecked(false);
+        }
+        else if(BoolRadioButtonC)
+        {
+            A.setChecked(false);
+            B.setChecked(false);
+            C.setChecked(true);
+        }
+        else
+        {
+            A.setChecked(false);
+            B.setChecked(true);
+            C.setChecked(false);
+        }
 
     }
 
@@ -76,7 +101,6 @@ public class Settings extends ActionBarActivity {
 
     public void onRadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
-
 
         switch (view.getId()) {
 
