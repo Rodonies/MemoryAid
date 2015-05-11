@@ -12,6 +12,12 @@ public class ProfileManager_advanced extends ActionBarActivity implements View.O
 
     private Button btnAddProfile, btnEditProfile, btnShowProfile, btnDeleteProfile;
     public static final String SaveData = "MyPreferenceFiles";
+    @Override
+    public void onBackPressed()
+    {
+        Intent i = new Intent(this,Homescreen.class);
+        startActivity(i);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -29,6 +29,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.Buffer;
 import java.util.ArrayList;
 
 
@@ -58,31 +59,7 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
         ContactMode = settings.getString("ProfileMode", "View");
 
         if (ContactMode.equals("Edit")) {
-            DatabaseHandler db = new DatabaseHandler(this);
-            db.editProfile(new Profile(Name.getText().toString(), LastName.getText().toString(),"Empty", Phone.getText().toString(), Information.getText().toString()));
-            File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
-            if (photo.exists()) {
-                try {
-                    File file = new File(DatabaseHandler.getProfile().getImagePath());
-                    file.getParentFile().mkdirs();
-                    file.createNewFile();
-                    InputStream in = new FileInputStream(photo);
-                    OutputStream out = new FileOutputStream(file);
-
-                    // Transfer bytes from in to out
-                    byte[] buf = new byte[1024];
-                    int len;
-                    while ((len = in.read(buf)) > 0) {
-                        out.write(buf, 0, len);
-                    }
-                    in.close();
-                    out.close();
-
-                } catch (Exception fuck) {
-                    Log.e("profilesave", fuck.getMessage());
-                }
-                photo.delete();
-            }
+            Save();
 
         }
         Intent i = new Intent(this, ProfileManager_advanced.class);
@@ -190,7 +167,7 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
                     public void onClick(DialogInterface dialog, int whichButton) {
 
                         DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-                        db.editProfile(BufferProfile);
+                        db.deleteProfile(BufferProfile);
                         dialog.dismiss();
                         Intent i = new Intent(getApplicationContext(), ProfileManager.class);
                         startActivity(i);
@@ -379,13 +356,13 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
             default:
                 break;
         }
-        setContentView(R.layout.activity_profile_view2);
-
+       Save();
+       refresh();
     }
-   public void Save(View view)
+   public void Save()
    {
        DatabaseHandler db = new DatabaseHandler(this);
-       db.editProfile(new Profile(Name.getText().toString(), LastName.getText().toString(),"Empty", Phone.getText().toString(), Information.getText().toString()));
+       db.editProfile(BufferProfile,new Profile(Name.getText().toString(), LastName.getText().toString(),"Empty", Phone.getText().toString(), Information.getText().toString()));
        File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
        if (photo.exists()) {
            try {
@@ -410,4 +387,11 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
            photo.delete();
        }
    }
+    public void refresh()
+    {
+        Intent i = new Intent(this,ProfileView_advanced.class);
+       startActivity(i);
+
+
+    }
 }
