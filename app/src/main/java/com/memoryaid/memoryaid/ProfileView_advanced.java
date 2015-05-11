@@ -60,7 +60,6 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
 
         if (ContactMode.equals("Edit")) {
             Save();
-
         }
         Intent i = new Intent(this, ProfileManager_advanced.class);
         startActivity(i);
@@ -360,12 +359,15 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
    {
 
        DatabaseHandler db = new DatabaseHandler(this);
-       db.editProfile(BufferProfile,new Profile(Name.getText().toString(), LastName.getText().toString(),"Empty", Phone.getText().toString(), Information.getText().toString()));
+       db.editProfile(BufferProfile,new Profile(BufferProfile.getID(), Name.getText().toString(), LastName.getText().toString(),"Empty", Phone.getText().toString(), Information.getText().toString()));
        File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
        if (photo.exists()) {
            try {
                File file = new File(DatabaseHandler.getProfile().getImagePath());
                file.getParentFile().mkdirs();
+
+               if (file.exists())
+                   file.delete();
                file.createNewFile();
                InputStream in = new FileInputStream(photo);
                OutputStream out = new FileOutputStream(file);

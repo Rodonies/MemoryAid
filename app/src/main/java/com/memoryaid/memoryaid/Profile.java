@@ -39,7 +39,7 @@ public class Profile {
         _birthdate = birthdate;
         _number = number;
         _information = information;
-        _imagepath = "/" + _id + "_" + _firstname + "_" + _lastname;
+        _imagepath = "/" + _id + "_" + _firstname + "_" + _lastname + "/image.png";
         _contacts = new ArrayList<Contact>();
     }
 
@@ -80,7 +80,7 @@ public class Profile {
     }
 
     public File getImageFile() {
-        File image = new File("/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png");
+        File image = new File("/data/data/com.memoryaid.memoryaid/files" + _imagepath);
         if (image.exists())
             return image;
         else {
@@ -89,7 +89,7 @@ public class Profile {
     }
 
     public String getImagePath() {
-        return "/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png";
+        return "/data/data/com.memoryaid.memoryaid/files" + _imagepath;
     }
 
     public String getSize() {

@@ -38,7 +38,7 @@ public class Contact {
         _relation = relation;
         _number = number;
         _information = information;
-        _imagepath = profilepath + "/" + _aid + "_" + _firstname + "_" + _lastname;
+        _imagepath = new File(profilepath).getParentFile().getPath() + "/" + _aid + "_" + _firstname + "_" + _lastname + "/image.png";
     }
 
     public Integer getID() {
@@ -78,7 +78,7 @@ public class Contact {
     }
 
     public File getImageFile() {
-        File image = new File("/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png");
+        File image = new File(_imagepath);
         if (image.exists())
             return image;
         else {
@@ -87,6 +87,6 @@ public class Contact {
     }
 
     public String getImagePath() {
-        return "/data/data/com.memoryaid.memoryaid/files/" + _imagepath + "/image.png";
+        return _imagepath;
     }
 }

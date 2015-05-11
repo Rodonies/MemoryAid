@@ -44,7 +44,7 @@ public class ProfileView extends ActionBarActivity {
             settings = getSharedPreferences(SaveData, 0);
             CurrentProfile = settings.getInt("CurrentProfile", 0);
             if (db.findProfile(CurrentProfile)) {
-                db.editContact(BufferContact, new Contact(Name.getText().toString(), LastName.getText().toString(), Date_of_Birth.getText().toString(), Relation.getText().toString(), Phone.getText().toString(), Information.getText().toString()));
+                db.editContact(BufferContact, new Contact(BufferContact.getID(),BufferContact.getCID() ,Name.getText().toString(), LastName.getText().toString(), "Empty", Relation.getText().toString(), Phone.getText().toString(), Information.getText().toString(), db.getProfile().getImagePath()));
             }
             Intent i = new Intent(this, ProfileManager.class);
             startActivity(i);
