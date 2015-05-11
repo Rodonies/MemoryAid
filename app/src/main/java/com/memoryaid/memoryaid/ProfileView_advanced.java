@@ -387,9 +387,9 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
    }
     public void refresh()
     {
-
+        
         Intent i = new Intent(this,ProfileView_advanced.class);
-
+        startActivity(i);
         Toast.makeText(this,"restart app to apply changes",Toast.LENGTH_LONG).show();
 
 

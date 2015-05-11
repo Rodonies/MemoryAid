@@ -45,7 +45,7 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         First_Launch = settings.getString("First_Launch", "true");
 
-        Print(getApplicationContext().getFilesDir());
+
 
         DatabaseHandler db = new DatabaseHandler(this);
         if (First_Launch.equals("true")) {
