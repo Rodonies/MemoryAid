@@ -155,6 +155,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:weightSum="1"
+        android:background="#FFFFFF"
         >
 
         <Button
@@ -164,7 +165,8 @@
             android:onClick="SaveProfile"
             android:enabled="true"
             android:text="Save"
-            android:background="@drawable/buttonsave"/>
+            android:background="@drawable/buttonsave"
+            />
 
     </LinearLayout>
 

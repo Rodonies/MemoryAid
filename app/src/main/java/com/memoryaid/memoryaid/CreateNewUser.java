@@ -128,8 +128,6 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
             default:
                 break;
         }
-
-
     }
 
 
@@ -137,6 +135,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
         dialog = new Dialog(CreateNewUser.this);
         dialog.setContentView(R.layout.customdialogvenster);
         dialog.setTitle("Select image source");
+        
 
         imgGallery = (ImageView) dialog.findViewById(R.id.PhotoGallery);
         imgCamera = (ImageView) dialog.findViewById(R.id.PhotoCamera);
