@@ -241,10 +241,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         } else return _profile;
     }
 
-    public boolean editProfile(Profile newprofile) {
+    public boolean editProfile(Profile oldprofile, Profile newprofile) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Copy(_profile.getImageFile(), newprofile.getImageFile(), false);
+        Copy(oldprofile.getImageFile(), newprofile.getImageFile(), false);
 
         ContentValues values = new ContentValues();
 
@@ -255,10 +255,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_INFORMATION, newprofile.getInformation());
 
         try {
-            db.update(TABLE_PROFILES, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())});
-            findProfile(_profile.getID());
-            initializeProfile();
-            updateContacts();
+            db.update(TABLE_PROFILES, values, KEY_ID + " = ?", new String[]{String.valueOf(oldprofile.getID())});
             return true;
         } catch (Exception e) {
             Log.e("editProfile", "Error: " + e.getMessage());
