@@ -335,15 +335,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    public boolean deleteProfile() {
+    public boolean deleteProfile(Profile profile) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         try {
-            db.delete(TABLE_PROFILES, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())});
-            db.delete(TABLE_CONTACTS, KEY_PROFILEID + " = ?", new String[]{String.valueOf(_profile.getID())});
-            db.delete(TABLE_SETTINGS, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())});
-            new File(_profile.getImagePath()).getParentFile().delete();
-            _profile = null;
+            db.delete(TABLE_PROFILES, KEY_ID + " = ?", new String[]{String.valueOf(profile.getID())});
+            db.delete(TABLE_CONTACTS, KEY_PROFILEID + " = ?", new String[]{String.valueOf(profile.getID())});
+            db.delete(TABLE_SETTINGS, KEY_ID + " = ?", new String[]{String.valueOf(profile.getID())});
+            new File(profile.getImagePath()).getParentFile().delete();
             return true;
         } catch (Exception e) {
             Log.e("deleteProfile", "Error: " + e.getMessage());
