@@ -191,6 +191,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public boolean findProfile(Integer id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
+        if (id == null)
+            return false;
+
         try {
             Cursor cursor = db.query(TABLE_PROFILES, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_DATE, KEY_NUMBER, KEY_INFORMATION}, KEY_ID + " = ?", new String[]{id.toString()}, null, null, null, null);
 
@@ -255,7 +258,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         try {
             db.update(TABLE_PROFILES, values, KEY_ID + " = ?", new String[]{String.valueOf(oldprofile.getID())});
-            findProfile(newprofile.getID());
+            findProfile(oldprofile.getID());
             return true;
         } catch (Exception e) {
             Log.e("editProfile", "Error: " + e.getMessage());

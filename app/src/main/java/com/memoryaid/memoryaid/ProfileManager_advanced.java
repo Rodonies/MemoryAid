@@ -53,7 +53,7 @@ public class ProfileManager_advanced extends ActionBarActivity implements View.O
                 editor = settings.edit();
                 editor.putString("ProfileMode", "Edit");
                 editor.commit();
-                //ProfileView(v);
+                ProfileView(v);
 
                 break;
             case R.id.btnDeleteProfile:
@@ -61,14 +61,14 @@ public class ProfileManager_advanced extends ActionBarActivity implements View.O
                 editor = settings.edit();
                 editor.putString("ProfileMode", "Delete");
                 editor.commit();
-                //ContactView(v);
+                ProfileView(v);
                 break;
             case R.id.btnChangeProfile:
                 settings = getSharedPreferences(SaveData, 0);
                 editor = settings.edit();
-                editor.putString("ProfileMode", "View");
+                editor.putString("ProfileMode", "Change");
                 editor.commit();
-                ChangeProfile(v);
+                ProfileView(v);
                 break;
 
         }
@@ -82,11 +82,7 @@ public class ProfileManager_advanced extends ActionBarActivity implements View.O
     }
 
     public void ProfileView(View view) {
-        Intent i = new Intent(this, ProfileView.class);
-        startActivity(i);
-    }
-    public void  ChangeProfile(View view){
-        Intent i = new Intent(this,ProfileView_advanced.class);
+        Intent i = new Intent(this, ProfileView_advanced.class);
         startActivity(i);
     }
 
