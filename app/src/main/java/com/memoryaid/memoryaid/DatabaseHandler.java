@@ -244,7 +244,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public boolean editProfile(Profile oldprofile, Profile newprofile) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Copy(oldprofile.getImageFile(), newprofile.getImageFile(), false);
+        Copy(oldprofile.getImageFile(), newprofile.getImageFile(), true);
 
         ContentValues values = new ContentValues();
 
@@ -269,6 +269,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+
+        Copy(oldcontact.getImageFile(), newcontact.getImageFile(), true);
 
         values.put(KEY_FIRSTNAME, newcontact.getFirstName());
         values.put(KEY_LASTNAME, newcontact.getLastName());
