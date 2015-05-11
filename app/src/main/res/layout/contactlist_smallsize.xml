@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:text="test123"
         android:layout_gravity="center_horizontal"
+        android:gravity="center"
         android:textStyle="bold"
         android:textSize="25sp"
         android:layout_margin="10dp"
