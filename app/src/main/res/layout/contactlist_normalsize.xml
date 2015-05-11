@@ -18,8 +18,9 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:maxHeight="30sp"
         android:text="test123"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:textStyle="bold"
         android:textSize="25sp"
         android:layout_margin="10dp"

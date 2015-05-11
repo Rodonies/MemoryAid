@@ -24,7 +24,9 @@ public class AdapterProfiles extends ArrayAdapter<Profile> {
         convertView = LayoutInflater.from(this.getContext()).inflate(R.layout.contactlist_normalsize, parent, false);
 
         TextView ProfileName = (TextView) convertView.findViewById(R.id.TextName);
+
         ProfileName.setText(profile.getFullName());
+
 
         ImageView ProfileImage = (ImageView) convertView.findViewById(R.id.imgContact);
         if (profile.getImageFile() == null)

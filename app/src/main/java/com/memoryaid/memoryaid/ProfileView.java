@@ -10,9 +10,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ListAdapter;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -24,7 +28,9 @@ public class ProfileView extends ActionBarActivity {
     private String ContactMode;
     private View V;
     private Contact BufferContact;
+    private TextView Titel;
     private EditText Name, LastName, Phone, Date_of_Birth, Information, Relation;
+    private ImageView Photo;
 
     @Override
     public void onBackPressed() {
@@ -57,6 +63,8 @@ public class ProfileView extends ActionBarActivity {
         themeUtils.onActivityCreateSetColor(this);
         setContentView(R.layout.activity_profile_view2);
         DatabaseHandler db = new DatabaseHandler(this);
+        Titel = (TextView) findViewById(R.id.TitleList);
+        Titel.setText("Contact List");
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         CurrentProfile = settings.getInt("CurrentProfile", 0);
         ContactMode = settings.getString("ProfileMode", "View");
@@ -100,7 +108,9 @@ public class ProfileView extends ActionBarActivity {
         Information.setText(BufferContact.getInformation());
         Relation = (EditText) findViewById(R.id.RelationText);
         Relation.setText(BufferContact.getRelation());
-
+        Photo = (ImageView) findViewById(R.id.ImageLabel);
+        if(BufferContact.getImageFile()!= null)  Picasso.with(ProfileView.this).load(BufferContact.getImageFile()).resize(Photo.getMaxWidth(),Photo.getMaxHeight()).into(Photo);
+        else  Picasso.with(ProfileView.this).load(R.drawable.defaultimage).resize(Photo.getMaxWidth(),Photo.getMaxHeight()).into(Photo);
         switch (mode) {
             case 0:
                 Name.setClickable(false);

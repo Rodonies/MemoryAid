@@ -78,7 +78,8 @@ public class ProfileManager_advanced extends ActionBarActivity implements View.O
         startActivity(i);
     }
     public void  ChangeProfile(View view){
-        Intent u = new Intent(this,ProfileView_advanced.class);
+        Intent i = new Intent(this,ProfileView_advanced.class);
+        startActivity(i);
     }
 
 }
