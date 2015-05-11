@@ -244,7 +244,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public boolean editProfile(Profile oldprofile, Profile newprofile) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        if (!oldprofile.getImagePath().equals(newprofile.getImagePath())) Copy(oldprofile.getImageFile(), newprofile.getImageFile(), true);
+        Copy(oldprofile.getImageFile(), newprofile.getImageFile(), true);
 
         ContentValues values = new ContentValues();
 
@@ -256,7 +256,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         try {
             db.update(TABLE_PROFILES, values, KEY_ID + " = ?", new String[]{String.valueOf(oldprofile.getID())});
-            if (_profile.getID() == oldprofile.getID()) findProfile(_profile.getID());
+            if (_profile.getID() == oldprofile.getID()) findProfile(newprofile.getID());
             return true;
         } catch (Exception e) {
             Log.e("editProfile", "Error: " + e.getMessage());
@@ -271,7 +271,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
 
-        if (!oldcontact.getImagePath().equals(newcontact.getImagePath())) Copy(oldcontact.getImageFile(), newcontact.getImageFile(), true);
+        Copy(oldcontact.getImageFile(), newcontact.getImageFile(), true);
 
         values.put(KEY_FIRSTNAME, newcontact.getFirstName());
         values.put(KEY_LASTNAME, newcontact.getLastName());
