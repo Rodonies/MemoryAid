@@ -49,7 +49,7 @@ public class ProfileManager_advanced extends ActionBarActivity implements View.O
                 editor = settings.edit();
                 editor.putString("ProfileMode", "Edit");
                 editor.commit();
-                //ContactView(v);
+                //ProfileView(v);
 
                 break;
             case R.id.btnDeleteProfile:
@@ -60,7 +60,7 @@ public class ProfileManager_advanced extends ActionBarActivity implements View.O
                 //ContactView(v);
                 break;
             case R.id.btnChangeProfile:
-                //AdvancedProfileManager(v);
+                ChangeProfile(v);
                 break;
 
         }
@@ -76,6 +76,9 @@ public class ProfileManager_advanced extends ActionBarActivity implements View.O
     public void ProfileView(View view) {
         Intent i = new Intent(this, ProfileView.class);
         startActivity(i);
+    }
+    public void  ChangeProfile(View view){
+        Intent u = new Intent(this,ProfileView_advanced.class);
     }
 
 }
