@@ -82,6 +82,7 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
         Titel.setText("Profile list");
         ArrayList<Profile> ProfileList = db.getAllProfiles();
         final ListView profileList = (ListView) findViewById(R.id.ListContacts);
+
         profileList.setAdapter(new AdapterProfiles(this, ProfileList));
 
 
@@ -361,6 +362,7 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
     }
    public void Save()
    {
+
        DatabaseHandler db = new DatabaseHandler(this);
        db.editProfile(BufferProfile,new Profile(Name.getText().toString(), LastName.getText().toString(),"Empty", Phone.getText().toString(), Information.getText().toString()));
        File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");
@@ -392,7 +394,7 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
 
         Intent i = new Intent(this,ProfileView_advanced.class);
         startActivity(i);
-
-
+        DatabaseHandler db = new DatabaseHandler(this);
+        ArrayList<Profile> ProfileList = db.getAllProfiles();
     }
 }

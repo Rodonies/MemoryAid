@@ -108,8 +108,8 @@ public class ProfileView extends ActionBarActivity {
         Information.setText(BufferContact.getInformation());
         Relation = (EditText) findViewById(R.id.RelationText);
         Relation.setText(BufferContact.getRelation());
-        Date_of_Birth = (EditText) findViewById(R.id.Date_Of_Birth);
-        Date_of_Birth.setText(BufferContact.getBirthDate());
+        //Date_of_Birth = (EditText) findViewById(R.id.Date_Of_Birth);
+        //Date_of_Birth.setText(BufferContact.getBirthDate());
         Photo = (ImageView) findViewById(R.id.ImageLabel);
         if(BufferContact.getImageFile()!= null)  Picasso.with(ProfileView.this).load(BufferContact.getImageFile()).resize(Photo.getMaxWidth(),Photo.getMaxHeight()).into(Photo);
         else  Picasso.with(ProfileView.this).load(R.drawable.defaultimage).resize(Photo.getMaxWidth(),Photo.getMaxHeight()).into(Photo);
