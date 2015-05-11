@@ -21,7 +21,9 @@ public class Settings extends ActionBarActivity {
     private boolean BoolRadioButtonB;
     private boolean BoolRadioButtonC;
     private CheckBox Advanced;
-
+    private RadioButton A;
+    private RadioButton B;
+    private RadioButton C;
 
     @Override
     public void onBackPressed() {
@@ -57,9 +59,9 @@ public class Settings extends ActionBarActivity {
             Advanced.setChecked(false);
 
 
-        RadioButton A = (RadioButton) findViewById(R.id.RadioSmall);
-        RadioButton B = (RadioButton) findViewById(R.id.RadioMedium);
-        RadioButton C = (RadioButton) findViewById(R.id.RadioBig);
+        A = (RadioButton) findViewById(R.id.RadioSmall);
+        B = (RadioButton) findViewById(R.id.RadioMedium);
+        C = (RadioButton) findViewById(R.id.RadioBig);
 
         if (BoolRadioButtonA)
         {
@@ -100,21 +102,30 @@ public class Settings extends ActionBarActivity {
 
 
     public void onRadioButtonClicked(View view) {
-        boolean checked = ((RadioButton) view).isChecked();
 
-        switch (view.getId()) {
+        DatabaseHandler db = new DatabaseHandler(this);
+        SharedPreferences settings = getSharedPreferences(SaveData, 0);
+        SharedPreferences.Editor editor = settings.edit();
 
-            case R.id.RadioMedium:
-                themeUtils.changeToTheme(this, "Medium");
-                break;
-            case R.id.RadioSmall:
-                themeUtils.changeToTheme(this, "Small");
-                break;
-            case R.id.RadioBig:
-                themeUtils.changeToTheme(this, "Big");
-                break;
+        if (A.isChecked()) {
+            editor.putBoolean("BoolRadioButtonA", true);
+            editor.putBoolean("BoolRadioButtonB", false);
+            editor.putBoolean("BoolRadioButtonC", false);
+            editor.commit();
+
         }
-
+        else if(B.isChecked()) {
+            editor.putBoolean("BoolRadioButtonB", true);
+            editor.putBoolean("BoolRadioButtonA", false);
+            editor.putBoolean("BoolRadioButtonC", false);
+            editor.commit();
+        }
+        else if(C.isChecked()) {
+            editor.putBoolean("BoolRadioButtonC", true);
+            editor.putBoolean("BoolRadioButtonA", false);
+            editor.putBoolean("BoolRadioButtonB", false);
+            editor.commit();
+        }
     }
 
     public void onColorButtonClicked(View view) {
