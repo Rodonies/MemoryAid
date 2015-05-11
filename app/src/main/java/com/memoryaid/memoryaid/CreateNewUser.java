@@ -134,8 +134,6 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
 
 
     public void SearchPhoto(View view) {
-
-
         dialog = new Dialog(CreateNewUser.this);
         dialog.setContentView(R.layout.customdialogvenster);
         dialog.setTitle("Select image source");
