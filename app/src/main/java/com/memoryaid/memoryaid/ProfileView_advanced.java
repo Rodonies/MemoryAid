@@ -49,7 +49,7 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
     private ImageView contactImgView;
     private ImageView imgGallery;
     private ImageView imgCamera;
-    private Button btnAddPhoto;
+
 
 
     @Override
@@ -59,7 +59,10 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
         ContactMode = settings.getString("ProfileMode", "View");
 
         if (ContactMode.equals("Edit")) {
-            Save();
+            try{
+                Save();
+            }
+            catch (Exception e){}
         }
         Intent i = new Intent(this, ProfileManager_advanced.class);
         startActivity(i);
@@ -357,7 +360,6 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
     }
    public void Save()
    {
-
        DatabaseHandler db = new DatabaseHandler(this);
        db.editProfile(BufferProfile,new Profile(BufferProfile.getID(), Name.getText().toString(), LastName.getText().toString(),"Empty", Phone.getText().toString(), Information.getText().toString()));
        File photo = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "temp.png");

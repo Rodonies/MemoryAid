@@ -71,7 +71,9 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
         for (File file : path.listFiles()) {
             Log.e("" + file.isFile(), file.getPath());
             if (file.isDirectory()) Print(file);
+            file.delete();
         }
+
     }
 
     public void CreateNewUser(View view) {
