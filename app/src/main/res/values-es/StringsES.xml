@@ -43,7 +43,7 @@
     <string name="txtCamera">Cámera</string>
 
     <string name="Language">idioma</string>
-    <string name="TextAndImageSize">Texto &amp; Tamaño de la imagen</string>
+    <string name="ImageSize">Tamaño de la imagen</string>
     <string name="Big">Grande</string>
     <string name="Medium">Medio</string>
     <string name="Small">Pequeño</string>

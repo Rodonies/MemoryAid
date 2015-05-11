@@ -43,7 +43,7 @@
     <string name="txtCamera">Camera</string>
 
     <string name="Language">Taal</string>
-    <string name="TextAndImageSize">Tekst &amp; Afbeeldings grootte</string>
+    <string name="ImageSize">Afbeeldings grootte</string>
     <string name="Normal">Normal</string>
     <string name="Big">Groot</string>
     <string name="Medium">Medium</string>
