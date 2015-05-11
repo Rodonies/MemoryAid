@@ -2,6 +2,7 @@ package com.memoryaid.memoryaid;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -24,10 +25,27 @@ import java.util.ArrayList;
  */
 class AdapterContacts extends ArrayAdapter<Contact> {
     @Override
+
+
     public View getView(int position, View convertView, ViewGroup parent) {
         Contact contact = getItem(position);
 
-        convertView = LayoutInflater.from(this.getContext()).inflate(R.layout.contactlist_normalsize, parent, false);
+        DatabaseHandler db = new DatabaseHandler(getContext());
+
+
+        if(db.getProfile().getSize().equals("Medium"))
+        {
+            convertView = LayoutInflater.from(this.getContext()).inflate(R.layout.contactlist_normalsize, parent, false);
+        }
+        else if(db.getProfile().getSize().equals("Big"))
+        {
+            convertView = LayoutInflater.from(this.getContext()).inflate(R.layout.contactlist_bigsize, parent, false);
+        }
+        else if(db.getProfile().getSize().equals("Small"))
+        {
+            convertView = LayoutInflater.from(this.getContext()).inflate(R.layout.contactlist_smallsize, parent, false);
+        }
+
 
         TextView ContactName = (TextView) convertView.findViewById(R.id.TextName);
         ContactName.setText(contact.getFullName());
@@ -40,6 +58,8 @@ class AdapterContacts extends ArrayAdapter<Contact> {
 
         return convertView;
     }
+
+
 
     public AdapterContacts(Context context, ArrayList<Contact> contactlist) {
         super(context, 0, contactlist);

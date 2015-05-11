@@ -61,7 +61,9 @@ public class ProfileView extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         themeUtils.onActivityCreateSetTheme(this);
         themeUtils.onActivityCreateSetColor(this);
+
         setContentView(R.layout.activity_profile_view2);
+
         DatabaseHandler db = new DatabaseHandler(this);
         Titel = (TextView) findViewById(R.id.TitleList);
         Titel.setText("Contact List");

@@ -106,7 +106,6 @@ public class Homescreen extends ActionBarActivity implements View.OnClickListene
             case R.id.btnSettings:
                 Settings(v);
                 break;
-
         }
 
     }
