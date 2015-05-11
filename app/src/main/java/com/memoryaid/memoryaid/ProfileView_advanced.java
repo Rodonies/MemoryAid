@@ -39,6 +39,7 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
     private int CurrentProfile;
     private String ContactMode;
     private Profile BufferProfile;
+    private String Contact_Or_Profile;
     private TextView Titel;
     private View V;
     private EditText Name, LastName, Phone, Date_of_Birth, Information, Relation;
@@ -87,7 +88,7 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
         profileList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        BufferProfile = (Profile) profileList.getItemAtPosition(position);
+                BufferProfile = (Profile) profileList.getItemAtPosition(position);
 
 
                 if (ContactMode.equals("View")) {
@@ -96,7 +97,9 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
                     ViewProfile(V, 1);
                 } else if (ContactMode.equals("Delete")) {
                     AskOption().show();
-
+                } else if (ContactMode.equals("Change"))
+                {
+                    ChangeProfile();
                 }
             }
         });
@@ -117,8 +120,7 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
         Information.setText(BufferProfile.getInformation());
         Photo = (ImageView) findViewById(R.id.ImageLabel);
         Photo.setOnClickListener(this);
-        // Date_of_Birth = (EditText) findViewById(R.id.Date_Of_Birth);
-        // Date_of_Birth.setText(BufferProfile.getBirthDate());
+
         if (BufferProfile.getImageFile() != null)
             Picasso.with(ProfileView_advanced.this).load(BufferProfile.getImageFile()).resize(Photo.getMaxWidth(), Photo.getMaxHeight()).into(Photo);
         else
@@ -289,6 +291,17 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
         dialog.show();
 
 
+    }
+    public void   ChangeProfile()
+    {
+
+        SharedPreferences settings = getSharedPreferences(SaveData, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("CurrentProfile", BufferProfile.getID());
+        editor.commit();
+        DatabaseHandler db = new DatabaseHandler(this);
+        db.findProfile(BufferProfile.getID());
+        Toast.makeText(this,"Switched to " + BufferProfile.getFullName(),Toast.LENGTH_SHORT).show();
     }
 
     @Override

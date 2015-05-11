@@ -32,6 +32,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -64,10 +65,10 @@ public class ProfileView extends ActionBarActivity implements View.OnClickListen
             settings = getSharedPreferences(SaveData, 0);
             CurrentProfile = settings.getInt("CurrentProfile", 0);
             if (db.findProfile(CurrentProfile)) {
-                try{}
+                try{ db.editContact(BufferContact, new Contact(BufferContact.getID(),BufferContact.getCID() ,Name.getText().toString(), LastName.getText().toString(), "Empty", Relation.getText().toString(), Phone.getText().toString(), Information.getText().toString(), db.getProfile().getImagePath()));}
                 catch(Exception e)
                 {
-                    db.editContact(BufferContact, new Contact(BufferContact.getID(),BufferContact.getCID() ,Name.getText().toString(), LastName.getText().toString(), "Empty", Relation.getText().toString(), Phone.getText().toString(), Information.getText().toString(), db.getProfile().getImagePath()));
+
                 }
 
             }
@@ -166,11 +167,14 @@ public class ProfileView extends ActionBarActivity implements View.OnClickListen
         LastName = (EditText) findViewById(R.id.LastNameText);
         LastName.setText(BufferContact.getLastName());
         Phone = (EditText) findViewById(R.id.PhonenmrText);
-        Phone.setText(BufferContact.getNumber());
+        if(BufferContact.getNumber().equals("")) Phone.setText("            ");
+        else Phone.setText(BufferContact.getNumber());
         Information = (EditText) findViewById(R.id.BasicInfoText);
-        Information.setText(BufferContact.getInformation());
+        if(BufferContact.getInformation().equals("")) Information.setText("            ");
+        else Information.setText(BufferContact.getInformation());
         Relation = (EditText) findViewById(R.id.RelationText);
-        Relation.setText(BufferContact.getRelation());
+        if(BufferContact.getRelation().equals(""))Relation.setText("            ");
+        else Relation.setText(BufferContact.getRelation());
         //Date_of_Birth = (EditText) findViewById(R.id.Date_Of_Birth);
         //Date_of_Birth.setText(BufferContact.getBirthDate());
         Photo = (ImageView) findViewById(R.id.ImageLabel);
