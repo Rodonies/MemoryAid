@@ -244,7 +244,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public boolean editProfile(Profile oldprofile, Profile newprofile) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        if (!oldprofile.getImagePath().equals(newprofile.getImagePath())) Copy(oldprofile.getImageFile(), newprofile.getImageFile(), true);
+        if (!oldprofile.getImagePath().equals(newprofile.getImagePath())) Copy(oldprofile.getImagePath(), newprofile.getImagePath(), true);
 
         ContentValues values = new ContentValues();
 
@@ -271,7 +271,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
 
-        if (!oldcontact.getImagePath().equals(newcontact.getImagePath())) Copy(oldcontact.getImageFile(), newcontact.getImageFile(), true);
+        if (!oldcontact.getImagePath().equals(newcontact.getImagePath())) Copy(oldcontact.getImagePath(), newcontact.getImagePath(), true);
 
         values.put(KEY_FIRSTNAME, newcontact.getFirstName());
         values.put(KEY_LASTNAME, newcontact.getLastName());
@@ -442,8 +442,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
     }
 
-    private void Copy(File src, File dst, boolean delete) {
+    private void Copy(String srcP, String dstP, boolean delete) {
         try {
+            File src = new File(srcP);
+            File dst = new File(dstP);
             dst.getParentFile().mkdirs();
 
             InputStream in = new FileInputStream(src);
