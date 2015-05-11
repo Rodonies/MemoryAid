@@ -17,9 +17,6 @@ public class Settings extends ActionBarActivity {
     private String First_Launch;
     private String Contact_Or_Profile;
     private boolean StateCheckbox;
-    private boolean BoolRadioButtonA;
-    private boolean BoolRadioButtonB;
-    private boolean BoolRadioButtonC;
     private CheckBox Advanced;
     private RadioButton A;
     private RadioButton B;
@@ -48,9 +45,6 @@ public class Settings extends ActionBarActivity {
 
         SharedPreferences settings = getSharedPreferences(SaveData, 0);
         StateCheckbox = settings.getBoolean("StateCheckbox", false);
-        BoolRadioButtonA = settings.getBoolean("BoolRadioButtonA", false);
-        BoolRadioButtonB = settings.getBoolean("BoolRadioButtonB", false);
-        BoolRadioButtonC = settings.getBoolean("BoolRadioButtonC", false);
 
         Advanced = (CheckBox) findViewById(R.id.checkboxAdvanced);
         if (StateCheckbox == true)
@@ -58,37 +52,31 @@ public class Settings extends ActionBarActivity {
         else
             Advanced.setChecked(false);
 
-
         A = (RadioButton) findViewById(R.id.RadioSmall);
         B = (RadioButton) findViewById(R.id.RadioMedium);
         C = (RadioButton) findViewById(R.id.RadioBig);
 
-        if (BoolRadioButtonA)
+        DatabaseHandler db = new DatabaseHandler(this);
+
+        if(db.getProfile().getSize().equals("Medium"))
+        {
+            A.setChecked(false);
+            B.setChecked(true);
+            C.setChecked(false);
+        }
+        else if(db.getProfile().getSize().equals("Small"))
         {
             A.setChecked(true);
             B.setChecked(false);
             C.setChecked(false);
         }
-        else if(BoolRadioButtonB)
+        else if(db.getProfile().getSize().equals("Big"))
         {
-            A.setChecked(false);
-            B.setChecked(true);
-            C.setChecked(false);
+                A.setChecked(false);
+                B.setChecked(false);
+                C.setChecked(true);
         }
-        else if(BoolRadioButtonC)
-        {
-            A.setChecked(false);
-            B.setChecked(false);
-            C.setChecked(true);
-        }
-        else
-        {
-            A.setChecked(false);
-            B.setChecked(true);
-            C.setChecked(false);
-        }
-
-    }
+     }
 
 
     public void onRadioButtonLanguageClicked(View view) {
@@ -104,27 +92,15 @@ public class Settings extends ActionBarActivity {
     public void onRadioButtonClicked(View view) {
 
         DatabaseHandler db = new DatabaseHandler(this);
-        SharedPreferences settings = getSharedPreferences(SaveData, 0);
-        SharedPreferences.Editor editor = settings.edit();
 
         if (A.isChecked()) {
-            editor.putBoolean("BoolRadioButtonA", true);
-            editor.putBoolean("BoolRadioButtonB", false);
-            editor.putBoolean("BoolRadioButtonC", false);
-            editor.commit();
-
+            db.saveSettings("Small",null);
         }
         else if(B.isChecked()) {
-            editor.putBoolean("BoolRadioButtonB", true);
-            editor.putBoolean("BoolRadioButtonA", false);
-            editor.putBoolean("BoolRadioButtonC", false);
-            editor.commit();
+            db.saveSettings("Medium",null);
         }
         else if(C.isChecked()) {
-            editor.putBoolean("BoolRadioButtonC", true);
-            editor.putBoolean("BoolRadioButtonA", false);
-            editor.putBoolean("BoolRadioButtonB", false);
-            editor.commit();
+            db.saveSettings("Big",null);
         }
     }
 
