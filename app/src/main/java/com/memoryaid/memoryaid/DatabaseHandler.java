@@ -256,6 +256,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         try {
             db.update(TABLE_PROFILES, values, KEY_ID + " = ?", new String[]{String.valueOf(oldprofile.getID())});
+            if (_profile.getID() == oldprofile.getID()) findProfile(newprofile.getID());
             return true;
         } catch (Exception e) {
             Log.e("editProfile", "Error: " + e.getMessage());
