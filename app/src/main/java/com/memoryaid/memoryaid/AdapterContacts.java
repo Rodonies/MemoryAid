@@ -51,12 +51,32 @@ class AdapterContacts extends ArrayAdapter<Contact> {
         ContactName.setText(contact.getFullName());
 
         ImageView ContactImage = (ImageView) convertView.findViewById(R.id.imgContact);
-        if (contact.getImageFile() == null)
-            Picasso.with(getContext()).load(R.drawable.defaultimage).resize(150, 150).into(ContactImage);
-        else
-            Picasso.with(getContext()).load(contact.getImageFile()).resize(150, 150).into(ContactImage);
 
+        if(db.getProfile().getSize().equals("Medium"))
+        {
+            if (contact.getImageFile() == null)
+                Picasso.with(getContext()).load(R.drawable.defaultimage).resize(300, 350).into(ContactImage);
+            else
+                Picasso.with(getContext()).load(contact.getImageFile()).resize(300, 350).into(ContactImage);
+
+        }
+        else if(db.getProfile().getSize().equals("Big"))
+        {
+            if (contact.getImageFile() == null)
+                Picasso.with(getContext()).load(R.drawable.defaultimage).resize(450, 500).into(ContactImage);
+            else
+                Picasso.with(getContext()).load(contact.getImageFile()).resize(450, 500).into(ContactImage);
+
+        }
+        else if(db.getProfile().getSize().equals("Small"))
+        {
+            if (contact.getImageFile() == null)
+                Picasso.with(getContext()).load(R.drawable.defaultimage).resize(150, 200).into(ContactImage);
+            else
+                Picasso.with(getContext()).load(contact.getImageFile()).resize(150, 200).into(ContactImage);
+        }
         return convertView;
+
     }
 
 
