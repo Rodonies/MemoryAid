@@ -192,7 +192,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         try {
-            Cursor cursor = db.query(TABLE_PROFILES, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_DATE, KEY_NUMBER, KEY_INFORMATION}, KEY_ID + " = ?", new String[]{Integer.toString(id)}, null, null, null, null);
+            Cursor cursor = db.query(TABLE_PROFILES, new String[]{KEY_ID, KEY_FIRSTNAME, KEY_LASTNAME, KEY_DATE, KEY_NUMBER, KEY_INFORMATION}, KEY_ID + " = ?", new String[]{id.toString()}, null, null, null, null);
 
             if (cursor.moveToFirst()) {
                 _profile = new Profile(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5));
@@ -223,7 +223,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 initializeProfile();
                 return true;
             }
-            db.close();
             return false;
         } catch (Exception e) {
             Log.e("findProfile", "Error: " + e.getMessage());
