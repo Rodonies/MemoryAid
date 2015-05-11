@@ -305,9 +305,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_COLOR, color);
 
         try {
+            Cursor cursor = db.query(TABLE_SETTINGS, new String[]{KEY_SIZE, KEY_COLOR}, KEY_ID + " = ?", new String[]{Integer.toString(_profile.getID())}, null, null, null, null);
 
-            if (loadSettings())
-                db.update(TABLE_SETTINGS, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())});
+            if (cursor.moveToFirst()) db.update(TABLE_SETTINGS, values, KEY_ID + " = ?", new String[]{String.valueOf(_profile.getID())});
             else db.insert(TABLE_SETTINGS, null, values);
 
             loadSettings();
