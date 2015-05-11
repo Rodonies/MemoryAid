@@ -80,7 +80,7 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
         ContactMode = settings.getString("ProfileMode", "View");
         Titel = (TextView) findViewById(R.id.TitleList);
         Titel.setText("Profile list");
-        final ArrayList<Profile> ProfileList = db.getAllProfiles();
+        ArrayList<Profile> ProfileList = db.getAllProfiles();
         final ListView profileList = (ListView) findViewById(R.id.ListContacts);
         profileList.setAdapter(new AdapterProfiles(this, ProfileList));
 
@@ -389,8 +389,9 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
    }
     public void refresh()
     {
+
         Intent i = new Intent(this,ProfileView_advanced.class);
-       startActivity(i);
+        startActivity(i);
 
 
     }
