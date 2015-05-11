@@ -82,15 +82,10 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
         Titel.setText("Profile list");
         ArrayList<Profile> ProfileList = db.getAllProfiles();
         final ListView profileList = (ListView) findViewById(R.id.ListContacts);
-
-        profileList.setAdapter(new AdapterProfiles(this, ProfileList));
-
-
-
         profileList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                BufferProfile = (Profile) profileList.getItemAtPosition(position);
+        BufferProfile = (Profile) profileList.getItemAtPosition(position);
 
 
                 if (ContactMode.equals("View")) {
@@ -103,6 +98,8 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
                 }
             }
         });
+        profileList.setAdapter(new AdapterProfiles(this, ProfileList));
+        db.close();
     }
 
     void ViewProfile(View v, int mode) {
@@ -209,7 +206,6 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
                 intent.setDataAndType(uri, "image/png");
-
                 startActivityForResult(Intent.createChooser(intent, "Select contact image"), SELECT_IMAGE);
                 dialog.dismiss();
 
@@ -310,7 +306,7 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
                     else
                         Picasso.with(getApplicationContext()).load(R.drawable.defaultimage).centerCrop().resize(300, 250).into(Photo);
                     Toast.makeText(this, "photo was added to database", Toast.LENGTH_LONG).show();
-                    btnAddPhoto.setVisibility(View.GONE);
+
                 } else if (resCode == Activity.RESULT_CANCELED) {
                     Toast.makeText(this, "no photo was chosen", Toast.LENGTH_LONG).show();
                 }
@@ -393,8 +389,11 @@ public class ProfileView_advanced extends ActionBarActivity implements View.OnCl
     {
 
         Intent i = new Intent(this,ProfileView_advanced.class);
-        startActivity(i);
-        DatabaseHandler db = new DatabaseHandler(this);
-        ArrayList<Profile> ProfileList = db.getAllProfiles();
+
+        Toast.makeText(this,"restart app to apply changes",Toast.LENGTH_LONG).show();
+
+
+
+
     }
 }
