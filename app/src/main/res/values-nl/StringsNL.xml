@@ -42,7 +42,7 @@
     <string name="txtGallery">Fotogallerij</string>
     <string name="txtCamera">Camera</string>
 
-    <string name="Language">Taal</string>
+
     <string name="ImageSize">Afbeeldings grootte</string>
     <string name="Normal">Normal</string>
     <string name="Big">Groot</string>
@@ -64,4 +64,5 @@
 
     <string name="Advanced">Uitgebreid profiel beheer</string>
     <string name="Error1">Vul alle velden in</string>
+    <string name="title_activity_profile_view_advanced">ProfileView_advanced</string>
 </resources>

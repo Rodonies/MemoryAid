@@ -42,7 +42,7 @@
     <string name="txtGallery">Galerie de photos</string>
     <string name="txtCamera">Caméra</string>
 
-    <string name="Language">Langue</string>
+
     <string name="ImageSize">Taille de le image</string>
     <string name="Normal">Normal</string>
     <string name="Bold">Bold</string>
@@ -64,4 +64,5 @@
 
     <string name="Advanced">Gestion de profil avancée</string>
     <string name="Error1">ne pas laisser de texte vide</string>
+    <string name="title_activity_profile_view_advanced">ProfileView_advanced</string>
 </resources>

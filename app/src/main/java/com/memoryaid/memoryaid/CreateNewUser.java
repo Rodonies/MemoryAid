@@ -120,7 +120,7 @@ public class CreateNewUser extends ActionBarActivity implements View.OnClickList
                     Toast.makeText(this, "photo was selected", Toast.LENGTH_LONG).show();
                     btnAddPhoto.setVisibility(View.GONE);
                 } catch (Exception e) {
-                    Toast.makeText(this, "no photo was selected " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "no photo was selected ", Toast.LENGTH_LONG).show();
 
                 }
 
